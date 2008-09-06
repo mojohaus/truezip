@@ -7,11 +7,10 @@
  ------
 
 
-TrueZip Maven Plugin
+TrueZIP Maven Plugin
 
-~~  Plugin introduction, description, and other relevant information.
-
-  * This plugin contains various small independent goals to assist with Maven build lifecycle.
+  Use this plugin to manipulate existing well known archives such as tar, zip, jar, war, ear, tar, tgz, tbz2, tar.gz, tar.bz2.
+  
 
 * Goals Overview
 
@@ -19,13 +18,13 @@ TrueZip Maven Plugin
 
   * {{{copy-mojo.html}truezip:copy}} Copy a set of files into the archive.
 
-  * {{{remove-mojo.html}truezip:remove}} Copy a set of files from the archive.
+  * {{{remove-mojo.html}truezip:remove}} Remove a set of files from the archive.
 
   * {{{list-mojo.html}truezip:copy}} Print out the archive's file list.
 
 * Usage
 
-  Instructions on how to use the TrueZipr Maven Plugin can be found on the {{{usage.html}usage page}}.
+  Instructions on how to use the TrueZip Maven Plugin can be found on the {{{usage.html}usage page}}.
 
 
 * Examples

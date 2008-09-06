@@ -92,13 +92,13 @@ public class CopyMojo
     private void processFileSet( Fileset oneFileSet )
         throws MojoExecutionException, MojoFailureException
     {
-        getLog().info( "Copying " + oneFileSet );
-        
         if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
         {
             oneFileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
         }
 
+        getLog().info( "Copying " + oneFileSet );
+                
         FileSetManager fileSetManager = new FileSetManager( getLog(), this.verbose );
         
         String [] files = fileSetManager.getIncludedFiles( oneFileSet );
