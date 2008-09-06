@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>mojo-sandbox-parent</artifactId>
+    <groupId>org.codehaus.mojo</groupId>
+    <version>5-SNAPSHOT</version>
+    <relativePath>../mojo-sandbox-parent</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>truezip-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <name>Maven Plugin for TrueZip</name>
+  <version>1.0-alpha-1-SNAPSHOT</version>
+  
+  <description>Use this plugin create new archive or manipulate existing archive</description>
+  
+  <prerequisites>
+    <maven>2.0.6</maven>
+  </prerequisites>
+
+  <inceptionYear>2008</inceptionYear>
+
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</developerConnection>
+    <url>http://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Dan Tran</name>
+      <email>dantran@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>5</timezone>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.0.6</version>
+    </dependency>
+    
+   <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0.6</version>
+    </dependency>    
+    
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.io</groupId> 
+      <artifactId>truezip</artifactId> 
+      <version>6.6</version> 
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId> 
+      <artifactId>ant</artifactId> 
+      <version>1.7.0</version> 
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>file-management</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+  </dependencies>
+
+<!--
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-checkstyle-plugin/src/main/resources/config/maven_checks.xml</configLocation>
+          <headerLocation>header.txt</headerLocation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+-->
+
+  <profiles>
+    <profile>
+      <id>run-its</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>shitty-maven-plugin</artifactId>
+            <version>1.0-alpha-3</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>clean</goal>
+                  <goal>install</goal>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <parallel>false</parallel>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>  
+</project>

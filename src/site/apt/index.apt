@@ -1,0 +1,32 @@
+ ------
+ Introduction
+ ------
+ Dan T. Tran
+ ------
+ 2005-09-15
+ ------
+
+
+TrueZip Maven Plugin
+
+~~  Plugin introduction, description, and other relevant information.
+
+  * This plugin contains various small independent goals to assist with Maven build lifecycle.
+
+* Goals Overview
+
+~~  General Information about the goals.
+
+  * {{{copy-mojo.html}truezip:copy}} Copy a set of files into the archive.
+
+  * {{{remove-mojo.html}truezip:remove}} Copy a set of files from the archive.
+
+  * {{{list-mojo.html}truezip:copy}} Print out the archive's file list.
+
+* Usage
+
+  Instructions on how to use the TrueZipr Maven Plugin can be found on the {{{usage.html}usage page}}.
+
+
+* Examples
+
