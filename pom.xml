@@ -39,8 +39,8 @@
 
   <licenses>
     <license>
-      <name>The MIT License</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <name>Apache License 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -72,6 +72,12 @@
       <groupId>org.apache.ant</groupId> 
       <artifactId>ant</artifactId> 
       <version>1.7.0</version> 
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.ant</groupId>
+          <artifactId>ant-launcher</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>

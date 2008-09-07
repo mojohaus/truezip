@@ -4,11 +4,15 @@ import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
 
+/**
+ * Taken from assembly maven plugin
+ * @author Owner
+ *
+ */
 public class FileItem
 {
     /**
-     *   Sets the absolute or relative path from the working directory
-     *   of the file to be included in the archive.
+     *   The absolute path of source
      */
     private String source;
 

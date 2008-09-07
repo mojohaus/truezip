@@ -1,8 +1,6 @@
 package org.codehaus.mojo.truezip;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -26,7 +24,7 @@ import de.schlichtherle.io.File;
  */
 
 /**
- * Copy a set of files into an existing or new archive
+ * Copy a set of files in and out of an existing archive
  * 
  * @goal copy
  * @phase="process-resources"
@@ -35,27 +33,12 @@ import de.schlichtherle.io.File;
  * @author Dan T. Tran
  */
 public class CopyMojo
-    extends AbstractArchiveMojo
+    extends AbstractManipulateArchiveMojo
 {
 
-    /**
-     * The list of FileSets to be removed from the archive
-     *
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    private List filesets = new ArrayList( 0 );
 
     /**
-     * A single FileSet to be copied into the archive.
-     *
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    private Fileset fileset;
-
-    /**
-     * The list of FileItem to copy to the archive.  
+     * The list of FileItem to to manipulate the archive.  
      * Use this configuration when you have a need to do copying with option to change file name.
      *
      * @parameter

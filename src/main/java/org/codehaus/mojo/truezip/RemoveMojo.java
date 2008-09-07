@@ -1,9 +1,7 @@
 package org.codehaus.mojo.truezip;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -36,24 +34,8 @@ import de.schlichtherle.io.File;
  * @author Dan T. Tran
  */
 public class RemoveMojo
-    extends AbstractArchiveMojo
+    extends AbstractManipulateArchiveMojo
 {
-
-    /**
-     * The list of FileSets to be removed from the archive.
-     *
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    private List filesets = new ArrayList( 0 );
-
-    /**
-     * The single FileSet to be removed from the archive.
-     *
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    private Fileset fileset;
 
     public void execute()
         throws MojoExecutionException, MojoFailureException

@@ -31,7 +31,6 @@
    </bannerRight>
    <body>
       <links>
-         <item name="Mojo" href="http://mojo.codehaus.org"/>
          <item name="TrueZip" href="https://truezip.dev.java.net"/>
       </links>
       <menu name="Overview">
