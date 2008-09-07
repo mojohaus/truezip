@@ -72,7 +72,9 @@
               <goal>list</goal>
             </goals>
             <phase>package</phase>
-            <configuration></configuration>
+            <configuration>
+              <outputFile>${project.build.directory}/list.txt</outputFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>

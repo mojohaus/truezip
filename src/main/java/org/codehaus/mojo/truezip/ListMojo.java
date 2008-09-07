@@ -1,7 +1,14 @@
 package org.codehaus.mojo.truezip;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+
+import org.codehaus.plexus.util.IOUtil;
 
 import de.schlichtherle.NZip;
 
@@ -31,17 +38,52 @@ import de.schlichtherle.NZip;
 public class ListMojo
     extends AbstractArchiveMojo
 {
+    /**
+     * Write list output to a file if needed
+     * @parameter
+     */
+    private File outputFile;
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
         this.validateArchive();
-        
-        NZip nzip = new NZip();
-        
-        String [] args = new String[2];
-        args[0] = "llR";
-        args[1] = this.getArchiveFile().getAbsolutePath() ;
-        nzip.run( args );
+
+        OutputStream os = null;
+
+        if ( this.outputFile != null )
+        {
+            try
+            {
+                os = new FileOutputStream( outputFile );
+            }
+            catch ( IOException e )
+            {
+                throw new MojoFailureException( e.getMessage() );
+            }
+        }
+
+        NZip nzip;
+        if ( os != null )
+        {
+            nzip = new NZip( os, System.err, true );
+        }
+        else
+        {
+            nzip =  new NZip();
+        }
+
+        try
+        {
+            String[] args = new String[2];
+            args[0] = "llR";
+            args[1] = this.getArchiveFile().getAbsolutePath();
+            nzip.run( args );
+        }
+        finally
+        {
+            IOUtil.close( os );
+        }
 
     }
 }
