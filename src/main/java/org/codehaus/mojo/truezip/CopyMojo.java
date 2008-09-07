@@ -136,7 +136,7 @@ public class CopyMojo
                 }
             }
 
-            File.cp( source, dest );
+            File.cp_p( source, dest );
         }
         catch ( IOException e )
         {

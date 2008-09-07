@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>truezip-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <name>Maven Plugin for TrueZip</name>
+  <name>Maven Plugin for TrueZIP</name>
   <version>1.0-alpha-1-SNAPSHOT</version>
   
   <description>Use this plugin create new archive or manipulate existing archive</description>
@@ -97,6 +97,11 @@
   </reporting>
 -->
 
+  <build>
+    <defaultGoal>install</defaultGoal>
+  </build>
+  
+  
   <profiles>
     <profile>
       <id>run-its</id>

@@ -14,9 +14,9 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0-alpha-1-SNAPSHOT</version>
+        <version>testing</version>
         <configuration>
-          <archiveFile>${project.build.directory}/${project.build.finalName}.jar</archiveFile>
+          <archiveFile>${archiveFile}</archiveFile>
         </configuration>
         <executions>
           <execution>
@@ -78,4 +78,9 @@
       </plugin>
     </plugins>
   </build>
+  
+  <properties>
+    <archiveFile>${project.build.directory}/${project.build.finalName}.jar</archiveFile>
+  </properties>
+  
 </project>
