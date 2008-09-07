@@ -14,13 +14,11 @@ TrueZIP Maven Plugin
 
 * Goals Overview
 
-~~  General Information about the goals.
-
   * {{{copy-mojo.html}truezip:copy}} Copy a set of files into the archive.
 
   * {{{remove-mojo.html}truezip:remove}} Remove a set of files from the archive.
 
-  * {{{list-mojo.html}truezip:copy}} Print out the archive's file list.
+  * {{{list-mojo.html}truezip:list}} Print out the archive's file list.
 
 * Usage
 
@@ -28,4 +26,6 @@ TrueZIP Maven Plugin
 
 
 * Examples
+
+    Live {{{http://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it 
 

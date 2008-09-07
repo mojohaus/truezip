@@ -40,8 +40,9 @@
          <item name="Goals" href="plugin-info.html"/>
       </menu>
       <menu name="Examples">
-         <item name="Executions" href="examples/execute.html"/>
-         <item name="Settings" href="examples/settings.html"/>
+         <item name="Copy" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/copy-it"/>
+         <item name="Remove" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/remove-it"/>
+         <item name="Sub Arachive" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/tar-it"/>
       </menu>
       ${reports}
    </body>
