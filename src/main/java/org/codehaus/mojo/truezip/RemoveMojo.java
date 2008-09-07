@@ -10,6 +10,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
 import org.codehaus.plexus.util.StringUtils;
 
+import de.schlichtherle.io.File;
+
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
  * 
@@ -43,60 +45,62 @@ public class RemoveMojo
      * @parameter
      * @since 1.0-alpha-1
      */
-    private List filesets = new ArrayList(0);
-    
+    private List filesets = new ArrayList( 0 );
+
     /**
      * The single FileSet to be removed from the archive.
      *
      * @parameter
      * @since 1.0-alpha-1
      */
-    private Fileset fileset;    
-    
+    private Fileset fileset;
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        this.validateArchive();
-        
         if ( this.fileset != null )
         {
-            this.filesets.add(  this.fileset );
+            this.filesets.add( this.fileset );
             this.fileset = null;
         }
-        
+
+        for ( Iterator it = filesets.iterator(); it.hasNext(); )
+        {
+            Fileset oneFileSet = (Fileset) it.next();
+
+            this.removeFileSet( oneFileSet );
+        }
+    }
+
+    private void removeFileSet( Fileset oneFileSet )
+        throws MojoExecutionException, MojoFailureException
+    {
+        getLog().info( "Deleting " + oneFileSet );
+
+        if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
+        {
+            throw new MojoExecutionException( "FileSet's directory is required." );
+        }
+
+        File directory = new File( oneFileSet.getDirectory() );
+
+        if ( !directory.isDirectory() )
+        {
+            throw new MojoExecutionException( "FileSet's directory: " + directory + " not found." );
+        }
+
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( getLog(), this.verbose );
 
-        List filesets = this.filesets;
-
-        if ( filesets != null && !filesets.isEmpty() )
+        try
         {
-            for ( Iterator it = filesets.iterator(); it.hasNext(); )
-            {
-                Fileset oneFileSet = (Fileset) it.next();
-                
-                if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
-                {
-                    oneFileSet.setDirectory( this.getArchiveFile().getAbsolutePath() );
-                }
-                else
-                {
-                    oneFileSet.setDirectory( this.getArchiveFile().getAbsolutePath() + "/" + oneFileSet.getDirectory() );
-                }
-
-                try
-                {
-                    getLog().info( "Deleting " + oneFileSet );
-                    fileSetManager.delete( oneFileSet, true );
-                }
-                catch ( IOException e )
-                {
-                    throw new MojoExecutionException( "Failed to delete directory: " + oneFileSet.getDirectory()
-                        + ". Reason: " + e.getMessage(), e );
-                }
-            }
+            fileSetManager.delete( oneFileSet, true );
+        }
+        catch ( IOException e )
+        {
+            throw new MojoExecutionException( "Failed to delete directory: " + directory + ". Reason: "
+                + e.getMessage(), e );
         }
 
     }
-    
-    
+
 }

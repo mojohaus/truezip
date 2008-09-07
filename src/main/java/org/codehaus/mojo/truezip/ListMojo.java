@@ -38,12 +38,38 @@ import de.schlichtherle.NZip;
 public class ListMojo
     extends AbstractArchiveMojo
 {
+    
+    /**
+     * The archive file to be manipulated.
+     * @parameter
+     * @required
+     * @since 1.0-alpha-1
+     */
+    private File archiveFile;
+    
     /**
      * Write list output to a file if needed
      * @parameter
      */
     private File outputFile;
+    
+    private void validateArchive()
+        throws MojoFailureException
+    {
+        File archive = new de.schlichtherle.io.File( this.archiveFile );
+        
+        if ( !archive.exists() )
+        {
+            throw new MojoFailureException( archive.getAbsoluteFile() + " not found." );
+        }
 
+
+        if ( !archive.isDirectory() )
+        {
+            throw new MojoFailureException( archive.getAbsoluteFile() + " is not a valid archive." );
+        }        
+    }
+    
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -77,7 +103,7 @@ public class ListMojo
         {
             String[] args = new String[2];
             args[0] = "llR";
-            args[1] = this.getArchiveFile().getAbsolutePath();
+            args[1] = this.archiveFile.getAbsolutePath();
             nzip.run( args );
         }
         finally

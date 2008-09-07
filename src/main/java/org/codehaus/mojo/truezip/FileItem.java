@@ -1,8 +1,8 @@
 package org.codehaus.mojo.truezip;
 
-import java.io.File;
-
 import org.codehaus.plexus.util.StringUtils;
+
+import de.schlichtherle.io.File;
 
 public class FileItem
 {
@@ -10,7 +10,7 @@ public class FileItem
      *   Sets the absolute or relative path from the working directory
      *   of the file to be included in the archive.
      */
-    private File source;
+    private String source;
 
     /**
      *  Sets the output directory relative to the root
@@ -55,12 +55,12 @@ public class FileItem
      */
     private boolean filtered;
 
-    public File getSource()
+    public String getSource()
     {
         return source;
     }
 
-    public void setSource( File source )
+    public void setSource( String source )
     {
         this.source = source;
     }
@@ -116,14 +116,14 @@ public class FileItem
     }
 
     /**
-     * return the relative path to archive root of the destination 
+     * return destination path  
      * @return
      */
     public String getDestinationPath()
     {
         if ( this.destName == null )
         {
-            this.destName = source.getName();
+            this.destName = new File( source ).getName();
         }
 
         if ( StringUtils.isBlank( this.outputDirectory ) )

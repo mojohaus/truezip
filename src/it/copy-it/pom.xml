@@ -4,45 +4,34 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>truezip-maven-plugin-test</artifactId>
+  <packaging>jar</packaging>
   <version>testing</version>
 
   <build>
 
-    <defaultGoal>package</defaultGoal>
-    
     <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>${version}</version>
+        <version>testing</version>
         <configuration>
-          <archiveFile>${archive}</archiveFile>
+          <archiveFile>${archiveFile}</archiveFile>
         </configuration>
         <executions>
           <execution>
-            <id>create</id>
+            <id>copy-out</id>
             <goals>
               <goal>copy</goal>
             </goals>
             <phase>package</phase>
             <configuration>
-              
               <files>
                 <file>
-                  <source>${project.build.directory}/${project.build.finalName}.jar</source>
-                  <outputDirectory>${archive}/files</outputDirectory>
+                  <source>${archiveFile}/META-INF/maven/archive/archive/pom.properties</source>
+                  <outputDirectory>${project.build.directory}/copy-out</outputDirectory>
                 </file>
               </files>
-              
-              <fileset>
-                 <directory>${basedir}</directory>
-                 <includes>
-                   <include>*</include>
-                 </includes>
-                 <outputDirectory>${archive}/fileset</outputDirectory>
-              </fileset>
-              
             </configuration>
           </execution>
           <execution>
@@ -52,6 +41,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
+              <archiveFile>${project.build.directory}/copy-out</archiveFile>
               <outputFile>${project.build.directory}/list.txt</outputFile>
             </configuration>
           </execution>
@@ -61,7 +51,7 @@
   </build>
   
   <properties>
-    <archive>${project.build.directory}/${project.build.finalName}.tgz</archive>
-    <version>testing</version> <!-- passing -Dversion=xyz to run from command line -->
+    <archiveFile>${project.build.directory}/${project.build.finalName}.jar</archiveFile>
   </properties>
+  
 </project>

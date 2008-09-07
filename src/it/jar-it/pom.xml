@@ -8,13 +8,15 @@
   <version>testing</version>
 
   <build>
+    
+    <defaultGoal>package</defaultGoal>
 
     <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>testing</version>
+        <version>${version}</version>
         <configuration>
           <archiveFile>${archiveFile}</archiveFile>
         </configuration>
@@ -46,23 +48,24 @@
               <files>
                 <file>
                   <source>${basedir}/validate.groovy</source>
+                  <outputDirectory>${archiveFile}</outputDirectory>
                 </file>
                 <file>
-                  <outputDirectory>it/copy</outputDirectory>
+                  <outputDirectory>${archiveFile}/it/copy</outputDirectory>
                   <source>${basedir}/goals.txt</source>
                 </file>
                 <file>
-                  <outputDirectory>it/copy</outputDirectory>
+                  <outputDirectory>${archiveFile}it/copy</outputDirectory>
                   <source>${basedir}/pom.xml</source>
                   <destName>pom</destName>
                 </file>
               </files>
               <fileset>
-                 <!--directory>${basedir}</directory-->
+                 <directory>${basedir}</directory>
                  <includes>
                    <include>goals.txt</include>
                  </includes>
-                 <outputDirectory>it/copy-fileset</outputDirectory>
+                 <outputDirectory>${archiveFile}/it/copy-fileset</outputDirectory>
               </fileset>
             </configuration>
           </execution>
@@ -83,6 +86,7 @@
   
   <properties>
     <archiveFile>${project.build.directory}/${project.build.finalName}.jar</archiveFile>
+    <version>testing</version> <!-- passing -Dversion=xyz to run from command line -->
   </properties>
   
 </project>

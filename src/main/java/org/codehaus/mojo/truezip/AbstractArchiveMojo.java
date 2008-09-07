@@ -15,10 +15,7 @@ package org.codehaus.mojo.truezip;
  */
 
 
-import java.io.File;
-
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -27,14 +24,6 @@ import org.apache.maven.project.MavenProject;
 public abstract class AbstractArchiveMojo
     extends AbstractMojo
 {
-    /**
-     * The archive file to be manipulated.
-     * @parameter
-     * @required
-     * @since 1.0-alpha-1
-     */
-    protected File archiveFile;
-    
     /**
      * @parameter
      * @since 1.0-alpha-1
@@ -49,34 +38,5 @@ public abstract class AbstractArchiveMojo
      * @since alpha 1
      */
     protected MavenProject project;
-    
-    
-    protected de.schlichtherle.io.File archive;
-    
-    public File getArchiveFile()
-    {
-        return archiveFile;
-    }
-    
-    protected void init()
-    {
-        archive = new de.schlichtherle.io.File( this.archiveFile );
-    }
-    
-    protected void validateArchive()
-        throws MojoFailureException
-    {
-        if ( !this.getArchiveFile().exists() )
-        {
-            throw new MojoFailureException( this.getArchiveFile().getAbsoluteFile() + " not found." );
-        }
-
-        File archiveFile = new de.schlichtherle.io.File( this.getArchiveFile() );
-
-        if ( !archiveFile.isDirectory() )
-        {
-            throw new MojoFailureException( this.getArchiveFile().getAbsoluteFile() + " is not a valid archive." );
-        }        
-    }
     
 }

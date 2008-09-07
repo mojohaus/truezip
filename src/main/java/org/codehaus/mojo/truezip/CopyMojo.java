@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.shared.model.fileset.util.FileSetManager;
+import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
 import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
@@ -47,7 +48,7 @@ public class CopyMojo
     private List filesets = new ArrayList( 0 );
 
     /**
-     * A single FileSet to be removed from the archive.
+     * A single FileSet to be copied into the archive.
      *
      * @parameter
      * @since 1.0-alpha-1
@@ -55,20 +56,17 @@ public class CopyMojo
     private Fileset fileset;
 
     /**
-     * The list of FileItem to copy to the archive
+     * The list of FileItem to copy to the archive.  
+     * Use this configuration when you have a need to do copying with option to change file name.
      *
      * @parameter
      * @since 1.0-alpha-1
      */
     private FileItem[] files;
-    
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        this.init();
-        archive.mkdirs();
-
         this.processFileItems();
 
         this.processFileSets();
@@ -82,10 +80,10 @@ public class CopyMojo
             this.filesets.add( this.fileset );
             this.fileset = null;
         }
-        
+
         for ( int i = 0; i < filesets.size(); ++i )
         {
-            this.processFileSet( (Fileset)filesets.get( i ) );
+            this.processFileSet( (Fileset) filesets.get( i ) );
         }
     }
 
@@ -98,35 +96,35 @@ public class CopyMojo
         }
 
         getLog().info( "Copying " + oneFileSet );
-                
-        FileSetManager fileSetManager = new FileSetManager( getLog(), this.verbose );
-        
-        String [] files = fileSetManager.getIncludedFiles( oneFileSet );
-        
+
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( getLog(), this.verbose );
+
+        String[] files = fileSetManager.getIncludedFiles( oneFileSet );
+
         for ( int i = 0; i < files.length; ++i )
         {
-            String relativeDestPath = files[i]; 
-            if ( ! StringUtils.isBlank( oneFileSet.getOutputDirectory() ) )
+            String relativeDestPath = files[i];
+            if ( !StringUtils.isBlank( oneFileSet.getOutputDirectory() ) )
             {
                 relativeDestPath = oneFileSet.getOutputDirectory() + "/" + relativeDestPath;
-            }            
-            File dest = new File( archive.getTopLevelArchive(), relativeDestPath );
-            
-            java.io.File source = new java.io.File( oneFileSet.getDirectory(), files[i] );
-            
+            }
+            File dest = new File( relativeDestPath );
+
+            File source = new File( oneFileSet.getDirectory(), files[i] );
+
             this.copyFile( source, dest );
         }
-        
+
     }
 
-    private void copyFile ( java.io.File source, File dest )
+    private void copyFile ( File source, File dest )
         throws MojoExecutionException, MojoFailureException
     {
         this.getLog().info( "Copying file: " + source + " to " + dest );
         
         try
         {
-            java.io.File destParent = dest.getParentFile();
+            File destParent = (File) dest.getParentFile();
 
             if ( !destParent.isDirectory() )
             {
@@ -136,14 +134,23 @@ public class CopyMojo
                 }
             }
 
-            File.cp_p( source, dest );
+            if ( source.isArchive() )
+            {
+                
+                java.io.File realSource = new java.io.File( source.getAbsolutePath() );
+                File.cp_p( realSource, dest );
+            }
+            else
+            {
+                File.cp_p( source, dest );
+            }
         }
         catch ( IOException e )
         {
             throw new MojoExecutionException( e.getMessage(), e );
         }
     }
-    
+
     private void processFileItems()
         throws MojoExecutionException, MojoFailureException
     {
@@ -151,10 +158,10 @@ public class CopyMojo
         {
             FileItem copyInfo = files[i];
 
-            java.io.File source = copyInfo.getSource();
+            File source = new File( copyInfo.getSource() );
 
-            File dest = new File( archive.getTopLevelArchive(), copyInfo.getDestinationPath() );
-            
+            File dest = new File( copyInfo.getDestinationPath() );
+
             this.copyFile( source, dest );
         }
 
