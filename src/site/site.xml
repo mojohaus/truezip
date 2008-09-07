@@ -41,7 +41,7 @@
       <menu name="Examples">
          <item name="Copy" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/copy-it"/>
          <item name="Remove" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/remove-it"/>
-         <item name="Sub Arachive" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/tar-it"/>
+         <item name="Sub Archive" href="https://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it/tar-it"/>
       </menu>
       ${reports}
    </body>

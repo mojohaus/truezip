@@ -12,7 +12,7 @@
   <name>Maven Plugin for TrueZIP</name>
   <version>1.0-alpha-1-SNAPSHOT</version>
   
-  <description>Use this plugin create new archive or manipulate existing archive</description>
+  <description>Use this plugin create new or manipulate existing archives</description>
   
   <prerequisites>
     <maven>2.0.6</maven>
@@ -21,9 +21,9 @@
   <inceptionYear>2008</inceptionYear>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/archive-maven-plugin</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/sandbox/archive-maven-plugin</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/sandbox/trunk/mojo/archive-maven-plugin</developerConnection>
+    <url>http://svn.codehaus.org/mojo/trunk/mojo/sandbox/archive-maven-plugin</url>
   </scm>
 
   <developers>
@@ -125,7 +125,7 @@
                   <goal>test</goal>
                 </goals>
                 <configuration>
-                  <parallel>false</parallel>
+                  <parallel>true</parallel>
                 </configuration>
               </execution>
             </executions>
