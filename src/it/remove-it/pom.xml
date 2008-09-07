@@ -18,8 +18,9 @@
         <artifactId>truezip-maven-plugin</artifactId>
         <version>${version}</version>
         <executions>
+        
           <execution>
-            <id>remove</id>
+            <id>remove-a-file</id>
             <goals>
               <goal>remove</goal>
             </goals>
@@ -34,26 +35,57 @@
             </configuration>
           </execution>
           <execution>
-            <id>list</id>
+            <id>remove-a-file-list</id>
             <goals>
               <goal>list</goal>
             </goals>
             <phase>package</phase>
             <configuration>
               <archiveFile>${archive}</archiveFile>
-              <outputFile>${project.build.directory}/list.txt</outputFile>
+              <outputFile>${project.build.directory}/remove-a-file.list</outputFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>remove-a-directory</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/META-INF/maven</directory>
+              </fileset>
             </configuration>
           </execution>
           <execution>
-            <id>list2</id>
+            <id>remove-a-directory-list</id>
             <goals>
               <goal>list</goal>
             </goals>
             <phase>package</phase>
             <configuration>
               <archiveFile>${archive}</archiveFile>
+              <outputFile>${project.build.directory}/remove-a-directory.list</outputFile>
             </configuration>
           </execution>
+          
+          <execution>
+            <id>remove-all</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <!-- remove the archive -->
+                <directory>${archive}</directory>
+              </fileset>
+            </configuration>
+          </execution>
+          
+          <!-- cant list, since the archive is gone -->
+          
         </executions>
       </plugin>
     </plugins>

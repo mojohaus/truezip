@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.shared.model.fileset.util.FileSetManager;
 import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
 import org.codehaus.plexus.util.StringUtils;
 
