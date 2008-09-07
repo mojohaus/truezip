@@ -21,38 +21,55 @@
         </configuration>
         <executions>
           <execution>
-            <id>create</id>
+            <id>create-archive-in-archive</id>
             <goals>
               <goal>copy</goal>
             </goals>
             <phase>package</phase>
             <configuration>
-              
               <files>
                 <file>
                   <source>${project.build.directory}/${project.build.finalName}.jar</source>
                   <outputDirectory>${archive}/files</outputDirectory>
+                  <destName>subarchive.jar</destName>
                 </file>
               </files>
-              
-              <fileset>
-                 <directory>${basedir}</directory>
-                 <includes>
-                   <include>*</include>
-                 </includes>
-                 <outputDirectory>${archive}/fileset</outputDirectory>
-              </fileset>
-              
             </configuration>
           </execution>
           <execution>
-            <id>list</id>
+            <id>remove-a-file-in-sub-archive</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/files/subarchive.jar/META-INF/maven/${project.groupId}/${project.artifactId}</directory>
+                <includes>
+                  <include>**/pom.properties</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>list-to-file</id>
             <goals>
               <goal>list</goal>
             </goals>
             <phase>package</phase>
             <configuration>
+              <archiveFile>${archive}</archiveFile>
               <outputFile>${project.build.directory}/list.txt</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>list-to-stdout</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <archiveFile>${archive}</archiveFile>
             </configuration>
           </execution>
         </executions>
