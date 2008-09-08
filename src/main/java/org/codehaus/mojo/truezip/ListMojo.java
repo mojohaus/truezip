@@ -46,22 +46,6 @@ public class ListMojo
      */
     private File archiveFile;
     
-    
-    /**
-     * List the archive in details
-     * @parameter default-value="false"
-     * @since 1.0-alpha-1
-     */
-    private boolean detailed;
-
-    /**
-     * List the archive recursively
-     * @parameter default-value="true"
-     * @since 1.0-alpha-1
-     */
-    private boolean recursive;
-    
-    
     /**
      * Write list output to a file if needed
      * @parameter
