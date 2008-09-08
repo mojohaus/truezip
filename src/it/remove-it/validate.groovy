@@ -1,6 +1,5 @@
-def file = new File(basedir, 'target/truezip-maven-plugin-test.jar')
-if ( file.exists())
-{
-   throw new RuntimeException("Found deleted " + file );
-}
+assert ! new File(basedir, 'target/truezip-maven-plugin-test.jar').exists();
 
+//check remove-a-file.list
+
+//check remove-a-directory.list
