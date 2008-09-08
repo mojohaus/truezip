@@ -29,7 +29,6 @@ import de.schlichtherle.io.File;
  * 
  * @goal remove
  * @phase="process-resources"
- * @requiresDependencyResolution test
  * @version $Id:  $
  * @author Dan T. Tran
  */

@@ -1,5 +1,10 @@
 package org.codehaus.mojo.truezip;
 
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+
+import de.schlichtherle.io.File;
+
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
  * 
@@ -14,38 +19,38 @@ package org.codehaus.mojo.truezip;
  * the License.
  */
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
+ * Rename a file in archive.
+ * 
+ * @goal move
+ * @phase="process-resources"
+ * @version $Id:  $
  * @author Dan T. Tran
  */
-public abstract class AbstractManipulateArchiveMojo
+public class MoveMojo
     extends AbstractArchiveMojo
 {
+    /**
+     * Path of original file
+     * @parameter
+     * @required
+     */
+    private String from;
     
     /**
-     * The list of FileSet to manipulate the archive.
-     *
+     * Path of destination file
      * @parameter
-     * @since 1.0-alpha-1
+     * @required
      */
-    protected List filesets = new ArrayList( 0 );
-
-    /**
-     * A single FileSet to manipulate the archive.
-     *
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    protected Fileset fileset;
-
+    private String to;
     
-    /**
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    protected boolean verbose;
-    
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
+    {
+        File file = new File( this.from );
+        
+        File tofile = new File( this.to );
+        
+        file.renameTo( tofile );
+    }
 }

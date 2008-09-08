@@ -24,12 +24,6 @@ import org.apache.maven.project.MavenProject;
 public abstract class AbstractArchiveMojo
     extends AbstractMojo
 {
-    /**
-     * @parameter
-     * @since 1.0-alpha-1
-     */
-    protected boolean verbose;
-    
     
     /**
      * Internal Maven's project
