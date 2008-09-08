@@ -21,6 +21,10 @@ TrueZIP Maven Plugin
 
   * {{{list-mojo.html}truezip:list}} Print out the archive's file list.
 
+  * {{{move-mojo.html}truezip:move}} Move a file in or out of archive.
+  
+  []
+  
 * Usage
 
   Instructions on how to use the TrueZip Maven Plugin can be found on the {{{usage.html}usage page}}.

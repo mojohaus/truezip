@@ -64,7 +64,7 @@ TrueZIP Maven Plugin
 
 * Copy
 
-  The <<remove>> goal can copy files in and out of the archive. The bellow example shows multiple executions:
+  The <<copy>> goal can copy files in and out of the archive. The bellow example shows multiple executions:
   
   * Copy files from the archive to a real file system with option to rename the file on the fly.
     This is similar maven-assembly-plugin's <files> configuration. 
@@ -149,3 +149,48 @@ TrueZIP Maven Plugin
     <archive>path.to.a.archive</archive>
   </properties>
 --------------------------
+
+
+* Move
+
+  The <<move>> goal can move a file in, out, or with in the archive. The below examples 
+  who to move an archive's file to another location in the archive. Note that the locacation
+  can be outside for archive as well.
+  
+-------------------------------
+  <build>
+    [...]
+    <plugins>
+      [...]
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-maven-plugin</artifactId>
+        <version>${version}</version>
+        <executions>
+          <execution>
+            <id>move-a-file</id>
+            <goals>
+              <goal>move</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <!-- move a archive file to another directory in the same archive -->
+              <from>${archive}/META-INF/MANIFEST.MF</from>
+              <to>${archive}/META-INF2/MANIFEST.MF</to>
+              
+              <!-- use this if you want to move it out of the archive -->
+              <!--to>${project.build.directory}/MANIFEST.MF</to-->
+            </configuration>
+          </execution>
+          [...]
+        </executions>
+      </plugin>
+      [...]
+    </plugins>
+  </build>
+  
+  <properties>
+    <archive>path.to.a.archive</archive>
+  </properties>
+--------------------------
+  
