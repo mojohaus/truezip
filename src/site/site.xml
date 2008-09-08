@@ -31,7 +31,7 @@
    </bannerRight>
    <body>
       <links>
-         <item name="TrueZip" href="https://truezip.dev.java.net"/>
+         <item name="TrueZIP" href="https://truezip.dev.java.net"/>
       </links>
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
