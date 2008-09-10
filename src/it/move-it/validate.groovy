@@ -1,11 +1,4 @@
-listFile = new File( basedir, 'target/move-a-file.list' )
+list = new File( basedir, 'target/move-a-file.list' ).text
 
-def buffer = new String()
-
-listFile.eachLine
-{
-   buffer << it
-}
-
-println buffer
- 
+assert ! list.contains( 'MANIFEST.MF' )
+assert list.contains( 'MANIFEST2.MF' )

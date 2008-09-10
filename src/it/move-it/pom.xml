@@ -26,7 +26,7 @@
             <phase>package</phase>
             <configuration>
               <from>${archive}/META-INF/MANIFEST.MF</from>
-              <to>${archive}/META-INF2/MANIFEST.MF</to>
+              <to>${archive}/META-INF2/MANIFEST2.MF</to>
             </configuration>
           </execution>
           <execution>
