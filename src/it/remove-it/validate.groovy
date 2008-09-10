@@ -8,3 +8,4 @@ list = new File(basedir,'target/remove-a-directory.list').text;
 assert ! list.contains( 'maven' )
 assert list.contains( 'MANIFEST.MF' )
 
+    
