@@ -68,6 +68,9 @@
                 <includes>
                   <include>*</include>
                 </includes>
+                <excludes>
+                  <exclude>validate.groovy</exclude>e
+                </excludes>
                 <outputDirectory>${archive}/copy-into</outputDirectory>
               </fileset>
             </configuration>
@@ -79,7 +82,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}</archiveFile>
+              <archiveFile>${archive}/copy-into</archiveFile>
               <outputFile>${project.build.directory}/copy-into.list</outputFile>
             </configuration>
           </execution>
@@ -91,7 +94,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}</archiveFile>
+              <archiveFile>${archive}/copy-into</archiveFile>
             </configuration>
           </execution>
         </executions>
