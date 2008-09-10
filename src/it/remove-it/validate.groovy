@@ -1,5 +1,10 @@
 assert ! new File(basedir, 'target/truezip-maven-plugin-test.jar').exists();
 
-//check remove-a-file.list
+list = new File(basedir,'target/remove-a-file.list').text;
+assert ! list.contains( 'pom.properties' )
+assert list.contains( 'maven' )
 
-//check remove-a-directory.list
+list = new File(basedir,'target/remove-a-directory.list').text;
+assert ! list.contains( 'maven' )
+assert list.contains( 'MANIFEST.MF' )
+
