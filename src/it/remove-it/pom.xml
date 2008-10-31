@@ -5,7 +5,7 @@
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>truezip-maven-plugin-test</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>testing</version>
 
   <build>
 
@@ -14,35 +14,11 @@
     <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>$2.0</version>
-        <executions>
-          <execution>
-            <id>unpack-tomcat</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}</outputDirectory>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.continuum</groupId>
-                  <artifactId>continuum-webapp</artifactId>
-                  <version>1.2</version>
-                  <type>war</type>
-                </artifactItem>
-              </artifactItems
-            <configuration>
-          <execution>
-        </executions>
-      <plugin>
-    
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0-alpha-1-SNAPSHOT</version>
+        <version>${version}</version>
         <executions>
+        
           <execution>
             <id>remove-a-file</id>
             <goals>
@@ -58,13 +34,66 @@
               </fileset>
             </configuration>
           </execution>
+          <execution>
+            <id>remove-a-file-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <archiveFile>${archive}</archiveFile>
+              <outputFile>${project.build.directory}/remove-a-file.list</outputFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>remove-a-directory</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/META-INF/maven</directory>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>remove-a-directory-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <archiveFile>${archive}</archiveFile>
+              <outputFile>${project.build.directory}/remove-a-directory.list</outputFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>remove-all</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <!-- remove the archive -->
+                <directory>${archive}</directory>
+              </fileset>
+            </configuration>
+          </execution>
+          
+          <!-- cant list, since the archive is gone -->
+          
         </executions>
       </plugin>
     </plugins>
   </build>
   
   <properties>
-    <archive>${project.build.directory}/continuum-webapp-1.2.war</archive>
+    <archive>${project.build.directory}/${project.build.finalName}.jar</archive>
+    <version>testing</version>
   </properties>
   
 </project>
