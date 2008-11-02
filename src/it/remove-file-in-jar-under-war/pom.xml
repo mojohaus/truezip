@@ -60,13 +60,25 @@
               </fileset>
             </configuration>
           </execution>
+          <execution>
+            <id>list</id>
+            <goals>
+              <goal>list2</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}</directory>
+              </fileset>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
   </build>
   
   <properties>
-    <archive>${project.build.directory}/calculator.ear</archive>
+    <archive>target/calculator.ear</archive>
   </properties>
   
 </project>
