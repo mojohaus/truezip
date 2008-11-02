@@ -28,11 +28,11 @@
               <outputDirectory>${project.build.directory}</outputDirectory>
               <artifactItems>
                 <artifactItem>
-                  <destFileName>continuum-webapp.war</destFileName>
-                  <groupId>org.apache.continuum</groupId>
-                  <artifactId>continuum-webapp</artifactId>
-                  <version>1.2</version>
-                  <type>war</type>
+                  <destFileName>calculator.ear</destFileName>
+                  <groupId>org.apache.geronimo.samples</groupId>
+                  <artifactId>calculator-ear</artifactId>
+                  <version>2.1.2</version>
+                  <type>ear</type>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -53,9 +53,9 @@
             <phase>package</phase>
             <configuration>
               <fileset>
-                <directory>${archive}/WEB-INF/lib/xwork-1.2.3.jar</directory>
+                <directory>${archive}/calculator-war-2.1.2.war/WEB-INF/lib/calculator-war-2.1.2.jar</directory>
                 <includes>
-                  <include>overview.html</include>
+                  <include>**/NOTICE</include>
                 </includes>
               </fileset>
             </configuration>
@@ -66,7 +66,7 @@
   </build>
   
   <properties>
-    <archive>${project.build.directory}/continuum-webapp.war</archive>
+    <archive>${project.build.directory}/calculator.ear</archive>
   </properties>
   
 </project>
