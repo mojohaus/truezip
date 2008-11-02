@@ -48,7 +48,8 @@ public class ListMojo2
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        PrintStream ps = null;
+        PrintStream ps = System.out;
+        
         OutputStream os = null;
 
         if ( this.outputFile != null )
