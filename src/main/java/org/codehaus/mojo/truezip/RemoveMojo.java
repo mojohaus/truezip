@@ -29,7 +29,7 @@ import de.schlichtherle.io.File;
  * 
  * @goal remove
  * @phase="process-resources"
- * @version $Id:  $
+ * @version $Id: $
  * @author Dan T. Tran
  */
 public class RemoveMojo
@@ -49,39 +49,16 @@ public class RemoveMojo
         {
             Fileset oneFileSet = (Fileset) it.next();
 
-            this.removeFileSet( oneFileSet );
+            try
+            {
+                this.truezip.remove( oneFileSet, verbose, this.getLog() );
+            }
+            catch ( Exception e )
+            {
+                throw new MojoExecutionException( "Copy fileset fails", e );
+            }
+
         }
-    }
-
-    private void removeFileSet( Fileset oneFileSet )
-        throws MojoExecutionException, MojoFailureException
-    {
-        getLog().info( "Deleting " + oneFileSet );
-
-        if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
-        {
-            throw new MojoExecutionException( "FileSet's directory is required." );
-        }
-
-        File directory = new File( oneFileSet.getDirectory() );
-
-        if ( !directory.isDirectory() )
-        {
-            throw new MojoExecutionException( "FileSet's directory: " + directory + " not found." );
-        }
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( getLog(), this.verbose );
-
-        try
-        {
-            fileSetManager.delete( oneFileSet, true );
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( "Failed to delete directory: " + directory + ". Reason: "
-                + e.getMessage(), e );
-        }
-
     }
 
 }

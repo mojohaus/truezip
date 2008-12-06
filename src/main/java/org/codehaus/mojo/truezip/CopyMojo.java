@@ -1,10 +1,7 @@
 package org.codehaus.mojo.truezip;
 
-import java.io.IOException;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
 import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
@@ -28,18 +25,17 @@ import de.schlichtherle.io.File;
  * 
  * @goal copy
  * @phase="process-resources"
- * @version $Id:  $
+ * @version $Id: $
  * @author Dan T. Tran
  */
 public class CopyMojo
     extends AbstractManipulateArchiveMojo
 {
 
-
     /**
-     * The list of FileItem to to manipulate the archive.  
-     * Use this configuration when you have a need to do copying with option to change file name.
-     *
+     * The list of FileItem to to manipulate the archive. Use this configuration when you have a
+     * need to do copying with option to change file name.
+     * 
      * @parameter
      * @since 1.0-alpha-1
      */
@@ -64,73 +60,25 @@ public class CopyMojo
 
         for ( int i = 0; i < filesets.size(); ++i )
         {
-            this.processFileSet( (Fileset) filesets.get( i ) );
+            Fileset fileSet = (Fileset) this.filesets.get( i );
+
+            if ( StringUtils.isBlank( fileSet.getDirectory() ) )
+            {
+                fileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
+            }
+
+            try
+            {
+                this.truezip.copy( fileSet, verbose, this.getLog() );
+            }
+            catch ( Exception e )
+            {
+                throw new MojoExecutionException( "Copy fileset fails",  e );
+            }
         }
     }
 
-    private void processFileSet( Fileset oneFileSet )
-        throws MojoExecutionException, MojoFailureException
-    {
-        if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
-        {
-            oneFileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
-        }
 
-        getLog().info( "Copying " + oneFileSet );
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( getLog(), this.verbose );
-
-        String[] files = fileSetManager.getIncludedFiles( oneFileSet );
-
-        for ( int i = 0; i < files.length; ++i )
-        {
-            String relativeDestPath = files[i];
-            if ( !StringUtils.isBlank( oneFileSet.getOutputDirectory() ) )
-            {
-                relativeDestPath = oneFileSet.getOutputDirectory() + "/" + relativeDestPath;
-            }
-            File dest = new File( relativeDestPath );
-
-            File source = new File( oneFileSet.getDirectory(), files[i] );
-
-            this.copyFile( source, dest );
-        }
-
-    }
-
-    private void copyFile ( File source, File dest )
-        throws MojoExecutionException, MojoFailureException
-    {
-        this.getLog().info( "Copying file: " + source + " to " + dest );
-        
-        try
-        {
-            File destParent = (File) dest.getParentFile();
-
-            if ( !destParent.isDirectory() )
-            {
-                if ( !destParent.mkdirs() )
-                {
-                    throw new IOException( "Unable to create " + destParent );
-                }
-            }
-
-            if ( source.isArchive() )
-            {
-                
-                java.io.File realSource = new java.io.File( source.getAbsolutePath() );
-                File.cp_p( realSource, dest );
-            }
-            else
-            {
-                File.cp_p( source, dest );
-            }
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( e.getMessage(), e );
-        }
-    }
 
     private void processFileItems()
         throws MojoExecutionException, MojoFailureException
@@ -143,7 +91,14 @@ public class CopyMojo
 
             File dest = new File( copyInfo.getDestinationPath() );
 
-            this.copyFile( source, dest );
+            try
+            {
+                this.truezip.copyFile( source, dest );
+            }
+            catch ( Exception e )
+            {
+                throw new MojoExecutionException( "Copy fileset fails",  e );
+            }
         }
 
     }

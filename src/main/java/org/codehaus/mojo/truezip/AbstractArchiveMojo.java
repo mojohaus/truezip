@@ -17,6 +17,7 @@ package org.codehaus.mojo.truezip;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
+import org.codehaus.mojo.truezip.util.TrueZip;
 
 /**
  * @author Dan T. Tran
@@ -32,5 +33,11 @@ public abstract class AbstractArchiveMojo
      * @since alpha 1
      */
     protected MavenProject project;
+    
+    /**
+     * @component
+     */
+    protected TrueZip truezip;
+    
     
 }

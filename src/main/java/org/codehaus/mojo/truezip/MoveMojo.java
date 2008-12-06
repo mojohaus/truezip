@@ -51,6 +51,6 @@ public class MoveMojo
         
         File tofile = new File( this.to );
         
-        file.renameTo( tofile );
+        this.truezip.moveFile( file, tofile );
     }
 }

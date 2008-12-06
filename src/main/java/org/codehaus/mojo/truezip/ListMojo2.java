@@ -86,36 +86,14 @@ public class ListMojo2
 
         for ( int i = 0; i < filesets.size(); ++i )
         {
-            this.processFileSet( ps, (Fileset) filesets.get( i ) );
-        }
-    }
-
-    private void processFileSet( PrintStream ps, Fileset oneFileSet )
-        throws MojoExecutionException, MojoFailureException
-    {
-        if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
-        {
-            oneFileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
-        }
-
-        getLog().info( "List " + oneFileSet );
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( getLog(), this.verbose );
-
-        String[] files = fileSetManager.getIncludedFiles( oneFileSet );
-
-        for ( int i = 0; i < files.length; ++i )
-        {
-            String relativeDestPath = files[i];
-            if ( !StringUtils.isBlank( oneFileSet.getOutputDirectory() ) )
+            Fileset fileSet = (Fileset) this.filesets.get( i );
+            
+            if ( StringUtils.isBlank( fileSet.getDirectory() ) )
             {
-                relativeDestPath = oneFileSet.getOutputDirectory() + "/" + relativeDestPath;
+                fileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
             }
-            File source = new File( oneFileSet.getDirectory(), files[i] );
-
-            ps.println( source.getPath() );
+            
+            this.truezip.list( ps, (Fileset) this.filesets.get( i ), this.verbose, getLog() );
         }
-
     }
-
 }
