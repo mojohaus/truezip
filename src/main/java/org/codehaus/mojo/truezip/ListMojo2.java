@@ -8,7 +8,6 @@ import java.io.PrintStream;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -28,11 +27,6 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  * List all files in the archive.
- * 
- * @goal list2
- * @phase="process-resources"
- * @version $Id: $
- * @author Dan T. Tran
  */
 public class ListMojo2
     extends AbstractManipulateArchiveMojo

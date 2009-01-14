@@ -3,8 +3,6 @@ package org.codehaus.mojo.truezip.util;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.shared.model.fileset.FileSet;
 import org.codehaus.mojo.truezip.Fileset;

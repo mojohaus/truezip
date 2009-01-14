@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <artifactId>mojo-sandbox-parent</artifactId>
-    <groupId>org.codehaus.mojo</groupId>
-    <version>5-SNAPSHOT</version>
-    <relativePath>../mojo-sandbox-parent</relativePath>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>mojo-parent</artifactId>
+    <groupId>org.codehaus.mojo</groupId>
+    <version>19</version>
+    <relativePath>../mojo-parent</relativePath>
+  </parent>
+  
   <artifactId>truezip-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
+  <version>1.0-beta-1-SNAPSHOT</version>
   <name>Maven Plugin for TrueZIP</name>
-  <version>1.0-alpha-1-SNAPSHOT</version>
+  
+  <packaging>maven-plugin</packaging>
   
   <description>Use this plugin create new or manipulate existing archives</description>
   
@@ -21,9 +25,9 @@
   <inceptionYear>2008</inceptionYear>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/sandbox/archive-maven-plugin</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/sandbox/trunk/mojo/archive-maven-plugin</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/sandbox/archive-maven-plugin</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/truezip-maven-plugin</url>
   </scm>
 
   <developers>
@@ -88,21 +92,6 @@
 
   </dependencies>
 
-<!--
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <configLocation>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-checkstyle-plugin/src/main/resources/config/maven_checks.xml</configLocation>
-          <headerLocation>header.txt</headerLocation>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
--->
-
   <build>
     <defaultGoal>install</defaultGoal>
     
@@ -124,7 +113,6 @@
     
   </build>
   
-  
   <profiles>
     <profile>
       <id>run-its</id>
@@ -142,7 +130,7 @@
                   <goal>test</goal>
                 </goals>
                 <configuration>
-                  <parallel>true</parallel>
+                  <parallel>false</parallel>
                 </configuration>
               </execution>
             </executions>
@@ -150,5 +138,6 @@
         </plugins>
       </build>
     </profile>
+    
   </profiles>  
 </project>

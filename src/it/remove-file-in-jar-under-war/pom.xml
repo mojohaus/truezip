@@ -2,10 +2,17 @@
 <project>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.codehaus.mojo</groupId>
+  
+  <parent>
+    <groupId>org.codehaus.mojo.truezip.it</groupId>
+    <artifactId>common</artifactId>
+    <version>${testing.version}</version>
+    <relativePath>../common.xml</relativePath>
+  </parent>
+  
   <artifactId>truezip-maven-plugin-test</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  
   <description>example to remove a file in overview.html under xwork-1.2.3.jar located inder continuum-webapp's war/WEB-INF/lib</description>
 
   <build>
@@ -43,7 +50,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0-alpha-1-SNAPSHOT</version>
         <executions>
           <execution>
             <id>remove-a-file</id>

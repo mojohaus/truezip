@@ -1,14 +1,9 @@
 package org.codehaus.mojo.truezip;
 
-import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.codehaus.mojo.truezip.util.TrueZipFileSetManager;
-import org.codehaus.plexus.util.StringUtils;
-
-import de.schlichtherle.io.File;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.

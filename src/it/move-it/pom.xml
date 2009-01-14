@@ -2,10 +2,15 @@
 <project>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.codehaus.mojo</groupId>
+  <parent>
+    <groupId>org.codehaus.mojo.truezip.it</groupId>
+    <artifactId>common</artifactId>
+    <version>${testing.version}</version>
+    <relativePath>../common.xml</relativePath>
+  </parent>
+  
   <artifactId>truezip-maven-plugin-test</artifactId>
   <packaging>jar</packaging>
-  <version>testing</version>
 
   <build>
 
