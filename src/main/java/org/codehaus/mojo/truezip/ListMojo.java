@@ -96,9 +96,9 @@ public class ListMojo
 
             List fileList = this.truezip.list( (Fileset) this.filesets.get( i ), this.verbose, getLog() );
             
-            for ( int j = 0 ; i < fileList.size(); ++j )
+            for ( int j = 0 ; j < fileList.size(); ++j )
             {
-                File file = (File) fileList.get( i );
+                File file = (File) fileList.get( j );
                 ps.println( ( file.getPath() ) );
 
             }
