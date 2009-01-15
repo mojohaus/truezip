@@ -122,7 +122,6 @@
               <goal>copy</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}</outputDirectory>
               <artifactItems>
                 <artifactItem>
                   <destFileName>calculator.ear</destFileName>

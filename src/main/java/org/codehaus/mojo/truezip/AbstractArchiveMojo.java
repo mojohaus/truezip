@@ -14,10 +14,12 @@ package org.codehaus.mojo.truezip;
  * the License.
  */
 
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.model.fileset.FileSet;
 import org.codehaus.mojo.truezip.util.TrueZip;
+
+import de.schlichtherle.io.File;
 
 /**
  * @author Dan T. Tran
@@ -25,19 +27,41 @@ import org.codehaus.mojo.truezip.util.TrueZip;
 public abstract class AbstractArchiveMojo
     extends AbstractMojo
 {
-    
+
     /**
      * Internal Maven's project
+     * 
      * @parameter expression="${project}"
      * @since beta-1
      */
     protected MavenProject project;
-    
+
     /**
      * @component
      * @since beta-1
      */
     protected TrueZip truezip;
+
+    protected String resolveRelativePath( String path )
+    {
+        if ( path != null && !new File( path ).isAbsolute() )
+        {
+            path = new File( this.project.getBasedir(), path ).getAbsolutePath();
+        }
+        
+        return path;
+    }
     
+    protected void resolveRelativePath( FileSet fileSet )
+    {
+        fileSet.setDirectory( resolveRelativePath( fileSet.getDirectory() ) );
+        fileSet.setOutputDirectory( resolveRelativePath( fileSet.getOutputDirectory() ) );
+    }  
     
+    protected void resolveRelativePath( FileItem fileItem )
+    {
+        fileItem.setOutputDirectory( resolveRelativePath( fileItem.getOutputDirectory() ) );
+        fileItem.setSource( resolveRelativePath( fileItem.getSource() ) );
+    }      
+
 }

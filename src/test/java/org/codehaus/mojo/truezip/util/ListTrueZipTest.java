@@ -42,7 +42,7 @@ public class ListTrueZipTest
     public void testListRealArchive()
         throws Exception
     {
-        File file = new File( basedir, "target/calculator.ear" );
+        File file = new File( basedir, "target/dependency/calculator.ear" );
         
         FileSet fileSet = new FileSet();
         fileSet.setDirectory( file.getPath() );

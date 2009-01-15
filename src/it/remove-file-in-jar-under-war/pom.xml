@@ -84,7 +84,7 @@
   </build>
   
   <properties>
-    <archive>${project.build.directory}/calculator.ear</archive>
+    <archive>target/calculator.ear</archive> <!--  intentionally relative path for testing -->
   </properties>
   
 </project>

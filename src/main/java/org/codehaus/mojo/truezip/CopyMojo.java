@@ -69,6 +69,7 @@ public class CopyMojo
 
             try
             {
+                this.resolveRelativePath( fileSet );
                 this.truezip.copy( fileSet, verbose, this.getLog() );
             }
             catch ( Exception e )
@@ -87,6 +88,8 @@ public class CopyMojo
         {
             FileItem copyInfo = files[i];
 
+            this.resolveRelativePath( copyInfo );
+            
             File source = new File( copyInfo.getSource() );
 
             File dest = new File( copyInfo.getDestinationPath() );

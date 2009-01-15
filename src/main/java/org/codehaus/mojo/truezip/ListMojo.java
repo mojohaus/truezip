@@ -94,6 +94,8 @@ public class ListMojo
                 fileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
             }
 
+            this.resolveRelativePath( fileSet );
+            
             List fileList = this.truezip.list( (Fileset) this.filesets.get( i ), this.verbose, getLog() );
             
             for ( int j = 0 ; j < fileList.size(); ++j )

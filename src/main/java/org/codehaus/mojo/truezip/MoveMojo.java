@@ -50,9 +50,9 @@ public class MoveMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        File file = new File( this.from );
+        File file = new File( this.resolveRelativePath( from ) );
         
-        File tofile = new File( this.to );
+        File tofile = new File( this.resolveRelativePath( to ) );
         
         this.truezip.moveFile( file, tofile );
     }

@@ -100,7 +100,7 @@
   </build>
   
   <properties>
-    <archive>${project.build.directory}/${project.build.finalName}.jar</archive>
+    <archive>target/${project.build.finalName}.jar</archive>
   </properties>
   
 </project>
