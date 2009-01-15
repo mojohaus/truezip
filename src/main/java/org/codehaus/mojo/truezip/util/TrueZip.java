@@ -1,7 +1,7 @@
 package org.codehaus.mojo.truezip.util;
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.shared.model.fileset.FileSet;
@@ -13,7 +13,7 @@ public interface TrueZip
 {
     String ROLE = TrueZip.class.getName();
 
-    void list( PrintStream ps, FileSet fileSet, boolean verbose, Log logger );
+    List list( FileSet fileSet, boolean verbose, Log logger );
 
     void copy( FileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;

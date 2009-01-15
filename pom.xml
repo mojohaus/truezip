@@ -109,6 +109,35 @@
           </execution>
         </executions>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <id>download-test-file</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <artifactItems>
+                <artifactItem>
+                  <destFileName>calculator.ear</destFileName>
+                  <groupId>org.apache.geronimo.samples</groupId>
+                  <artifactId>calculator-ear</artifactId>
+                  <version>2.1.2</version>
+                  <type>ear</type>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      
     </plugins>
     
   </build>

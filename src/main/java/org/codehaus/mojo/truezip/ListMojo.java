@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -93,7 +94,14 @@ public class ListMojo
                 fileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
             }
 
-            this.truezip.list( ps, (Fileset) this.filesets.get( i ), this.verbose, getLog() );
+            List fileList = this.truezip.list( (Fileset) this.filesets.get( i ), this.verbose, getLog() );
+            
+            for ( int j = 0 ; i < fileList.size(); ++j )
+            {
+                File file = (File) fileList.get( i );
+                ps.println( ( file.getPath() ) );
+
+            }
         }
     }
 }

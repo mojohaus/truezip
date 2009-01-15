@@ -2,6 +2,8 @@ package org.codehaus.mojo.truezip.util;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.shared.model.fileset.FileSet;
@@ -17,7 +19,7 @@ public class DefaultTrueZip
     implements TrueZip
 {
 
-    public void list( PrintStream ps, FileSet fileSet, boolean verbose, Log logger )
+    public List list( FileSet fileSet, boolean verbose, Log logger )
     {
         if ( StringUtils.isBlank( fileSet.getDirectory() ) )
         {
@@ -30,17 +32,15 @@ public class DefaultTrueZip
 
         String[] files = fileSetManager.getIncludedFiles( fileSet );
 
+        ArrayList fileLists = new ArrayList();
+        
         for ( int i = 0; i < files.length; ++i )
         {
-            String relativeDestPath = files[i];
-            if ( !StringUtils.isBlank( fileSet.getOutputDirectory() ) )
-            {
-                relativeDestPath = fileSet.getOutputDirectory() + "/" + relativeDestPath;
-            }
             File source = new File( fileSet.getDirectory(), files[i] );
-
-            ps.println( source.getPath() );
+            fileLists.add( source );
         }
+        
+        return fileLists;
 
     }
 
