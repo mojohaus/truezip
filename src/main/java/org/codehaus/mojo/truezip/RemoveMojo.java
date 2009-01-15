@@ -23,7 +23,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * Remove a set of files from an existing archive
  * 
  * @goal remove
- * @phase="process-resources"
+ * @phase process-resources
  * @version $Id: $
  * @author Dan T. Tran
  */

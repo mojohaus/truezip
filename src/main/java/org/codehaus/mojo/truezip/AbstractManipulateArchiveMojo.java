@@ -43,7 +43,8 @@ public abstract class AbstractManipulateArchiveMojo
 
     
     /**
-     * @parameter
+     * Enable verbose mode
+     * @parameter default-value="false"
      * @since 1.0-alpha-1
      */
     protected boolean verbose;

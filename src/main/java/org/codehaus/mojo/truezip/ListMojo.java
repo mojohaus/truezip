@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintStream;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 import org.codehaus.plexus.util.IOUtil;
+import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.NZip;
 
@@ -30,49 +32,25 @@ import de.schlichtherle.NZip;
  * List all files in the archive.
  * 
  * @goal list
- * @phase="process-resources"
- * @version $Id:  $
+ * @phase process-resources
+ * @version $Id: $
  * @author Dan T. Tran
  */
 public class ListMojo
-    extends AbstractArchiveMojo
+    extends AbstractManipulateArchiveMojo
 {
-    
-    /**
-     * The archive file to be manipulated.
-     * @parameter
-     * @required
-     * @since 1.0-alpha-1
-     */
-    private File archiveFile;
-    
+
     /**
      * Write list output to a file if needed
+     * 
      * @parameter
      */
     private File outputFile;
-    
-    private void validateArchive()
-        throws MojoFailureException
-    {
-        File archive = new de.schlichtherle.io.File( this.archiveFile );
-        
-        if ( !archive.exists() )
-        {
-            throw new MojoFailureException( archive.getAbsoluteFile() + " not found." );
-        }
 
-
-        if ( !archive.isDirectory() )
-        {
-            throw new MojoFailureException( archive.getAbsoluteFile() + " is not a valid archive." );
-        }        
-    }
-    
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        this.validateArchive();
+        PrintStream ps = System.out;
 
         OutputStream os = null;
 
@@ -81,6 +59,7 @@ public class ListMojo
             try
             {
                 os = new FileOutputStream( outputFile );
+                ps = new PrintStream( os );
             }
             catch ( IOException e )
             {
@@ -88,27 +67,35 @@ public class ListMojo
             }
         }
 
-        NZip nzip;
-        if ( os != null )
-        {
-            nzip = new NZip( os, System.err, true );
-        }
-        else
-        {
-            nzip =  new NZip();
-        }
-
         try
         {
-            String[] args = new String[2];
-            args[0] = "llR";
-            args[1] = this.archiveFile.getAbsolutePath();
-            nzip.run( args );
+            this.processFileSets( ps );
         }
         finally
         {
             IOUtil.close( os );
         }
+    }
 
+    private void processFileSets( PrintStream ps )
+        throws MojoExecutionException, MojoFailureException
+    {
+        if ( this.fileset != null )
+        {
+            this.filesets.add( this.fileset );
+            this.fileset = null;
+        }
+
+        for ( int i = 0; i < filesets.size(); ++i )
+        {
+            Fileset fileSet = (Fileset) this.filesets.get( i );
+
+            if ( StringUtils.isBlank( fileSet.getDirectory() ) )
+            {
+                fileSet.setDirectory( this.project.getBasedir().getAbsolutePath() );
+            }
+
+            this.truezip.list( ps, (Fileset) this.filesets.get( i ), this.verbose, getLog() );
+        }
     }
 }

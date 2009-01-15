@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.codehaus.mojo.truezip.it</groupId>
     <artifactId>common</artifactId>
-    <version>${testing.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <relativePath>../common.xml</relativePath>
   </parent>
 
@@ -14,10 +14,9 @@
   <packaging>jar</packaging>
 
   <build>
-
-    <defaultGoal>package</defaultGoal>
-    
+  
     <finalName>${project.artifactId}</finalName>
+    
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -46,7 +45,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}</archiveFile>
+              <fileset>
+                <directory>${archive}</directory>
+              </fileset>
               <outputFile>${project.build.directory}/remove-a-file.list</outputFile>
             </configuration>
           </execution>
@@ -70,7 +71,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}</archiveFile>
+              <fileset>
+                <directory>${archive}</directory>
+              </fileset>
               <outputFile>${project.build.directory}/remove-a-directory.list</outputFile>
             </configuration>
           </execution>

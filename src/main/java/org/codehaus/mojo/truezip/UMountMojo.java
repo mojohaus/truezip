@@ -3,6 +3,7 @@ package org.codehaus.mojo.truezip;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
+import de.schlichtherle.io.ArchiveException;
 import de.schlichtherle.io.File;
 
 /*
@@ -20,37 +21,41 @@ import de.schlichtherle.io.File;
  */
 
 /**
- * Rename a file in archive.
+ * UMount an archive or all
  * 
- * @goal move
+ * @goal umount
  * @phase process-resources
  * @version $Id:  $
  * @author Dan T. Tran
  */
-public class MoveMojo
+public class UMountMojo
     extends AbstractArchiveMojo
 {
+
     /**
-     * Path of original file
+     * The archive file to be manipulated.
      * @parameter
-     * @required
+     * @since 1.0-alpha-1
      */
-    private String from;
-    
-    /**
-     * Path of destination file
-     * @parameter
-     * @required
-     */
-    private String to;
-    
+    private java.io.File archiveFile;
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        File file = new File( this.from );
-        
-        File tofile = new File( this.to );
-        
-        this.truezip.moveFile( file, tofile );
+        try
+        {
+            if ( archiveFile != null )
+            {
+                File.umount( new File( archiveFile ) );
+            }
+            else
+            {
+                File.umount();
+            }
+        }
+        catch ( ArchiveException e )
+        {
+            throw new MojoFailureException( e.getMessage() );
+        }
     }
 }

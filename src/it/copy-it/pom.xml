@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.codehaus.mojo.truezip.it</groupId>
     <artifactId>common</artifactId>
-    <version>${testing.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <relativePath>../common.xml</relativePath>
   </parent>
 
@@ -89,7 +89,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}/copy-into</archiveFile>
+              <fileset>
+                <directory>${archive}/copy-into</directory>
+              </fileset>
               <outputFile>${project.build.directory}/copy-into.list</outputFile>
             </configuration>
           </execution>
@@ -101,7 +103,9 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <archiveFile>${archive}/copy-into</archiveFile>
+              <fileset>
+                <directory>${archive}/copy-into</directory>
+              </fileset>
             </configuration>
           </execution>
         </executions>

@@ -24,7 +24,7 @@ import de.schlichtherle.io.File;
  * Copy a set of files in and out of an existing archive
  * 
  * @goal copy
- * @phase="process-resources"
+ * @phase process-resources
  * @version $Id: $
  * @author Dan T. Tran
  */

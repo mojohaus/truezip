@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.codehaus.mojo.truezip.it</groupId>
     <artifactId>common</artifactId>
-    <version>${testing.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <relativePath>../common.xml</relativePath>
   </parent>
   
@@ -59,7 +59,7 @@
             <phase>package</phase>
             <configuration>
               <fileset>
-                <directory>${archive}/calculator-war-2.1.2.war/WEB-INF/lib/calculator-war-2.1.2.jar</directory>
+                <directory>${archive}/calculator-war-2.1.2.war/calculator-war-2.1.2.jar</directory>
                 <includes>
                   <include>**/NOTICE</include>
                 </includes>
@@ -69,7 +69,7 @@
           <execution>
             <id>list</id>
             <goals>
-              <goal>list2</goal>
+              <goal>list</goal>
             </goals>
             <phase>package</phase>
             <configuration>
@@ -84,7 +84,7 @@
   </build>
   
   <properties>
-    <archive>target/calculator.ear</archive>
+    <archive>${project.build.directory}/target/calculator.ear</archive>
   </properties>
   
 </project>
