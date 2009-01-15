@@ -13,7 +13,7 @@
   <artifactId>truezip-maven-plugin-test</artifactId>
   <packaging>pom</packaging>
   
-  <description>example to remove a file in overview.html under xwork-1.2.3.jar located inder continuum-webapp's war/WEB-INF/lib</description>
+  <description>example to remove a file under ear/war/jar</description>
 
   <build>
 
@@ -26,7 +26,7 @@
         <version>2.0</version>
         <executions>
           <execution>
-            <id>unpack-tomcat</id>
+            <id>download-test-file</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>copy</goal>
@@ -59,7 +59,7 @@
             <phase>package</phase>
             <configuration>
               <fileset>
-                <directory>${archive}/calculator-war-2.1.2.war/calculator-war-2.1.2.jar</directory>
+                <directory>${archive}/calculator-war-2.1.2.war/WEB-INF/lib/calculator-war-2.1.2.jar/</directory>
                 <includes>
                   <include>**/NOTICE</include>
                 </includes>
@@ -84,7 +84,7 @@
   </build>
   
   <properties>
-    <archive>${project.build.directory}/target/calculator.ear</archive>
+    <archive>${project.build.directory}/calculator.ear</archive>
   </properties>
   
 </project>
