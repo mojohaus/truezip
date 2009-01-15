@@ -22,6 +22,7 @@ package org.codehaus.mojo.truezip.util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -49,7 +50,12 @@ import de.schlichtherle.io.File;
 /**
  * Provides operations for use with FileSet instances, such as retrieving the included/excluded files, deleting all
  * matching entries, etc.
- * Originally from maven shared file manager, copy here to support Truezip's File interface
+ * 
+ * This is a fork of maven's shared FileSetManager with the following changes
+ *    - Use TrueZipDirectoryScanner instead DirectoryScanner
+ *    - use java.io.File in isSymLink();
+ *    
+ * Note: symbolic support is unsupported
  *
  * @author jdcasey
  * @version $Id$
@@ -136,8 +142,6 @@ public class TrueZipFileSetManager
 
     /**
      * Create a new manager instance with an empty messages. Verbose flag is set to false.
-     *
-     * @param log The mojo log instance
      */
     public TrueZipFileSetManager()
     {
@@ -372,11 +376,8 @@ public class TrueZipFileSetManager
     private boolean isSymlink( File file )
         throws IOException
     {
-        return false;
-        
-        /*
         File fileInCanonicalParent = null;
-        File parentDir = file.getParentFile();
+        java.io.File parentDir = file.getParentFile();//truezip-plugin specific change
         if ( parentDir == null )
         {
             fileInCanonicalParent = file;
@@ -394,7 +395,6 @@ public class TrueZipFileSetManager
                                           + fileInCanonicalParent.getPath() ).flush();
         }
         return !fileInCanonicalParent.getCanonicalFile().equals( fileInCanonicalParent.getAbsoluteFile() );
-        */
         
     }
 
@@ -420,12 +420,9 @@ public class TrueZipFileSetManager
             return Collections.EMPTY_SET;
         }
 
-        String[] includedDirs = scanner.getIncludedDirectories();
-        String[] excludedDirs = scanner.getExcludedDirectories();
-
-        Set includes = new HashSet( Arrays.asList( includedDirs ) );
-        List excludes = new ArrayList( Arrays.asList( excludedDirs ) );
-        List linksForDeletion = new ArrayList();
+        Set includes = new HashSet( Arrays.asList( scanner.getIncludedDirectories() ) );
+        Collection excludes = new ArrayList( Arrays.asList( scanner.getExcludedDirectories() ) );
+        Collection linksForDeletion = new ArrayList();
 
         if ( !fileSet.isFollowSymlinks() )
         {
@@ -435,7 +432,7 @@ public class TrueZipFileSetManager
                     .addInfoMessage( "Adding symbolic link dirs which were previously excluded to the list being deleted." ).flush();
             }
 
-            // we need to see which entries were excluded because they're symlinks...
+            // we need to see which entries were only excluded because they're symlinks...
             scanner.setFollowSymlinks( true );
             scanner.scan();
 
@@ -445,45 +442,20 @@ public class TrueZipFileSetManager
                 messages.addDebugMessage( "Marked for preserve (with followSymlinks == false): " + excludes ).flush();
             }
 
-            List notSymlinks = Arrays.asList( scanner.getIncludedDirectories() );
+            List includedDirsAndSymlinks = Arrays.asList( scanner.getIncludedDirectories() );
 
             linksForDeletion.addAll( excludes );
-            linksForDeletion.retainAll( notSymlinks );
+            linksForDeletion.retainAll( includedDirsAndSymlinks );
 
             if ( messages != null && messages.isDebugEnabled() )
             {
                 messages.addDebugMessage( "Symlinks marked for deletion (originally mismarked): " + linksForDeletion ).flush();
             }
 
-            excludes.removeAll( notSymlinks );
+            excludes.removeAll( includedDirsAndSymlinks );
         }
 
-        for ( int i = 0; i < excludedDirs.length; i++ )
-        {
-            String path = excludedDirs[i];
-
-            File excluded = new File( path );
-
-            String parentPath = excluded.getParent();
-
-            while ( parentPath != null )
-            {
-                if ( messages != null && messages.isDebugEnabled() )
-                {
-                    messages.addDebugMessage( "Verifying path: " + parentPath
-                        + " is not present; contains file which is excluded." ).flush();
-                }
-
-                boolean removed = includes.remove( parentPath );
-
-                if ( removed && messages != null && messages.isDebugEnabled() )
-                {
-                    messages.addDebugMessage( "Path: " + parentPath + " was removed from delete list." ).flush();
-                }
-
-                parentPath = new File( parentPath ).getParent();
-            }
-        }
+        excludeParentDirectoriesOfExcludedPaths( excludes, includes );
 
         includes.addAll( linksForDeletion );
 
@@ -504,13 +476,10 @@ public class TrueZipFileSetManager
             return deletableDirectories;
         }
 
-        String[] includedFiles = scanner.getIncludedFiles();
-        String[] excludedFiles = scanner.getExcludedFiles();
-
         Set includes = deletableDirectories;
-        includes.addAll( Arrays.asList( includedFiles ) );
-        List excludes = new ArrayList( Arrays.asList( excludedFiles ) );
-        List linksForDeletion = new ArrayList();
+        includes.addAll( Arrays.asList( scanner.getIncludedFiles() ) );
+        Collection excludes = new ArrayList( Arrays.asList( scanner.getExcludedFiles() ) );
+        Collection linksForDeletion = new ArrayList();
 
         if ( !fileSet.isFollowSymlinks() )
         {
@@ -520,7 +489,7 @@ public class TrueZipFileSetManager
                     .addInfoMessage( "Adding symbolic link files which were previously excluded to the list being deleted." ).flush();
             }
 
-            // we need to see which entries were excluded because they're symlinks...
+            // we need to see which entries were only excluded because they're symlinks...
             scanner.setFollowSymlinks( true );
             scanner.scan();
 
@@ -530,59 +499,77 @@ public class TrueZipFileSetManager
                 messages.addDebugMessage( "Marked for preserve (with followSymlinks == false): " + excludes ).flush();
             }
 
-            List notSymlinks = Arrays.asList( scanner.getExcludedFiles() );
+            List includedFilesAndSymlinks = Arrays.asList( scanner.getIncludedFiles() );
 
             linksForDeletion.addAll( excludes );
-            linksForDeletion.retainAll( notSymlinks );
+            linksForDeletion.retainAll( includedFilesAndSymlinks );
 
             if ( messages != null && messages.isDebugEnabled() )
             {
                 messages.addDebugMessage( "Symlinks marked for deletion (originally mismarked): " + linksForDeletion ).flush();
             }
 
-            excludes.removeAll( notSymlinks );
+            excludes.removeAll( includedFilesAndSymlinks );
         }
 
-        for ( int i = 0; i < excludedFiles.length; i++ )
+        excludeParentDirectoriesOfExcludedPaths( excludes, includes );
+
+        includes.addAll( linksForDeletion );
+
+        return includes;
+    }
+
+    /**
+     * Removes all parent directories of the already excluded files/directories from the given set of deletable
+     * directories. I.e. if "subdir/excluded.txt" should not be deleted, "subdir" should be excluded from deletion, too.
+     * 
+     * @param excludedPaths The relative paths of the files/directories which are excluded from deletion, must not be
+     *            <code>null</code>.
+     * @param deletablePaths The relative paths to files/directories which are scheduled for deletion, must not be
+     *            <code>null</code>.
+     */
+    private void excludeParentDirectoriesOfExcludedPaths( Collection excludedPaths, Set deletablePaths )
+    {
+        for ( Iterator it = excludedPaths.iterator(); it.hasNext(); )
         {
-            String path = excludedFiles[i];
+            String path = (String) it.next();
 
-            File excluded = new File( path );
-
-            String parentPath = excluded.getParent();
+            String parentPath = new File( path ).getParent();
 
             while ( parentPath != null )
             {
                 if ( messages != null && messages.isDebugEnabled() )
                 {
-                    messages.addDebugMessage( "Verifying path: " + parentPath
+                    messages.addDebugMessage( "Verifying path " + parentPath
                         + " is not present; contains file which is excluded." ).flush();
                 }
 
-                boolean removed = includes.remove( parentPath );
+                boolean removed = deletablePaths.remove( parentPath );
 
                 if ( removed && messages != null && messages.isDebugEnabled() )
                 {
-                    messages.addDebugMessage( "Path: " + parentPath + " was removed from delete list." ).flush();
+                    messages.addDebugMessage( "Path " + parentPath + " was removed from delete list." ).flush();
                 }
 
                 parentPath = new File( parentPath ).getParent();
             }
         }
 
-        includes.addAll( linksForDeletion );
+        if ( !excludedPaths.isEmpty() )
+        {
+            if ( messages != null && messages.isDebugEnabled() )
+            {
+                messages.addDebugMessage( "Verifying path " + "."
+                    + " is not present; contains file which is excluded." ).flush();
+            }
 
-        // for ( Iterator it = includes.iterator(); it.hasNext(); )
-        // {
-        // String path = (String) it.next();
-        //
-        // if ( includes.contains( new File( path ).getParent() ) )
-        // {
-        // it.remove();
-        // }
-        // }
+            boolean removed = deletablePaths.remove( "" );
 
-        return includes;
+            if ( removed && messages != null && messages.isDebugEnabled() )
+            {
+                messages.addDebugMessage( "Path " + "." + " was removed from delete list." ).flush();
+            }
+        }
     }
 
     /**
