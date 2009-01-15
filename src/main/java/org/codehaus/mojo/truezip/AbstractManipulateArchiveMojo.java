@@ -29,7 +29,7 @@ public abstract class AbstractManipulateArchiveMojo
      * The list of FileSet to manipulate the archive.
      *
      * @parameter
-     * @since 1.0-alpha-1
+     * @since beta-1
      */
     protected List filesets = new ArrayList( 0 );
 
@@ -37,7 +37,7 @@ public abstract class AbstractManipulateArchiveMojo
      * A single FileSet to manipulate the archive.
      *
      * @parameter
-     * @since 1.0-alpha-1
+     * @since beta-1
      */
     protected Fileset fileset;
 
@@ -45,7 +45,7 @@ public abstract class AbstractManipulateArchiveMojo
     /**
      * Enable verbose mode
      * @parameter default-value="false"
-     * @since 1.0-alpha-1
+     * @since beta-1
      */
     protected boolean verbose;
     

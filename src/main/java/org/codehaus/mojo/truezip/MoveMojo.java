@@ -34,6 +34,7 @@ public class MoveMojo
      * Path of original file
      * @parameter
      * @required
+     * @since beta-1
      */
     private String from;
     
@@ -41,6 +42,8 @@ public class MoveMojo
      * Path of destination file
      * @parameter
      * @required
+     * @since beta-1
+     * 
      */
     private String to;
     

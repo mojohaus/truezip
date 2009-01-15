@@ -37,7 +37,7 @@ public class CopyMojo
      * need to do copying with option to change file name.
      * 
      * @parameter
-     * @since 1.0-alpha-1
+     * @since beta-1
      */
     private FileItem[] files;
 

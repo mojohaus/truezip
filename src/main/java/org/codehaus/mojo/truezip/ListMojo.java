@@ -8,11 +8,8 @@ import java.io.PrintStream;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.StringUtils;
-
-import de.schlichtherle.NZip;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -44,6 +41,7 @@ public class ListMojo
      * Write list output to a file if needed
      * 
      * @parameter
+     * @since beta-1
      */
     private File outputFile;
 

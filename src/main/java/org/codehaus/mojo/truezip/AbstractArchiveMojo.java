@@ -29,13 +29,13 @@ public abstract class AbstractArchiveMojo
     /**
      * Internal Maven's project
      * @parameter expression="${project}"
-     * @readonly
-     * @since alpha 1
+     * @since beta-1
      */
     protected MavenProject project;
     
     /**
      * @component
+     * @since beta-1
      */
     protected TrueZip truezip;
     
