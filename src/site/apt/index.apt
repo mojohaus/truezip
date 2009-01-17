@@ -3,7 +3,7 @@
  ------
  Dan T. Tran
  ------
- 2005-09-15
+ 2009-01-15
  ------
 
 
@@ -31,5 +31,5 @@ TrueZIP Maven Plugin
 
 * Examples
 
-    Live {{{http://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/sandbox/truezip-maven-plugin/src/it 
+    Live {{{http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it 
 
