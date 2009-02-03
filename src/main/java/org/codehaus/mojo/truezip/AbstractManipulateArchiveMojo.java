@@ -18,9 +18,6 @@ package org.codehaus.mojo.truezip;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Dan T. Tran
- */
 public abstract class AbstractManipulateArchiveMojo
     extends AbstractArchiveMojo
 {

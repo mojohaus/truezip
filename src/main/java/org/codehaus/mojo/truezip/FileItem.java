@@ -6,7 +6,6 @@ import de.schlichtherle.io.File;
 
 /**
  * Taken from assembly maven plugin
- * @author Owner
  *
  */
 public class FileItem

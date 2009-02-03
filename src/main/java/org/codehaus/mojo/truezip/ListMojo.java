@@ -32,7 +32,6 @@ import org.codehaus.plexus.util.StringUtils;
  * @goal list
  * @phase process-resources
  * @version $Id: $
- * @author Dan T. Tran
  */
 public class ListMojo
     extends AbstractManipulateArchiveMojo

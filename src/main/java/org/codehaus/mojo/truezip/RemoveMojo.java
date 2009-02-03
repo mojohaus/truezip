@@ -25,7 +25,6 @@ import org.apache.maven.plugin.MojoFailureException;
  * @goal remove
  * @phase process-resources
  * @version $Id: $
- * @author Dan T. Tran
  */
 public class RemoveMojo
     extends AbstractManipulateArchiveMojo
@@ -55,6 +54,8 @@ public class RemoveMojo
             }
 
         }
+        
+        this.tryImmediateUpdate();
     }
 
 }

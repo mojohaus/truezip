@@ -25,7 +25,6 @@ import de.schlichtherle.io.File;
  * @goal move
  * @phase process-resources
  * @version $Id:  $
- * @author Dan T. Tran
  */
 public class MoveMojo
     extends AbstractArchiveMojo
@@ -55,5 +54,7 @@ public class MoveMojo
         File tofile = new File( this.resolveRelativePath( to ) );
         
         this.truezip.moveFile( file, tofile );
+        
+        this.tryImmediateUpdate();
     }
 }

@@ -26,7 +26,6 @@ import de.schlichtherle.io.File;
  * @goal copy
  * @phase process-resources
  * @version $Id: $
- * @author Dan T. Tran
  */
 public class CopyMojo
     extends AbstractManipulateArchiveMojo
@@ -47,6 +46,8 @@ public class CopyMojo
         this.processFileItems();
 
         this.processFileSets();
+        
+        this.tryImmediateUpdate();
     }
 
     private void processFileSets()
