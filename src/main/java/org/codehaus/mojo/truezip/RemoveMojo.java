@@ -50,7 +50,7 @@ public class RemoveMojo
             }
             catch ( Exception e )
             {
-                throw new MojoExecutionException( "Copy fileset fails", e );
+                throw new MojoExecutionException( "Remove fileset fails", e );
             }
 
         }

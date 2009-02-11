@@ -31,6 +31,7 @@ public abstract class AbstractArchiveMojo
      * Internal Maven's project
      * 
      * @parameter expression="${project}"
+     * @readonly
      * @since beta-1
      */
     protected MavenProject project;
