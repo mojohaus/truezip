@@ -6,8 +6,8 @@
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>20</version>
-    <relativePath>../mojo-parent</relativePath>
+    <version>21</version>
+    <relativePath>../mojo-parent/pom.xml</relativePath>
   </parent>
   
   <artifactId>truezip-maven-plugin</artifactId>
@@ -174,19 +174,18 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>shitty-maven-plugin</artifactId>
-            <version>1.0-alpha-3</version>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <configuration> 
+              <postBuildHookScript>validate.groovy</postBuildHookScript>
+              <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+            </configuration>
             <executions>
               <execution>
                 <goals>
-                  <goal>clean</goal>
                   <goal>install</goal>
-                  <goal>test</goal>
+                  <goal>run</goal>
                 </goals>
-                <configuration>
-                  <parallel>false</parallel>
-                </configuration>
               </execution>
             </executions>
           </plugin>

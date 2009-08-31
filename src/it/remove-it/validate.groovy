@@ -13,3 +13,4 @@ assert  list.contains( 'maven' )
 assert   list =~ /.*META-INF.MANIFEST.MF.*/
 
 
+return true

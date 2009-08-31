@@ -21,6 +21,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
+        <version>@project.version@</version>
         <executions>
         
           <execution>

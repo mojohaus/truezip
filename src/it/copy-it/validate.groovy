@@ -11,3 +11,6 @@ assert list.contains( 'build.log' )
 assert list.contains( 'pom.xml' )
 assert list.contains( 'goals.txt' )
 assert ! list.contains( 'validate.groovy' )
+
+
+return true
