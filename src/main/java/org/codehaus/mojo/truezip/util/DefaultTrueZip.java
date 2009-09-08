@@ -1,13 +1,11 @@
 package org.codehaus.mojo.truezip.util;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.shared.model.fileset.FileSet;
-import org.codehaus.mojo.truezip.Fileset;
 import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
@@ -21,38 +19,61 @@ public class DefaultTrueZip
 
     public List list( FileSet fileSet, boolean verbose, Log logger )
     {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
+        return list( fileSet, fileSetManager );
+    }
+
+    public List list( FileSet fileSet )
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
+        return list( fileSet, fileSetManager );
+    }
+
+    private List list( FileSet fileSet, TrueZipFileSetManager fileSetManager )
+    {
         if ( StringUtils.isBlank( fileSet.getDirectory() ) )
         {
             fileSet.setDirectory( "." );
         }
 
-        logger.info( "List " + fileSet );
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
-
         String[] files = fileSetManager.getIncludedFiles( fileSet );
 
         ArrayList fileLists = new ArrayList();
-        
+
         for ( int i = 0; i < files.length; ++i )
         {
             File source = new File( fileSet.getDirectory(), files[i] );
             fileLists.add( source );
         }
-        
+
         return fileLists;
 
     }
 
-    public void copy( FileSet oneFileSet, boolean verbose, Log logger )
+    // ////////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////////
+
+    public void copy( FileSet fileSet, boolean verbose, Log logger )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
+        copy( fileSet, fileSetManager );
+    }
+
+    public void copy( FileSet fileSet )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
+        copy( fileSet, fileSetManager );
+    }
+
+    public void copy( FileSet oneFileSet, TrueZipFileSetManager fileSetManager )
         throws IOException
     {
         if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
         {
             oneFileSet.setDirectory( "." );
         }
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
 
         String[] files = fileSetManager.getIncludedFiles( oneFileSet );
 
@@ -72,6 +93,8 @@ public class DefaultTrueZip
 
     }
 
+    // ////////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////////
     public void copyFile( File source, File dest )
         throws IOException
     {
@@ -105,7 +128,23 @@ public class DefaultTrueZip
         file.renameTo( tofile );
     }
 
-    public void remove( Fileset oneFileSet, boolean verbose, Log logger )
+    // ///////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////
+    public void remove( FileSet fileSet, boolean verbose, Log logger )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
+        remove( fileSet, fileSetManager );
+    }
+
+    public void remove( FileSet fileSet )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
+        remove( fileSet, fileSetManager );
+    }
+
+    private void remove( FileSet oneFileSet, TrueZipFileSetManager fileSetManager )
         throws IOException
     {
         if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
@@ -119,8 +158,6 @@ public class DefaultTrueZip
         {
             throw new IOException( "FileSet's directory: " + directory + " not found." );
         }
-
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
 
         fileSetManager.delete( oneFileSet, true );
 
