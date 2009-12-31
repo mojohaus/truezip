@@ -159,7 +159,7 @@ public class TrueZipFileSetManager
      * @throws MapperException if any
      * @see #getIncludedFiles(FileSet)
      */
-    public Map mapIncludedFiles( FileSet fileSet )
+    public Map mapIncludedFiles( TrueZipFileSet fileSet )
         throws MapperException
     {
         String[] sourcePaths = getIncludedFiles( fileSet );
@@ -194,7 +194,7 @@ public class TrueZipFileSetManager
      *            The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of matching filenames, relative to the basedir of the file-set.
      */
-    public String[] getIncludedFiles( FileSet fileSet )
+    public String[] getIncludedFiles( TrueZipFileSet fileSet )
     {
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
@@ -213,7 +213,7 @@ public class TrueZipFileSetManager
      *            The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of matching dirnames, relative to the basedir of the file-set.
      */
-    public String[] getIncludedDirectories( FileSet fileSet )
+    public String[] getIncludedDirectories( TrueZipFileSet fileSet )
     {
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
@@ -232,7 +232,7 @@ public class TrueZipFileSetManager
      *            The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of non-matching filenames, relative to the basedir of the file-set.
      */
-    public String[] getExcludedFiles( FileSet fileSet )
+    public String[] getExcludedFiles( TrueZipFileSet fileSet )
     {
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
@@ -251,7 +251,7 @@ public class TrueZipFileSetManager
      *            The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of non-matching dirnames, relative to the basedir of the file-set.
      */
-    public String[] getExcludedDirectories( FileSet fileSet )
+    public String[] getExcludedDirectories( TrueZipFileSet fileSet )
     {
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
@@ -269,7 +269,7 @@ public class TrueZipFileSetManager
      * @param fileSet The file-set matching rules, along with search base directory
      * @throws IOException If a matching file cannot be deleted
      */
-    public void delete( FileSet fileSet )
+    public void delete( TrueZipFileSet fileSet )
         throws IOException
     {
         delete( fileSet, true );
@@ -283,7 +283,7 @@ public class TrueZipFileSetManager
      * @throws IOException If a matching file cannot be deleted and <code>throwsError=true</code>, otherwise
      * print warning messages.
      */
-    public void delete( FileSet fileSet, boolean throwsError )
+    public void delete( TrueZipFileSet fileSet, boolean throwsError )
         throws IOException
     {
         Set deletablePaths = findDeletablePaths( fileSet );
@@ -398,7 +398,7 @@ public class TrueZipFileSetManager
         
     }
 
-    private Set findDeletablePaths( FileSet fileSet )
+    private Set findDeletablePaths( TrueZipFileSet fileSet )
     {
         Set includes = findDeletableDirectories( fileSet );
         includes.addAll( findDeletableFiles( fileSet, includes ) );
@@ -406,7 +406,7 @@ public class TrueZipFileSetManager
         return includes;
     }
 
-    private Set findDeletableDirectories( FileSet fileSet )
+    private Set findDeletableDirectories( TrueZipFileSet fileSet )
     {
         if ( verbose && messages != null )
         {
@@ -462,7 +462,7 @@ public class TrueZipFileSetManager
         return includes;
     }
 
-    private Set findDeletableFiles( FileSet fileSet, Set deletableDirectories )
+    private Set findDeletableFiles( TrueZipFileSet fileSet, Set deletableDirectories )
     {
         if ( verbose && messages != null )
         {
@@ -650,7 +650,7 @@ public class TrueZipFileSetManager
         return true;
     }
 
-    private TrueZipDirectoryScanner scan( FileSet fileSet )
+    private TrueZipDirectoryScanner scan( TrueZipFileSet fileSet )
     {
         File basedir = new File( fileSet.getDirectory() );
         if ( !basedir.exists() || !basedir.isDirectory() )
@@ -680,6 +680,7 @@ public class TrueZipFileSetManager
 
         scanner.setBasedir( basedir );
         scanner.setFollowSymlinks( fileSet.isFollowSymlinks() );
+        scanner.setFollowArchive( fileSet.isFollowArchive() );
 
         scanner.scan();
 

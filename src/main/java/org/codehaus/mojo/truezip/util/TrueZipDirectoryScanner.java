@@ -257,6 +257,11 @@ public class TrueZipDirectoryScanner
      * @since Ant 1.5
      */
     private boolean followSymlinks = true;
+    
+    /**
+     * Whether or not not recursively drill down inner archive.
+     */
+    private boolean followArchive = false;
 
     /** Whether or not everything tested so far has been included. */
     protected boolean everythingIncluded = true;
@@ -449,6 +454,24 @@ public class TrueZipDirectoryScanner
         this.followSymlinks = followSymlinks;
     }
 
+    /**
+     * Whether or not not recursively drill down inner archive
+     * @return
+     */
+    public boolean isFollowArchive()
+    {
+        return followArchive;
+    }
+
+    /**
+     * Whether or not not recursively drill down inner archive
+     * @param followArchive
+     */
+    public void setFollowArchive( boolean followArchive )
+    {
+        this.followArchive = followArchive;
+    }
+    
     /**
      * Sets the list of include patterns to use. All '/' and '\' characters
      * are replaced by <code>File.separatorChar</code>, so the separator used
@@ -710,7 +733,11 @@ public class TrueZipDirectoryScanner
                     {
                         String name = vpath + newfiles[i];
                         File file = new File( dir, newfiles[i] );
-                        if ( file.isDirectory() )
+                        if ( file.isArchive() && this.followArchive ) 
+                        {
+                            dirsExcluded.addElement( name );
+                        }
+                        else if ( file.isDirectory() )
                         {
                             dirsExcluded.addElement( name );
                         }
@@ -741,7 +768,35 @@ public class TrueZipDirectoryScanner
         {
             String name = vpath + newfiles[i];
             File file = new File( dir, newfiles[i] );
-            if ( file.isDirectory() )
+            if ( ( file.isArchive() && !this.followArchive ) || file.isFile() )
+            {
+                if ( isIncluded( name ) )
+                {
+                    if ( !isExcluded( name ) )
+                    {
+                        if ( isSelected( name, file ) )
+                        {
+                            filesIncluded.addElement( name );
+                        }
+                        else
+                        {
+                            everythingIncluded = false;
+                            filesDeselected.addElement( name );
+                        }
+                    }
+                    else
+                    {
+                        everythingIncluded = false;
+                        filesExcluded.addElement( name );
+                    }
+                }
+                else
+                {
+                    everythingIncluded = false;
+                    filesNotIncluded.addElement( name );
+                }
+            }            
+            else if ( file.isDirectory() )
             {
                 if ( isIncluded( name ) )
                 {
@@ -790,34 +845,7 @@ public class TrueZipDirectoryScanner
                     scandir( file, name + File.separator, fast );
                 }
             }
-            else if ( file.isFile() )
-            {
-                if ( isIncluded( name ) )
-                {
-                    if ( !isExcluded( name ) )
-                    {
-                        if ( isSelected( name, file ) )
-                        {
-                            filesIncluded.addElement( name );
-                        }
-                        else
-                        {
-                            everythingIncluded = false;
-                            filesDeselected.addElement( name );
-                        }
-                    }
-                    else
-                    {
-                        everythingIncluded = false;
-                        filesExcluded.addElement( name );
-                    }
-                }
-                else
-                {
-                    everythingIncluded = false;
-                    filesNotIncluded.addElement( name );
-                }
-            }
+
         }
     }
 

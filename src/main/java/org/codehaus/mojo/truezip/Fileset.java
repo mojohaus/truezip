@@ -15,7 +15,7 @@ package org.codehaus.mojo.truezip;
  * the License.
  */
 
-import org.apache.maven.shared.model.fileset.FileSet;
+import org.codehaus.mojo.truezip.util.TrueZipFileSet;
 
 /**
  * Customizes the string representation of
@@ -24,12 +24,11 @@ import org.apache.maven.shared.model.fileset.FileSet;
  * <code>"file-set: <I>[directory]</I> (included: <I>[included files]</I>,
  * excluded: <I>[excluded files]</I>)"</code>
  *
- * @version $Id$
- * @since 1.0-alpha-1
+ * @since 1.0-beta-3
  * @see org.apache.maven.shared.model.fileset.FileSet
  */
 public class Fileset
-    extends FileSet
+    extends TrueZipFileSet
 {
     public static final long serialVersionUID = -1;
     

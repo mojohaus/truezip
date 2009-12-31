@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.shared.model.fileset.FileSet;
 
 import de.schlichtherle.io.File;
 
@@ -12,14 +11,14 @@ public interface TrueZip
 {
     String ROLE = TrueZip.class.getName();
 
-    List list( FileSet fileSet, boolean verbose, Log logger );
+    List list( TrueZipFileSet fileSet, boolean verbose, Log logger );
 
-    List list( FileSet fileSet );
+    List list( TrueZipFileSet fileSet );
     
-    void copy( FileSet oneFileSet, boolean verbose, Log logger )
+    void copy( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
 
-    void copy( FileSet oneFileSet)
+    void copy( TrueZipFileSet oneFileSet)
         throws IOException;
     
     void copyFile( File source, File dest )
@@ -27,10 +26,10 @@ public interface TrueZip
 
     void moveFile( File source, File dest );
 
-    void remove( FileSet oneFileSet, boolean verbose, Log logger )
+    void remove( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
     
-    void remove( FileSet oneFileSet )
+    void remove( TrueZipFileSet oneFileSet )
       throws IOException;
 
 }

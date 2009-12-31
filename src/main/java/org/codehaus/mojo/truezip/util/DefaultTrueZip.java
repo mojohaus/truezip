@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.shared.model.fileset.FileSet;
 import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
@@ -17,19 +16,19 @@ public class DefaultTrueZip
     implements TrueZip
 {
 
-    public List list( FileSet fileSet, boolean verbose, Log logger )
+    public List list( TrueZipFileSet fileSet, boolean verbose, Log logger )
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
         return list( fileSet, fileSetManager );
     }
 
-    public List list( FileSet fileSet )
+    public List list( TrueZipFileSet fileSet )
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
         return list( fileSet, fileSetManager );
     }
 
-    private List list( FileSet fileSet, TrueZipFileSetManager fileSetManager )
+    private List list( TrueZipFileSet fileSet, TrueZipFileSetManager fileSetManager )
     {
         if ( StringUtils.isBlank( fileSet.getDirectory() ) )
         {
@@ -53,21 +52,21 @@ public class DefaultTrueZip
     // ////////////////////////////////////////////////////////////////////////////
     // ////////////////////////////////////////////////////////////////////////////
 
-    public void copy( FileSet fileSet, boolean verbose, Log logger )
+    public void copy( TrueZipFileSet fileSet, boolean verbose, Log logger )
         throws IOException
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
         copy( fileSet, fileSetManager );
     }
 
-    public void copy( FileSet fileSet )
+    public void copy( TrueZipFileSet fileSet )
         throws IOException
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
         copy( fileSet, fileSetManager );
     }
 
-    public void copy( FileSet oneFileSet, TrueZipFileSetManager fileSetManager )
+    public void copy( TrueZipFileSet oneFileSet, TrueZipFileSetManager fileSetManager )
         throws IOException
     {
         if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
@@ -110,8 +109,7 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            java.io.File realSource = new java.io.File( source.getAbsolutePath() );
-            File.cp_p( realSource, dest );
+            source.copyAllTo( dest );
         }
         else
         {
@@ -130,21 +128,21 @@ public class DefaultTrueZip
 
     // ///////////////////////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////////////////////
-    public void remove( FileSet fileSet, boolean verbose, Log logger )
+    public void remove( TrueZipFileSet fileSet, boolean verbose, Log logger )
         throws IOException
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
         remove( fileSet, fileSetManager );
     }
 
-    public void remove( FileSet fileSet )
+    public void remove( TrueZipFileSet fileSet )
         throws IOException
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
         remove( fileSet, fileSetManager );
     }
 
-    private void remove( FileSet oneFileSet, TrueZipFileSetManager fileSetManager )
+    private void remove( TrueZipFileSet oneFileSet, TrueZipFileSetManager fileSetManager )
         throws IOException
     {
         if ( StringUtils.isBlank( oneFileSet.getDirectory() ) )
