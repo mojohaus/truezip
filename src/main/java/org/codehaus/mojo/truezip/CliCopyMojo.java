@@ -23,11 +23,12 @@ import org.apache.maven.plugin.MojoFailureException;
  * Copy an archive/directory to another archive/directory. Mainly used from command line
  * to unpack/pack any known archive type.
  * 
- * Example: 
+ * <p>Example:  
  *   <ul>
  *     <li>mvn truezip:cp -Dfrom=a.zip -Dto=b</li>
  *     <li>mvn truezip:cp -Dfrom=b -Dto=b.zip</li>
  *   </ul>
+ * </p>
  * 
  * @goal cp
  * @requiresProject false

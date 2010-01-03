@@ -24,12 +24,13 @@ import de.schlichtherle.io.File;
  */
 
 /**
- * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip java doc for details
+ * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip java doc for details.
  * 
- * Example: 
+ * <p>Example: 
  *   <ul>
  *     <li>mvn truezip:ls -Dfrom=a.zip </li>
  *   </ul>
+ * </p>
  * 
  * @goal ls
  * @requiresProject false
