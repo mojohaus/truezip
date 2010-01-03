@@ -35,7 +35,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * @version $Id: $
  */
 public class CliCopyMojo
-    extends AbstractManipulateArchiveMojo
+    extends AbstractArchiveMojo
 {
     /**
      * Path to an archive to be unpacked

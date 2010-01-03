@@ -37,10 +37,10 @@ import de.schlichtherle.io.File;
  * @version $Id: $
  */
 public class CliListMojo
-    extends AbstractManipulateArchiveMojo
+    extends AbstractArchiveMojo
 {
     /**
-     * Path to an archive to be unpacked
+     * Path to an archive file to display
      * 
      * @parameter expression="${from}"
      * @required
