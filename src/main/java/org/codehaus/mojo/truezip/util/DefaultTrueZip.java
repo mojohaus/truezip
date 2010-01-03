@@ -109,7 +109,10 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            source.copyAllTo( dest );
+            if ( ! source.archiveCopyAllTo( dest ) )
+            {
+                throw new IOException( "Unable to copy: " + source + " to " + dest );
+            }
         }
         else
         {
