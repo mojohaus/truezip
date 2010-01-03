@@ -151,6 +151,28 @@ TrueZIP Maven Plugin
 --------------------------
 
 
+* Pack/unpack from command line
+
+  Use <<cp>> goal to copy an archive/directory to another archive/directory.
+  
+  The folowing example shows how to unpack an archive to a directory
+  
+-------------------------------
+mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=.
+-------------------------------
+
+  The folowing example shows how to pack a directory to a archive
+  
+-------------------------------
+mvn truezip:cp -Dfrom=apache-maven-2.2.1 -Dto=apache-maven-2.2.1.zip
+-------------------------------
+
+  The folowing example shows how to transfer an archive to another archive type to a archive
+  
+-------------------------------
+mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.zip
+-------------------------------
+  
 * Move
 
   The <<move>> goal can move a file in, out, or with in the archive. The below examples 
