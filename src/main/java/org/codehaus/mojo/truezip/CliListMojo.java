@@ -24,8 +24,7 @@ import de.schlichtherle.io.File;
  */
 
 /**
- * Copy an archive/directory to another archive/directory. Mainly used from command line
- * to unpack/pack any known archive type.
+ * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip java doc for details
  * 
  * Example: 
  *   <ul>
