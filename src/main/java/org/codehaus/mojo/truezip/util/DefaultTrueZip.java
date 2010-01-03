@@ -109,7 +109,24 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            if ( ! source.archiveCopyAllTo( dest ) )
+            if ( dest.isArchive() )
+            {
+                if ( ! source.archiveCopyAllTo( dest ) )
+                {
+                    throw new IOException( "Unable to copy: " + source + " to " + dest );
+                }
+            }
+            else
+            {
+                if ( ! source.copyAllTo( dest ) )
+                {
+                    throw new IOException( "Unable to copy: " + source + " to " + dest );
+                }
+            }
+        }
+        else if ( source.isDirectory() )
+        {
+            if ( ! source.copyAllTo( dest ) )
             {
                 throw new IOException( "Unable to copy: " + source + " to " + dest );
             }

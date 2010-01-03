@@ -98,7 +98,7 @@ public class TrueZipTest
 
         File outputDirecttory = new File( basedir, "target/test/test-copy" );
         FileUtils.deleteDirectory( outputDirecttory );
-        
+
         fileSet.setOutputDirectory( outputDirecttory.getAbsolutePath() );
 
         truezip.copy( fileSet, false, log );
@@ -143,6 +143,67 @@ public class TrueZipTest
         fileSet.setFollowArchive( false );
         fileList = truezip.list( fileSet, false, log );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
+
+    }
+
+    public void testDirectArchiveToArchiveCopy()
+        throws Exception
+    {
+
+        File source = new File( basedir, "target/dependency/calculator.ear" );
+        File dest = new File( basedir, "target/dependency/calculator.tar" );
+        truezip.copyFile( source, dest );
+
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setFollowArchive( true );
+        fileSet.setDirectory( dest.getPath() );
+
+        List fileList = truezip.list( fileSet, false, log );
+        assertEquals( "Invalid file list in " + dest, 26, fileList.size() );
+
+        fileSet.setFollowArchive( false );
+        fileList = truezip.list( fileSet, false, log );
+        assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
+
+    }
+
+    public void testDirectArchiveToDirectoryCopy()
+        throws Exception
+    {
+
+        File source = new File( basedir, "target/dependency/calculator.ear" );
+        File dest = new File( basedir, "target/dependency/calculator" );
+        truezip.copyFile( source, dest );
+
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setFollowArchive( true );
+        fileSet.setDirectory( dest.getPath() );
+
+        List fileList = truezip.list( fileSet, false, log );
+        assertEquals( "Invalid file list in " + dest, 26, fileList.size() );
+
+        fileSet.setFollowArchive( false );
+        fileList = truezip.list( fileSet, false, log );
+        assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
+
+    }
+
+    public void testDirectDirectoryToArchiveCopy()
+        throws Exception
+    {
+
+        File source = new File( basedir, "target/dependency/calculator" );
+        File dest = new File( basedir, "target/dependency/calculator.zip" );
+        truezip.copyFile( source, dest );
+
+
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setFollowArchive( false );
+        fileSet.setDirectory( dest.getPath() );
+
+        List fileList = truezip.list( fileSet );
+
+        assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
     }
 

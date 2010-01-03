@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
+import de.schlichtherle.io.File;
+
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
  * 
@@ -58,17 +60,13 @@ public class CliCopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        Fileset fileset = new Fileset();
-        fileset.setOutputDirectory( to.getAbsolutePath() );
-        fileset.setDirectory( from.getAbsolutePath() );
-
         try
         {
-            truezip.copy( fileset );
+            truezip.copyFile( new File( from ), new File( to ) );
         }
         catch ( IOException e )
         {
-            throw new MojoExecutionException( "Unable to unpack: " + from + " to " + to,  e );
+            throw new MojoExecutionException( "Unable to copy: " + from + " to " + to,  e );
         }
     }
 
