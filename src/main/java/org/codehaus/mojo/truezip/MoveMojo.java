@@ -1,7 +1,10 @@
 package org.codehaus.mojo.truezip;
 
+import java.util.Iterator;
+
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.File;
 
@@ -27,34 +30,63 @@ import de.schlichtherle.io.File;
  * @version $Id:  $
  */
 public class MoveMojo
-    extends AbstractArchiveMojo
+    extends AbstractManipulateArchiveMojo
 {
     /**
      * Path of original file
      * @parameter
-     * @required
      * @since beta-1
      */
     private String from;
-    
+
     /**
      * Path of destination file
      * @parameter
-     * @required
      * @since beta-1
      * 
      */
     private String to;
-    
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        File file = new File( this.resolveRelativePath( from ) );
-        
-        File tofile = new File( this.resolveRelativePath( to ) );
-        
-        this.truezip.moveFile( file, tofile );
+        if ( !StringUtils.isBlank( from ) )
+        {
+            File file = new File( this.resolveRelativePath( from ) );
+
+            if ( StringUtils.isBlank( from ) )
+            {
+                throw new MojoExecutionException( "You have specified 'from' configuration to perform the move, but 'to' configuration is not available. " );
+            }
+
+            File tofile = new File( this.resolveRelativePath( to ) );
+
+            this.truezip.moveFile( file, tofile );
+        }
+
+        if ( this.fileset != null )
+        {
+            this.filesets.add( this.fileset );
+            this.fileset = null;
+        }
+
+        for ( Iterator it = filesets.iterator(); it.hasNext(); )
+        {
+            Fileset oneFileSet = (Fileset) it.next();
+
+            try
+            {
+                this.resolveRelativePath( oneFileSet );
+                this.truezip.move( oneFileSet, verbose, this.getLog() );
+            }
+            catch ( Exception e )
+            {
+                throw new MojoExecutionException( "Move fileset fails", e );
+            }
+
+        }
         
         this.tryImmediateUpdate();
+
     }
 }

@@ -96,10 +96,10 @@ public class TrueZipTest
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
 
-        File outputDirecttory = new File( basedir, "target/test/test-copy" );
-        FileUtils.deleteDirectory( outputDirecttory );
+        File outputDirectory = new File( basedir, "target/test/test-copy" );
+        FileUtils.deleteDirectory( outputDirectory );
 
-        fileSet.setOutputDirectory( outputDirecttory.getAbsolutePath() );
+        fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
         truezip.copy( fileSet, false, log );
 
@@ -107,7 +107,7 @@ public class TrueZipTest
 
         fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( true );
-        fileSet.setDirectory( outputDirecttory.getPath() );
+        fileSet.setDirectory( outputDirectory.getPath() );
 
         List fileList = truezip.list( fileSet, false, log );
         assertEquals( "Invalid file list in " + file, 26, fileList.size() );
@@ -116,6 +116,11 @@ public class TrueZipTest
         fileList = truezip.list( fileSet, false, log );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
 
+        //test verbatime copy, ie inner archive size unchanged after unpack
+        File.update(); //quick sync needed, otherwise the file length is incorrectly calculated
+        assertEquals( 16158, new java.io.File( outputDirectory, "calculator-war-2.1.2.war" ).length() );
+        assertEquals( 8762, new java.io.File( outputDirectory, "calculator-ejb-2.1.2.jar" ).length() );
+        
     }
 
     public void testCopyToArchive()
@@ -196,7 +201,6 @@ public class TrueZipTest
         File dest = new File( basedir, "target/dependency/calculator.zip" );
         truezip.copyFile( source, dest );
 
-
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( false );
         fileSet.setDirectory( dest.getPath() );
@@ -205,6 +209,40 @@ public class TrueZipTest
 
         assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
+    }
+
+    public void testMove()
+        throws Exception
+    {
+        //make a copy of the original test archive
+        File file = new File( basedir, "target/dependency/calculator.ear" );
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setDirectory( file.getPath() );
+
+        File outputDirectory = new File( basedir, "target/test/test-move.zip" );
+        outputDirectory.delete();
+
+        fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
+        truezip.copy( fileSet, false, log );
+
+        //do the move
+        fileSet.setDirectory( outputDirectory.getPath() );
+
+        outputDirectory = new File( basedir, "target/test/test-move" );
+        outputDirectory.delete();
+
+        fileSet.setOutputDirectory( outputDirectory.getPath() );
+        fileSet.addExclude( "**/*.jar" );
+        fileSet.addExclude( "**/*.war" );
+
+        truezip.move( fileSet, false, log );
+
+        //test what left in there
+        fileSet = new TrueZipFileSet();
+        fileSet.setDirectory( outputDirectory.getPath() );
+        List fileList = truezip.list( fileSet );
+
+        assertEquals( "Invalid file list in " + outputDirectory, 5, fileList.size() );
     }
 
 }

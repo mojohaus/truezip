@@ -50,6 +50,20 @@ public class DefaultTrueZip
 
     }
 
+    public void move( TrueZipFileSet fileSet, boolean verbose, Log logger )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
+        move( fileSet, fileSetManager );
+    }
+
+    public void move( TrueZipFileSet fileSet )
+        throws IOException
+    {
+        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager();
+        move( fileSet, fileSetManager );
+    }
+
     // ////////////////////////////////////////////////////////////////////////////
     // ////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +109,7 @@ public class DefaultTrueZip
 
     // ////////////////////////////////////////////////////////////////////////////
     // ////////////////////////////////////////////////////////////////////////////
+
     public void copyFile( File source, File dest )
         throws IOException
     {
@@ -114,14 +129,14 @@ public class DefaultTrueZip
             {
                 //use the NULL detector within the source and destination directory trees which will cause a verbatim copy.
                 // otherwise the destination archive is slightly altered ( still work thou )
-                if ( ! source.archiveCopyAllTo( dest, ArchiveDetector.NULL ) )
+                if ( !source.archiveCopyAllTo( dest, ArchiveDetector.NULL ) )
                 {
                     throw new IOException( "Unable to copy: " + source + " to " + dest );
                 }
             }
             else
             {
-                if ( ! source.copyAllTo( dest ) )
+                if ( !source.copyAllTo( dest ) )
                 {
                     throw new IOException( "Unable to copy: " + source + " to " + dest );
                 }
@@ -129,7 +144,7 @@ public class DefaultTrueZip
         }
         else if ( source.isDirectory() )
         {
-            if ( ! source.copyAllTo( dest ) )
+            if ( !source.copyAllTo( dest ) )
             {
                 throw new IOException( "Unable to copy: " + source + " to " + dest );
             }
@@ -184,4 +199,10 @@ public class DefaultTrueZip
 
     }
 
+    private void move( TrueZipFileSet fileSet, TrueZipFileSetManager fileSetManager )
+        throws IOException
+    {
+        this.copy( fileSet, fileSetManager );
+        this.remove( fileSet, fileSetManager );
+    }
 }
