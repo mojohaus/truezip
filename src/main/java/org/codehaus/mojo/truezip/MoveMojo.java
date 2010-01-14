@@ -23,7 +23,7 @@ import de.schlichtherle.io.File;
  */
 
 /**
- * Rename a file in archive.
+ * Use this goal to move single file or multiple files(via FileSet) between archives or directories
  * 
  * @goal move
  * @phase process-resources
