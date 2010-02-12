@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
+import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.io.ArchiveDetector;
@@ -125,7 +126,7 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            if ( dest.isArchive() )
+            if ( dest.isArchive() && dest.getArchiveDetector().equals( source.getArchiveDetector() ) )
             {
                 //use the NULL detector within the source and destination directory trees which will cause a verbatim copy.
                 // otherwise the destination archive is slightly altered ( still work thou )
