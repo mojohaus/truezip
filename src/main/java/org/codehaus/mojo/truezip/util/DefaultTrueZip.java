@@ -126,9 +126,9 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            if ( dest.isArchive() && dest.getArchiveDetector().equals( source.getArchiveDetector() ) )
+            if ( dest.isArchive() && FileUtils.getExtension( dest.getPath() ).equals( FileUtils.getExtension( source.getPath() ) ) )
             {
-                //use the NULL detector within the source and destination directory trees which will cause a verbatim copy.
+                //use the NULL detector within the source and destination directory trees to  do a verbatim copy.
                 // otherwise the destination archive is slightly altered ( still work thou )
                 if ( !source.archiveCopyAllTo( dest, ArchiveDetector.NULL ) )
                 {
