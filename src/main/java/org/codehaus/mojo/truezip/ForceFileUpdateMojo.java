@@ -3,8 +3,7 @@ package org.codehaus.mojo.truezip;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-import de.schlichtherle.io.ArchiveException;
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.fs.FsSyncException;
 
 /**
  * Update open archives immediately, flush cached data to disk.
@@ -22,9 +21,9 @@ public class ForceFileUpdateMojo
     {
         try
         {
-            File.update();
+            truezip.sync();
         }
-        catch ( ArchiveException e )
+        catch ( FsSyncException e )
         {
             throw new MojoExecutionException( "Forced file update failed!", e );
         }

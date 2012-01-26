@@ -6,7 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -52,16 +52,23 @@ public class MoveMojo
     {
         if ( !StringUtils.isBlank( from ) )
         {
-            File file = new File( this.resolveRelativePath( from ) );
+            TFile file = new TFile( this.resolveRelativePath( from ) );
 
             if ( StringUtils.isBlank( from ) )
             {
                 throw new MojoExecutionException( "You have specified 'from' configuration to perform the move, but 'to' configuration is not available. " );
             }
 
-            File tofile = new File( this.resolveRelativePath( to ) );
+            TFile tofile = new TFile( this.resolveRelativePath( to ) );
 
-            this.truezip.moveFile( file, tofile );
+            try
+            {
+                this.truezip.moveFile( file, tofile );
+            }
+            catch ( Exception e )
+            {
+                throw new MojoExecutionException( "Move file fails", e );
+            }
         }
 
         if ( this.fileset != null )

@@ -45,7 +45,7 @@ import org.apache.maven.shared.model.fileset.mappers.MapperUtil;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.util.FileUtils;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Provides operations for use with FileSet instances, such as retrieving the included/excluded files, deleting all
@@ -300,7 +300,7 @@ public class TrueZipFileSetManager
         {
             String path = (String) it.next();
 
-            File file = new File( fileSet.getDirectory(), path );
+            TFile file = new TFile( fileSet.getDirectory(), path );
 
             if ( file.exists() )
             {
@@ -373,10 +373,10 @@ public class TrueZipFileSetManager
     // Private methods
     // ----------------------------------------------------------------------
 
-    private boolean isSymlink( File file )
+    private boolean isSymlink( TFile file )
         throws IOException
     {
-        File fileInCanonicalParent = null;
+        TFile fileInCanonicalParent = null;
         java.io.File parentDir = file.getParentFile();//truezip-plugin specific change
         if ( parentDir == null )
         {
@@ -384,7 +384,7 @@ public class TrueZipFileSetManager
         }
         else
         {
-            fileInCanonicalParent = new File( parentDir.getCanonicalPath(), file.getName() );
+            fileInCanonicalParent = new TFile( parentDir.getCanonicalPath(), file.getName() );
         }
         if ( messages != null && messages.isDebugEnabled() )
         {
@@ -534,7 +534,7 @@ public class TrueZipFileSetManager
         {
             String path = (String) it.next();
 
-            String parentPath = new File( path ).getParent();
+            String parentPath = new TFile( path ).getParent();
 
             while ( parentPath != null )
             {
@@ -551,7 +551,7 @@ public class TrueZipFileSetManager
                     messages.addDebugMessage( "Path " + parentPath + " was removed from delete list." ).flush();
                 }
 
-                parentPath = new File( parentPath ).getParent();
+                parentPath = new TFile( parentPath ).getParent();
             }
         }
 
@@ -581,7 +581,7 @@ public class TrueZipFileSetManager
      * @param warnMessages A list of warning messages used when <code>throwsError=false</code>.
      * @throws IOException If a matching file cannot be deleted and <code>throwsError=true</code>.
      */
-    private void removeDir( File dir, boolean followSymlinks, boolean throwsError, List warnMessages )
+    private void removeDir( TFile dir, boolean followSymlinks, boolean throwsError, List warnMessages )
         throws IOException
     {
         String[] list = dir.list();
@@ -593,7 +593,7 @@ public class TrueZipFileSetManager
         for ( int i = 0; i < list.length; i++ )
         {
             String s = list[i];
-            File f = new File( dir, s );
+            TFile f = new TFile( dir, s );
             if ( f.isDirectory() && ( followSymlinks || !isSymlink( f ) ) )
             {
                 removeDir( f, followSymlinks, throwsError, warnMessages );
@@ -636,7 +636,7 @@ public class TrueZipFileSetManager
      *
      * @param f a file
      */
-    private boolean delete( File f )
+    private boolean delete( TFile f )
     {
         try
         {
@@ -652,7 +652,7 @@ public class TrueZipFileSetManager
 
     private TrueZipDirectoryScanner scan( TrueZipFileSet fileSet )
     {
-        File basedir = new File( fileSet.getDirectory() );
+        TFile basedir = new TFile( fileSet.getDirectory() );
         if ( !basedir.exists() || !basedir.isDirectory() )
         {
             return null;

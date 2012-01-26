@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -70,7 +70,7 @@ public class CliListMojo
 
         while ( iter.hasNext() )
         {
-            File archiveFile = new File( iter.next().toString() );
+            TFile archiveFile = new TFile( iter.next().toString() );
 
             String relativePath = archiveFile.getPath();
             if ( relativePath.startsWith( from.getPath() ) )

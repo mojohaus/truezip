@@ -8,8 +8,9 @@ import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
-import de.schlichtherle.io.ArchiveDetector;
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TArchiveDetector;
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.fs.FsSyncException;
 
 /**
  * @plexus.component role="org.codehaus.mojo.truezip.util.TrueZip" role-hint="default"
@@ -18,6 +19,12 @@ public class DefaultTrueZip
     implements TrueZip
 {
 
+    public void sync() 
+        throws FsSyncException
+    {
+        TFile.umount();
+    }
+    
     public List list( TrueZipFileSet fileSet, boolean verbose, Log logger )
     {
         TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
@@ -43,7 +50,7 @@ public class DefaultTrueZip
 
         for ( int i = 0; i < files.length; ++i )
         {
-            File source = new File( fileSet.getDirectory(), files[i] );
+            TFile source = new TFile( fileSet.getDirectory(), files[i] );
             fileLists.add( source );
         }
 
@@ -99,9 +106,9 @@ public class DefaultTrueZip
             {
                 relativeDestPath = oneFileSet.getOutputDirectory() + "/" + relativeDestPath;
             }
-            File dest = new File( relativeDestPath );
+            TFile dest = new TFile( relativeDestPath );
 
-            File source = new File( oneFileSet.getDirectory(), files[i] );
+            TFile source = new TFile( oneFileSet.getDirectory(), files[i] );
 
             this.copyFile( source, dest );
         }
@@ -111,10 +118,10 @@ public class DefaultTrueZip
     // ////////////////////////////////////////////////////////////////////////////
     // ////////////////////////////////////////////////////////////////////////////
 
-    public void copyFile( File source, File dest )
+    public void copyFile( TFile source, TFile dest )
         throws IOException
     {
-        File destParent = (File) dest.getParentFile();
+        TFile destParent = (TFile) dest.getParentFile();
 
         if ( !destParent.isDirectory() )
         {
@@ -130,39 +137,32 @@ public class DefaultTrueZip
             {
                 //use the NULL detector within the source and destination directory trees to  do a verbatim copy.
                 // otherwise the destination archive is slightly altered ( still work thou )
-                if ( !source.archiveCopyAllTo( dest, ArchiveDetector.NULL ) )
-                {
-                    throw new IOException( "Unable to copy: " + source + " to " + dest );
-                }
+                TFile.cp_rp( source, dest, TArchiveDetector.NULL );
             }
             else
             {
-                if ( !source.copyAllTo( dest ) )
-                {
-                    throw new IOException( "Unable to copy: " + source + " to " + dest );
-                }
+                source.cp_rp( dest );
+                
             }
         }
         else if ( source.isDirectory() )
         {
-            if ( !source.copyAllTo( dest ) )
-            {
-                throw new IOException( "Unable to copy: " + source + " to " + dest );
-            }
+            source.cp_rp( dest );
         }
         else
         {
-            File.cp_p( source, dest );
+            TFile.cp_p( source, dest );
         }
     }
 
-    public void moveFile( File source, File dest )
-    {
-        File file = new File( source );
+    public void moveFile( TFile source, TFile dest )
+        throws IOException {
 
-        File tofile = new File( dest );
+        TFile file = new TFile( source );
 
-        file.renameTo( tofile );
+        TFile tofile = new TFile( dest );
+
+        file.mv( tofile );
     }
 
     // ///////////////////////////////////////////////////////////////////////
@@ -189,7 +189,7 @@ public class DefaultTrueZip
             throw new IOException( "FileSet's directory is required." );
         }
 
-        File directory = new File( oneFileSet.getDirectory() );
+        TFile directory = new TFile( oneFileSet.getDirectory() );
 
         if ( !directory.isDirectory() )
         {

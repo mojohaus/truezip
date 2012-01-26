@@ -2,7 +2,7 @@ package org.codehaus.mojo.truezip;
 
 import org.codehaus.plexus.util.StringUtils;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Taken from assembly maven plugin
@@ -126,7 +126,7 @@ public class FileItem
     {
         if ( this.destName == null )
         {
-            this.destName = new File( source ).getName();
+            this.destName = new TFile( source ).getName();
         }
 
         if ( StringUtils.isBlank( this.outputDirectory ) )

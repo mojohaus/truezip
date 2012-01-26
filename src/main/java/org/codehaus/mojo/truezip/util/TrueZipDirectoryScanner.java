@@ -59,7 +59,7 @@ import java.util.Vector;
 
 import org.codehaus.plexus.util.SelectorUtils;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Class for scanning a directory for files/directories which match certain
@@ -196,7 +196,7 @@ public class TrueZipDirectoryScanner
     };
 
     /** The base directory to be scanned. */
-    protected File basedir;
+    protected TFile basedir;
 
     /** The patterns for the files to be included. */
     protected String[] includes;
@@ -406,8 +406,8 @@ public class TrueZipDirectoryScanner
      */
     public void setBasedir( String basedir )
     {
-        setBasedir( new File( basedir.replace( '/', File.separatorChar ).replace(
-            '\\', File.separatorChar ) ) );
+        setBasedir( new TFile( basedir.replace( '/', TFile.separatorChar ).replace(
+            '\\', TFile.separatorChar ) ) );
     }
 
     /**
@@ -417,7 +417,7 @@ public class TrueZipDirectoryScanner
      * @param basedir The base directory for scanning.
      *                Should not be <code>null</code>.
      */
-    public void setBasedir( File basedir )
+    public void setBasedir( TFile basedir )
     {
         this.basedir = basedir;
     }
@@ -428,7 +428,7 @@ public class TrueZipDirectoryScanner
      *
      * @return the base directory to be scanned
      */
-    public File getBasedir()
+    public TFile getBasedir()
     {
         return basedir;
     }
@@ -497,9 +497,9 @@ public class TrueZipDirectoryScanner
             for ( int i = 0; i < includes.length; i++ )
             {
                 String pattern;
-                pattern = includes[i].trim().replace( '/', File.separatorChar ).replace(
-                    '\\', File.separatorChar );
-                if ( pattern.endsWith( File.separator ) )
+                pattern = includes[i].trim().replace( '/', TFile.separatorChar ).replace(
+                    '\\', TFile.separatorChar );
+                if ( pattern.endsWith( TFile.separator ) )
                 {
                     pattern += "**";
                 }
@@ -533,9 +533,9 @@ public class TrueZipDirectoryScanner
             for ( int i = 0; i < excludes.length; i++ )
             {
                 String pattern;
-                pattern = excludes[i].trim().replace( '/', File.separatorChar ).replace(
-                    '\\', File.separatorChar );
-                if ( pattern.endsWith( File.separator ) )
+                pattern = excludes[i].trim().replace( '/', TFile.separatorChar ).replace(
+                    '\\', TFile.separatorChar );
+                if ( pattern.endsWith( TFile.separator ) )
                 {
                     pattern += "**";
                 }
@@ -652,8 +652,8 @@ public class TrueZipDirectoryScanner
         {
             if ( !couldHoldIncluded( excl[i] ) )
             {
-                scandir( new File( basedir, excl[i] ),
-                         excl[i] + File.separator, false );
+                scandir( new TFile( basedir, excl[i] ),
+                         excl[i] + TFile.separator, false );
             }
         }
 
@@ -661,8 +661,8 @@ public class TrueZipDirectoryScanner
         {
             if ( !couldHoldIncluded( notIncl[i] ) )
             {
-                scandir( new File( basedir, notIncl[i] ),
-                         notIncl[i] + File.separator, false );
+                scandir( new TFile( basedir, notIncl[i] ),
+                         notIncl[i] + TFile.separator, false );
             }
         }
 
@@ -690,7 +690,7 @@ public class TrueZipDirectoryScanner
      * @see #dirsExcluded
      * @see #slowScan
      */
-    protected void scandir( File dir, String vpath, boolean fast )
+    protected void scandir( TFile dir, String vpath, boolean fast )
     {
         String[] newfiles = dir.list();
 
@@ -732,7 +732,7 @@ public class TrueZipDirectoryScanner
                     if ( isSymbolicLink( dir, newfiles[i] ) )
                     {
                         String name = vpath + newfiles[i];
-                        File file = new File( dir, newfiles[i] );
+                        TFile file = new TFile( dir, newfiles[i] );
                         if ( file.isArchive() && this.followArchive ) 
                         {
                             dirsExcluded.addElement( name );
@@ -767,7 +767,7 @@ public class TrueZipDirectoryScanner
         for ( int i = 0; i < newfiles.length; i++ )
         {
             String name = vpath + newfiles[i];
-            File file = new File( dir, newfiles[i] );
+            TFile file = new TFile( dir, newfiles[i] );
             if ( ( file.isArchive() && !this.followArchive ) || file.isFile() )
             {
                 if ( isIncluded( name ) )
@@ -807,7 +807,7 @@ public class TrueZipDirectoryScanner
                             dirsIncluded.addElement( name );
                             if ( fast )
                             {
-                                scandir( file, name + File.separator, fast );
+                                scandir( file, name + TFile.separator, fast );
                             }
                         }
                         else
@@ -816,7 +816,7 @@ public class TrueZipDirectoryScanner
                             dirsDeselected.addElement( name );
                             if ( fast && couldHoldIncluded( name ) )
                             {
-                                scandir( file, name + File.separator, fast );
+                                scandir( file, name + TFile.separator, fast );
                             }
                         }
 
@@ -827,7 +827,7 @@ public class TrueZipDirectoryScanner
                         dirsExcluded.addElement( name );
                         if ( fast && couldHoldIncluded( name ) )
                         {
-                            scandir( file, name + File.separator, fast );
+                            scandir( file, name + TFile.separator, fast );
                         }
                     }
                 }
@@ -837,12 +837,12 @@ public class TrueZipDirectoryScanner
                     dirsNotIncluded.addElement( name );
                     if ( fast && couldHoldIncluded( name ) )
                     {
-                        scandir( file, name + File.separator, fast );
+                        scandir( file, name + TFile.separator, fast );
                     }
                 }
                 if ( !fast )
                 {
-                    scandir( file, name + File.separator, fast );
+                    scandir( file, name + TFile.separator, fast );
                 }
             }
 
@@ -917,7 +917,7 @@ public class TrueZipDirectoryScanner
      * @return <code>false</code> when the selectors says that the file
      *         should not be selected, <code>true</code> otherwise.
      */
-    protected boolean isSelected( String name, File file )
+    protected boolean isSelected( String name, TFile file )
     {
         return true;
     }
@@ -1079,7 +1079,7 @@ public class TrueZipDirectoryScanner
         for ( int i = 0; i < DEFAULTEXCLUDES.length; i++ )
         {
             newExcludes[i + excludesLength] = DEFAULTEXCLUDES[i].replace( '/',
-                                                                          File.separatorChar ).replace( '\\', File.separatorChar );
+                                                                          TFile.separatorChar ).replace( '\\', TFile.separatorChar );
         }
         excludes = newExcludes;
     }
@@ -1096,11 +1096,11 @@ public class TrueZipDirectoryScanner
      *
      * @since Ant 1.5
      */
-    public boolean isSymbolicLink( File parent, String name )
+    public boolean isSymbolicLink( TFile parent, String name )
         throws IOException
     {
-        File resolvedParent = new File( parent.getCanonicalPath() );
-        File toTest = new File( resolvedParent, name );
+        TFile resolvedParent = new TFile( parent.getCanonicalPath() );
+        TFile toTest = new TFile( resolvedParent, name );
         return !toTest.getAbsolutePath().equals( toTest.getCanonicalPath() );
     }
 

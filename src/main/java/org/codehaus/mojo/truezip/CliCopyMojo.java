@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -62,7 +62,7 @@ public class CliCopyMojo
     {
         try
         {
-            truezip.copyFile( new File( from ), new File( to ) );
+            truezip.copyFile( new TFile( from ), new TFile( to ) );
         }
         catch ( IOException e )
         {

@@ -4,7 +4,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
-import de.schlichtherle.io.File;
+import de.schlichtherle.truezip.file.TFile;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -91,9 +91,9 @@ public class CopyMojo
 
             this.resolveRelativePath( copyInfo );
             
-            File source = new File( copyInfo.getSource() );
+            TFile source = new TFile( copyInfo.getSource() );
 
-            File dest = new File( copyInfo.getDestinationPath() );
+            TFile dest = new TFile( copyInfo.getDestinationPath() );
 
             try
             {

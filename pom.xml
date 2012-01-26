@@ -6,7 +6,7 @@
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>25</version>
+    <version>29</version>
     <relativePath>../mojo-parent/pom.xml</relativePath>
   </parent>
   
@@ -79,19 +79,36 @@
       <artifactId>truezip</artifactId> 
       <version>6.6</version> 
     </dependency>
+    
     <dependency>
-      <groupId>org.apache.ant</groupId> 
-      <artifactId>ant</artifactId> 
-      <version>1.7.1</version> 
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-file</artifactId>
+      <version>7.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-driver-zip</artifactId>
+      <version>7.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-driver-tar</artifactId>
+      <version>7.4.3</version>
+    </dependency>
+
+    <dependency>
+     <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.7.1</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
           <groupId>org.apache.ant</groupId>
           <artifactId>ant-launcher</artifactId>
         </exclusion>
-      </exclusions>
+     </exclusions>
     </dependency>
-
+    
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>file-management</artifactId>
