@@ -14,17 +14,17 @@ TrueZIP Maven Plugin
 
 * Goals Overview
 
-  * {{{copy-mojo.html}truezip:copy}} Copy a set of files in or out of the archive.
+  * {{{./copy-mojo.html}truezip:copy}} Copy a set of files in or out of the archive.
 
-  * {{{cp-mojo.html}truezip:cp}} pack/unpack archive files via command line.
+  * {{{./cp-mojo.html}truezip:cp}} pack/unpack archive files via command line.
 
-  * {{{remove-mojo.html}truezip:remove}} Remove a set of files from the archive.
+  * {{{./remove-mojo.html}truezip:remove}} Remove a set of files from the archive.
 
-  * {{{list-mojo.html}truezip:list}} Print out the archive's file list.
+  * {{{./list-mojo.html}truezip:list}} Print out the archive's file list.
 
-  * {{{ls-mojo.html}truezip:ls}} list archive's contents via command line.
+  * {{{./ls-mojo.html}truezip:ls}} list archive's contents via command line.
 
-  * {{{move-mojo.html}truezip:move}} Move a file in or out of archive.
+  * {{{./move-mojo.html}truezip:move}} Move a file in or out of archive.
   
   []
   
