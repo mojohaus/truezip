@@ -11,7 +11,7 @@
   </parent>
   
   <artifactId>truezip-maven-plugin</artifactId>
-  <version>1.0-beta-7-SNAPSHOT</version>
+  <version>1.0-beta-6-SNAPSHOT</version>
   <name>Maven Plugin for TrueZIP</name>
   
   <packaging>maven-plugin</packaging>
