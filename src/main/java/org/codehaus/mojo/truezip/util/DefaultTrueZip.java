@@ -137,7 +137,9 @@ public class DefaultTrueZip
             {
                 //use the NULL detector within the source and destination directory trees to  do a verbatim copy.
                 // otherwise the destination archive is slightly altered ( still work thou )
-                TFile.cp_rp( source, dest, TArchiveDetector.NULL );
+                //see http://truezip.java.net/apidocs/de/schlichtherle/truezip/file/TFile.html for detail
+                TFile.umount(); // commit changes and purge any cached data
+                TFile.cp_rp(source, dest, TArchiveDetector.NULL, TArchiveDetector.NULL);                
             }
             else
             {
