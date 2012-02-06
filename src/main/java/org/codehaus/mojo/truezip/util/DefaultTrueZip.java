@@ -135,11 +135,12 @@ public class DefaultTrueZip
         {
             if ( dest.isArchive() && FileUtils.getExtension( dest.getPath() ).equals( FileUtils.getExtension( source.getPath() ) ) )
             {
-                //use the NULL detector within the source and destination directory trees to  do a verbatim copy.
-                // otherwise the destination archive is slightly altered ( still work thou )
-                //see http://truezip.java.net/apidocs/de/schlichtherle/truezip/file/TFile.html for detail
-                TFile.umount(); // commit changes and purge any cached data
-                TFile.cp_rp(source, dest, TArchiveDetector.NULL, TArchiveDetector.NULL);                
+                //we want verbatim/direct copy which is fast and it also keep the hash value intact.
+                // convert source and dest to have NO associate archive type so that direct copy can happen
+                source = new TFile( source.getParentFile(), source.getName(), TArchiveDetector.NULL );
+                dest = new TFile( dest.getParentFile(), source.getName(), TArchiveDetector.NULL );
+                TFile.umount();
+                source.cp_rp( dest );
             }
             else
             {
