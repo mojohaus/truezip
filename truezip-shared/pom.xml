@@ -30,22 +30,25 @@
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-file</artifactId>
+      <optional>true</optional>
     </dependency>
     
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-zip</artifactId>
+      <optional>true</optional>
     </dependency>
     
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-tar</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
      <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <scope>runtime</scope>
+      <optional>true</optional>
       <exclusions>
         <exclusion>
           <groupId>org.apache.ant</groupId>
@@ -79,7 +82,7 @@
   </dependencies>
   
 
-  <build>
+<build>
     <defaultGoal>install</defaultGoal>
     
     <plugins>
@@ -96,7 +99,36 @@
           </execution>
         </executions>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <id>download-test-file</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <destFileName>calculator.ear</destFileName>
+                  <groupId>org.apache.geronimo.samples</groupId>
+                  <artifactId>calculator-ear</artifactId>
+                  <version>2.1.2</version>
+                  <type>ear</type>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      
     </plugins>
+    
   </build>
-
+  
 </project>
