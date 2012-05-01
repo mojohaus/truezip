@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.codehaus.mojo.truezip.it</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../common.xml</relativePath>
+  </parent>
+
+    
+  <artifactId>truezip-maven-plugin-test</artifactId>
+  <packaging>jar</packaging>
+  <version>testing</version>
+
+  <build>
+ 
+    <defaultGoal>package</defaultGoal>
+    
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-maven-plugin</artifactId>
+        <version>@project.version@</version>
+        <executions>
+          <execution>
+            <id>copy-out-files</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <files>
+                <file>
+                  <source>${archive}/META-INF/maven/${project.groupId}/${project.artifactId}/pom.properties</source>
+                  <outputDirectory>${project.build.directory}/copy-file</outputDirectory>
+                </file>
+                <file>
+                  <source>${archive}/META-INF/maven/${project.groupId}/${project.artifactId}/pom.xml</source>
+                  <outputDirectory>${project.build.directory}/copy-file</outputDirectory>
+                  <destName>pom.with.xml.extension</destName>
+                </file>
+              </files>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-out-fileset</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}</directory>
+                <excludes>
+                  <exclude>**/pom.properties</exclude>
+                </excludes>
+                <outputDirectory>${project.build.directory}/copy-fileset</outputDirectory>
+              </fileset>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-into</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${basedir}</directory>
+                <includes>
+                  <include>*</include>
+                </includes>
+                <excludes>
+                  <exclude>validate.groovy</exclude>e
+                </excludes>
+                <outputDirectory>${archive}/copy-into</outputDirectory>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-into-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/copy-into</directory>
+              </fileset>
+              <outputFile>${project.build.directory}/copy-into.list</outputFile>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/copy-into</directory>
+              </fileset>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <properties>
+    <archive>${project.build.directory}/${project.build.finalName}.jar</archive>
+  </properties>
+
+</project>

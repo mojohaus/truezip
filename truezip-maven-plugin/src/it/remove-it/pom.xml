@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.codehaus.mojo.truezip.it</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../common.xml</relativePath>
+  </parent>
+
+  <artifactId>truezip-maven-plugin-test</artifactId>
+  <packaging>jar</packaging>
+
+  <build>
+  
+    <finalName>${project.artifactId}</finalName>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-maven-plugin</artifactId>
+        <version>@project.version@</version>
+        <executions>
+        
+          <execution>
+            <id>remove-a-file</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/META-INF/maven/${project.groupId}/${project.artifactId}</directory>
+                <includes>
+                  <include>**/pom.properties</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>remove-a-file-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}</directory>
+              </fileset>
+              <outputFile>${project.build.directory}/remove-a-file.list</outputFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>remove-a-directory</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}/META-INF/maven</directory>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>remove-a-directory-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <directory>${archive}</directory>
+              </fileset>
+              <outputFile>${project.build.directory}/remove-a-directory.list</outputFile>
+            </configuration>
+          </execution>
+          
+          <execution>
+            <id>remove-all</id>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <fileset>
+                <!-- remove the archive -->
+                <directory>${archive}</directory>
+              </fileset>
+            </configuration>
+          </execution>
+          
+          <!-- cant list, since the archive is gone -->
+          
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <properties>
+    <archive>target/${project.build.finalName}.jar</archive>
+  </properties>
+  
+</project>

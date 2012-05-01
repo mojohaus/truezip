@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <title>TrueZip Maven Plugin</title>
+    <author email="dantran@gmail.com">Dan T. Tran</author>
+  </properties>
+  <body>
+
+    <release version="1.0-beta-7" date="2012-02-07" description="Bug Fixes">
+      <action dev="dtran" type="fix" issue="MOJO-1808">
+        Inner archive's content get changed after unpack
+      </action>
+    </release>
+  
+    <release version="1.0-beta-6" date="2012-01-29" description="Bug Fixes">
+      <action dev="dtran" type="fix" issue="MOJO-1804">
+        Upgrade to TrueZip 7.4.3
+      </action>
+    </release>
+    
+  </body>
+</document>
+

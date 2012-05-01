@@ -1,0 +1,39 @@
+ ------
+ Introduction
+ ------
+ Dan T. Tran
+ ------
+ 2009-01-15
+ ------
+
+
+TrueZIP Maven Plugin
+
+  Use this plugin to manipulate archive files of type zip, tar, tgz, and tbz2.
+  
+
+* Goals Overview
+
+  * {{{./copy-mojo.html}truezip:copy}} Copy a set of files in or out of the archive.
+
+  * {{{./cp-mojo.html}truezip:cp}} pack/unpack archive files via command line.
+
+  * {{{./remove-mojo.html}truezip:remove}} Remove a set of files from the archive.
+
+  * {{{./list-mojo.html}truezip:list}} Print out the archive's file list.
+
+  * {{{./ls-mojo.html}truezip:ls}} list archive's contents via command line.
+
+  * {{{./move-mojo.html}truezip:move}} Move a file in or out of archive.
+  
+  []
+  
+* Usage
+
+  Instructions on how to use the TrueZip Maven Plugin can be found on the {{{usage.html}usage page}}.
+
+
+* Examples
+
+    Live {{{http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it 
+
