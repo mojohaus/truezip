@@ -4,96 +4,53 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>30</version>
-    <relativePath>../mojo-parent/pom.xml</relativePath>
+    <artifactId>truezip-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
   
   <artifactId>truezip-maven-plugin</artifactId>
-  <version>1.0-beta-8-SNAPSHOT</version>
   <name>Maven Plugin for TrueZIP</name>
   
   <packaging>maven-plugin</packaging>
   
   <description>Use this plugin create new or manipulate existing archives</description>
-  
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
-
-  <inceptionYear>2008</inceptionYear>
-
-  <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin</developerConnection>
-    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/truezip-maven-plugin</url>
-  </scm>
-
-  <developers>
-    <developer>
-      <name>Dan Tran</name>
-      <email>dantran@gmail.com</email>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-    
-    <developer>
-      <name>Rasto Cesnek</name>
-      <roles>
-        <role>Contributer</role>
-      </roles>
-    </developer>
-    
-  </developers>
-
-  <licenses>
-    <license>
-      <name>Apache License 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <dependencies>
+  
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
-      <version>${maven.version}</version>
     </dependency>
     
    <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>${maven.version}</version>
     </dependency>    
     
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>1.5.6</version>
     </dependency>
+    
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-file</artifactId>
-      <version>${truezip.version}</version>
     </dependency>
+    
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-zip</artifactId>
-      <version>${truezip.version}</version>
     </dependency>
+    
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-tar</artifactId>
-      <version>${truezip.version}</version>
     </dependency>
 
     <dependency>
      <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.7.1</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -106,35 +63,25 @@
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>file-management</artifactId>
-      <version>1.2.1</version>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.2</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-shared-io</artifactId>
-      <version>1.1</version>
     </dependency>
 
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-container-default</artifactId>
-      <version>1.0-alpha-9-stable-1</version>
     </dependency>
 
   </dependencies>
-
-  <properties>
-    <truezip.version>7.5.2</truezip.version>
-    <maven.version>2.2.1</maven.version>
-    <mojo.java.target>1.6</mojo.java.target>
-  </properties>
   
   <build>
     <defaultGoal>install</defaultGoal>
