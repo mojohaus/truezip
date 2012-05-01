@@ -15,7 +15,6 @@ package org.codehaus.mojo.truezip;
  * the License.
  */
 
-import org.codehaus.mojo.truezip.util.TrueZipFileSet;
 
 /**
  * Customizes the string representation of

@@ -1,4 +1,4 @@
-package org.codehaus.mojo.truezip.util;
+package org.codehaus.mojo.truezip.internal;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -42,6 +42,7 @@ import org.apache.maven.shared.model.fileset.FileSet;
 import org.apache.maven.shared.model.fileset.mappers.FileNameMapper;
 import org.apache.maven.shared.model.fileset.mappers.MapperException;
 import org.apache.maven.shared.model.fileset.mappers.MapperUtil;
+import org.codehaus.mojo.truezip.TrueZipFileSet;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.util.FileUtils;
 

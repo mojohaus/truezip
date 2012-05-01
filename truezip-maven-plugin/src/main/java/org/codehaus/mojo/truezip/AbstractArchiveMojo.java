@@ -17,7 +17,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.model.fileset.FileSet;
-import org.codehaus.mojo.truezip.util.TrueZip;
+import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.fs.FsSyncException;
@@ -35,10 +35,9 @@ public abstract class AbstractArchiveMojo
     protected MavenProject project;
 
     /**
-     * @component
      * @since beta-1
      */
-    protected TrueZip truezip;
+    protected TrueZip truezip = new DefaultTrueZip();
 
     /**
      * Enable automatic file update after each MOJO execution. If set to <code>false</code>, immediate update is not

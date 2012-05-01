@@ -1,4 +1,4 @@
-package org.codehaus.mojo.truezip.util;
+package org.codehaus.mojo.truezip;
 
 import java.io.IOException;
 import java.util.List;

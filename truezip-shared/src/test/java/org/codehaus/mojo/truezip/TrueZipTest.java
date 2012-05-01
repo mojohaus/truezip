@@ -1,4 +1,4 @@
-package org.codehaus.mojo.truezip.util;
+package org.codehaus.mojo.truezip;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import junit.framework.TestCase;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
+import org.codehaus.mojo.truezip.TrueZip;
+import org.codehaus.mojo.truezip.TrueZipFileSet;
+import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 import org.codehaus.plexus.util.FileUtils;
 
 import de.schlichtherle.truezip.file.TFile;

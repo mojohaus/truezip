@@ -1,10 +1,12 @@
-package org.codehaus.mojo.truezip.util;
+package org.codehaus.mojo.truezip.internal;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.plugin.logging.Log;
+import org.codehaus.mojo.truezip.TrueZip;
+import org.codehaus.mojo.truezip.TrueZipFileSet;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -14,7 +16,7 @@ import de.schlichtherle.truezip.file.TVFS;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
 /**
- * @plexus.component role="org.codehaus.mojo.truezip.util.TrueZip" role-hint="default"
+ * @plexus.component role="org.codehaus.mojo.truezip.TrueZip" role-hint="default"
  */
 public class DefaultTrueZip
     implements TrueZip

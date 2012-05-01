@@ -1,4 +1,4 @@
-package org.codehaus.mojo.truezip.util;
+package org.codehaus.mojo.truezip.internal;
 
 /*
  * The Apache Software License, Version 1.1
