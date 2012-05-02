@@ -16,45 +16,19 @@
 
   <dependencies>
     
-   <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <optional>true</optional>
-    </dependency>    
-    
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-    </dependency>
-    
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-file</artifactId>
-      <optional>true</optional>
     </dependency>
     
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-zip</artifactId>
-      <optional>true</optional>
     </dependency>
     
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-tar</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-     <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.ant</groupId>
-          <artifactId>ant-launcher</artifactId>
-        </exclusion>
-     </exclusions>
     </dependency>
     
     <dependency>
@@ -62,15 +36,18 @@
       <artifactId>file-management</artifactId>
     </dependency>
 
+
+   <!-- for MOJO logger only -->
+   <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <optional>true</optional>
+    </dependency>    
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.maven.shared</groupId>
-      <artifactId>maven-shared-io</artifactId>
     </dependency>
 
   </dependencies>
