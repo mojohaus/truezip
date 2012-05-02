@@ -39,9 +39,9 @@ public class RemoveMojo
             this.fileset = null;
         }
 
-        for ( Iterator it = filesets.iterator(); it.hasNext(); )
+        for ( Iterator<Fileset> it = filesets.iterator(); it.hasNext(); )
         {
-            Fileset oneFileSet = (Fileset) it.next();
+            Fileset oneFileSet = it.next();
 
             try
             {

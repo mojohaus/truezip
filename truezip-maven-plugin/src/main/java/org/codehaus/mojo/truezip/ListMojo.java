@@ -12,6 +12,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.StringUtils;
 
+import de.schlichtherle.truezip.file.TFile;
+
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
  * 
@@ -95,11 +97,11 @@ public class ListMojo
 
             this.resolveRelativePath( fileSet );
             
-            List fileList = this.truezip.list( (Fileset) this.filesets.get( i ), this.verbose, getLog() );
+            List<TFile> fileList = this.truezip.list( this.filesets.get( i ), this.verbose, getLog() );
             
             for ( int j = 0 ; j < fileList.size(); ++j )
             {
-                File file = (File) fileList.get( j );
+                TFile file = fileList.get( j );
                 ps.println( ( file.getPath() ) );
 
             }

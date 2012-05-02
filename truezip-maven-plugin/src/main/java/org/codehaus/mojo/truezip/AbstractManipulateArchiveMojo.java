@@ -28,7 +28,7 @@ public abstract class AbstractManipulateArchiveMojo
      * @parameter
      * @since beta-1
      */
-    protected List filesets = new ArrayList( 0 );
+    protected List<Fileset> filesets = new ArrayList<Fileset>( 0 );
 
     /**
      * A single FileSet to manipulate the archive.

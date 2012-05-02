@@ -1,5 +1,6 @@
 package org.codehaus.mojo.truezip;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.maven.plugin.MojoExecutionException;
@@ -46,7 +47,7 @@ public class CliCopyMojo
      * @required
      * @since beta-4
      */
-    private java.io.File from;
+    private File from;
 
     /**
      * Path to an archive or directory unpack to
@@ -55,7 +56,7 @@ public class CliCopyMojo
      * @required
      * @since beta-4
      */
-    private java.io.File to;
+    private File to;
 
     public void execute()
         throws MojoExecutionException, MojoFailureException

@@ -1,5 +1,6 @@
 package org.codehaus.mojo.truezip;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -46,7 +47,7 @@ public class CliListMojo
      * @required
      * @since beta-4
      */
-    private java.io.File from;
+    private File from;
 
     /**
      * Drill beyond sub archive
@@ -64,9 +65,9 @@ public class CliListMojo
         fileset.setDirectory( from.getAbsolutePath() );
         fileset.setFollowArchive( followSubArchive );
 
-        List fileList = truezip.list( fileset );
+        List<TFile> fileList = truezip.list( fileset );
 
-        Iterator iter = fileList.iterator();
+        Iterator<TFile> iter = fileList.iterator();
 
         while ( iter.hasNext() )
         {
