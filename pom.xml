@@ -7,15 +7,15 @@
   
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.mojo</groupId>
-  <artifactId>truezip-parent</artifactId>
+  <artifactId>truezip</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Maven Native</name>
+  <name>TrueZip</name>
   
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip-parent</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip-parent</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/truezip-parent</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip</developerConnection>
+    <url>http://svn.codehaus.org/mojo/trunk/mojo/truezip</url>
   </scm>
   
   <developers>
@@ -61,7 +61,7 @@
   
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-shared</artifactId>
+      <artifactId>truezip-maven</artifactId>
       <version>${project.version}</version>
     </dependency>
   
@@ -119,7 +119,7 @@
   
   
   <modules>
-    <module>truezip-shared</module>
+    <module>truezip-maven</module>
     <module>truezip-maven-plugin</module>
   </modules>
   

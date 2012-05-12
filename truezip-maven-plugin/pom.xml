@@ -5,7 +5,7 @@
 
   <parent>
     <groupId>org.codehaus.mojo</groupId>
-    <artifactId>truezip-parent</artifactId>
+    <artifactId>truezip</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   
@@ -20,7 +20,7 @@
   
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-shared</artifactId>
+      <artifactId>truezip-maven</artifactId>
     </dependency>
   
     <dependency>
