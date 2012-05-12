@@ -264,4 +264,20 @@ public class TrueZipTest
         assertEquals( "Invalid file list in " + outputDirectory, 5, fileList.size() );
     }
 
+    public void notestOvaisTarArchive()
+        throws Exception
+    {
+        TFile file = new TFile( basedir, "src/test/data/test.ova" );
+        assertTrue( file.exists() );
+        
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setDirectory( file.getPath() );
+        
+        List<TFile> files = truezip.list( fileSet );
+        
+        assertEquals( 2, files.size() );
+
+        
+    }
+    
 }
