@@ -192,7 +192,7 @@ public class TrueZipTest
         TFile source = new TFile( basedir, "target/dependency/calculator.ear" );
         TFile dest = new TFile( basedir, "target/dependency/calculator" );
         truezip.copyFile( source, dest );
-        truezip.sync();
+        truezip.sync( dest );
 
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( true );

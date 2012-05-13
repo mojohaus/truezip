@@ -27,37 +27,106 @@ import de.schlichtherle.truezip.fs.FsSyncException;
  */
 public interface TrueZip
 {
-    List<TFile> list( TrueZipFileSet fileSet, boolean verbose, Log logger );
-
+    /**
+     * List the file from FileSet's configuration
+     * @param fileSet
+     * @return
+     */
     List<TFile> list( TrueZipFileSet fileSet );
 
-    void copy( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
-        throws IOException;
+    /**
+     * List the file from FileSet's configuration for MOJO
+     * 
+     * @param fileSet
+     * @param verbose
+     * @param logger
+     * @return
+     */
+    List<TFile> list( TrueZipFileSet fileSet, boolean verbose, Log logger );
 
+    /**
+     * Copy a set of file to another archive using FileSet configuration
+     * @param oneFileSet
+     * @throws IOException
+     */
     void copy( TrueZipFileSet oneFileSet )
         throws IOException;
 
+    /**
+     * Copy a set of file to another archive using FileSet configuration for MOJO
+     * 
+     * @param oneFileSet
+     * @param verbose
+     * @param logger
+     * @throws IOException
+     */
+    void copy( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
+        throws IOException;
+
+    
+    /**
+     * Copy a file 
+     * @param source
+     * @param dest
+     * @throws IOException
+     */
     void copyFile( TFile source, TFile dest )
         throws IOException;
 
+    /**
+     * Copy a file for MOJO
+     * @param source
+     * @param dest
+     * @throws IOException
+     */
     void moveFile( TFile source, TFile dest )
        throws IOException;
 
+    /**
+     * Move a set of files from one archive to another 
+     * @param oneFileSet - The archive setup
+     * @throws IOException
+     */
+    void move( TrueZipFileSet oneFileSet )
+        throws IOException;
+    
+    /**
+     * Move a set of files from one archive to another 
+     * @param oneFileSet - The archive setup
+     * @throws IOException
+     */
     void move( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
 
-    void move( TrueZipFileSet oneFileSet )
-        throws IOException;
-
-    void remove( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
-        throws IOException;
-
+    /**
+     * Remove a set of files from the archive setup 
+     * @param oneFileSet - the archive setup
+     * @throws IOException
+     */
     void remove( TrueZipFileSet oneFileSet )
         throws IOException;
 
+    /**
+     * Remove a set of files from the archive setup for MOJO
+     * @param oneFileSet - the archive setup
+     * @throws IOException
+     */
+    void remove( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
+        throws IOException;
+
+    
+    /**
+     * Global sync
+     * @throws FsSyncException
+     */
     void sync()
         throws FsSyncException;
     
+    /**
+     * Selectively sync
+     * @param file
+     * @throws FsSyncException
+     */
     void sync( TFile file )
         throws FsSyncException;
     
