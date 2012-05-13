@@ -15,9 +15,6 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TVFS;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
-/**
- * @plexus.component role="org.codehaus.mojo.truezip.TrueZip" role-hint="default"
- */
 public class DefaultTrueZip
     implements TrueZip
 {
@@ -26,6 +23,12 @@ public class DefaultTrueZip
         throws FsSyncException
     {
         TVFS.umount();
+    }
+    
+    public void sync( TFile file ) 
+        throws FsSyncException
+    {
+        TVFS.umount( file );
     }
     
     public List<TFile> list( TrueZipFileSet fileSet, boolean verbose, Log logger )

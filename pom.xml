@@ -50,7 +50,7 @@
   </prerequisites>
   
   <properties>
-    <truezip.version>7.5.2</truezip.version>
+    <truezip.version>7.5.4</truezip.version>
     <maven.version>2.2.1</maven.version>
     <mojo.java.target>1.6</mojo.java.target>
   </properties>
