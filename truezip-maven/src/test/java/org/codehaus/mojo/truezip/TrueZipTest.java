@@ -28,12 +28,6 @@ public class TrueZipTest
         super.setUp();
     }
 
-    public void tearDown()
-        throws Exception
-    {
-        truezip.sync();
-    }
-    
     public void testEmptyList()
         throws Exception
     {
@@ -113,7 +107,7 @@ public class TrueZipTest
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
         truezip.copy( fileSet, false, log );
-        truezip.sync();
+        truezip.sync( outputDirectory );
 
         new TFile( basedir, "target/dependency/calculator.ear" );
 
@@ -149,7 +143,7 @@ public class TrueZipTest
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
         truezip.copy( fileSet, false, log );
-        truezip.sync();
+        truezip.sync( outputDirectory );
 
         fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( true );
@@ -207,14 +201,14 @@ public class TrueZipTest
 
     }
 
-    public void testDirectDirectoryToArchiveCopy()
+    public void testDirectoryToArchiveCopy()
         throws Exception
     {
 
         TFile source = new TFile( basedir, "target/dependency/calculator" );
         TFile dest = new TFile( basedir, "target/dependency/calculator.zip" );
         truezip.copyFile( source, dest );
-        truezip.sync();
+        truezip.sync( dest );
 
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( false );
@@ -264,7 +258,7 @@ public class TrueZipTest
         assertEquals( "Invalid file list in " + outputDirectory, 5, fileList.size() );
     }
 
-    public void notestOvaisTarArchive()
+    public void notestOvaIsTarArchive()
         throws Exception
     {
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
