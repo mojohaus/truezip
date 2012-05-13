@@ -7,7 +7,19 @@
   </properties>
   <body>
 
-    <release version="1.0-beta-7" date="2012-02-07" description="Bug Fixes">
+    <release version="1.0-beta-7" date="2012-05-17" description="Bug Fixes">
+      <action dev="dtran" type="fix" issue="MOJO-1837">
+        Honor FileItem.destName
+      </action>
+      <action dev="dtran" type="fix" issue="MOJO-1846">
+        Componentized the plugin by introducing re-usable truezip-maven
+      </action>
+      <action dev="dtran" type="fix" issue="MOJO-1838">
+        Upgrade TrueZIP to 7.5.4
+      </action>
+    </release>
+
+    <release version="1.0" date="2012-02-07" description="Bug Fixes">
       <action dev="dtran" type="fix" issue="MOJO-1808">
         Inner archive's content get changed after unpack
       </action>
