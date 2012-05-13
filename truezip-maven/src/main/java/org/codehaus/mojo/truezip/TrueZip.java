@@ -63,9 +63,10 @@ public interface TrueZip
     void copy( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
 
-    
     /**
-     * Copy a file 
+     * Copy a file or archive to another destination.  
+     * Hash values of source's sub-archive(s) are not kept intact during copy.
+     * Use copy() interface instead of if needed
      * @param source
      * @param dest
      * @throws IOException
@@ -80,7 +81,7 @@ public interface TrueZip
      * @throws IOException
      */
     void moveFile( TFile source, TFile dest )
-       throws IOException;
+        throws IOException;
 
     /**
      * Move a set of files from one archive to another 
@@ -89,7 +90,7 @@ public interface TrueZip
      */
     void move( TrueZipFileSet oneFileSet )
         throws IOException;
-    
+
     /**
      * Move a set of files from one archive to another 
      * @param oneFileSet - The archive setup
@@ -114,14 +115,13 @@ public interface TrueZip
     void remove( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
 
-    
     /**
      * Global sync
      * @throws FsSyncException
      */
     void sync()
         throws FsSyncException;
-    
+
     /**
      * Selectively sync
      * @param file
@@ -129,5 +129,5 @@ public interface TrueZip
      */
     void sync( TFile file )
         throws FsSyncException;
-    
+
 }

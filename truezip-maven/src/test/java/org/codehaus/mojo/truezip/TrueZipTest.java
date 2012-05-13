@@ -1,13 +1,17 @@
 package org.codehaus.mojo.truezip;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
-import org.codehaus.mojo.truezip.TrueZip;
-import org.codehaus.mojo.truezip.TrueZipFileSet;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 import org.codehaus.plexus.util.FileUtils;
 
@@ -32,7 +36,8 @@ public class TrueZipTest
         throws Exception
     {
         TFile emptyFile = new TFile( basedir, "target/empty-file.zip" );
-        if ( emptyFile.exists() ) {
+        if ( emptyFile.exists() )
+        {
             emptyFile.rm_r();
         }
         emptyFile.createNewFile();
@@ -125,7 +130,7 @@ public class TrueZipTest
         //test verbatime copy, ie inner archive size unchanged after unpack
         assertEquals( 16158, new java.io.File( outputDirectory, "calculator-war-2.1.2.war" ).length() );
         assertEquals( 8762, new java.io.File( outputDirectory, "calculator-ejb-2.1.2.jar" ).length() );
-        
+
     }
 
     public void testCopyToArchive()
@@ -136,10 +141,11 @@ public class TrueZipTest
         fileSet.setDirectory( file.getPath() );
 
         TFile outputDirectory = new TFile( basedir, "target/test/test-copy.zip" );
-        if ( outputDirectory.exists() ) {
+        if ( outputDirectory.exists() )
+        {
             outputDirectory.rm_r();
         }
-        
+
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
         truezip.copy( fileSet, false, log );
@@ -199,7 +205,37 @@ public class TrueZipTest
         fileList = truezip.list( fileSet, false, log );
         assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
+        //subarchive checksum changes when use TrueZip's copyFile
+        assertFalse( "9ea19802ed109db944a2fb02fff8c035"
+            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-war-2.1.2.war" ), "md5" ) ) );
+
+        assertFalse( "1fa71ddc35645e41e88a251fafb239cb"
+            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
+
     }
+    
+    public void testArchiveToDirectoryCopyUsingFileSetConfiguration()
+        throws Exception
+    {
+
+        TFile source = new TFile( basedir, "target/dependency/calculator.ear" );
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        fileSet.setDirectory( source.getPath() );
+        
+        TFile dest = new TFile( basedir, "target/dependency/calculator" );
+        fileSet.setOutputDirectory( dest.getAbsolutePath() );
+        truezip.copy( fileSet );
+        truezip.sync( dest );
+
+        //subarchive checksum keep the same when use TrueZip's copy
+        assertTrue( "9ea19802ed109db944a2fb02fff8c035"
+            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-war-2.1.2.war" ), "md5" ) ) );
+
+        assertTrue( "1fa71ddc35645e41e88a251fafb239cb"
+            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
+
+    }
+    
 
     public void testDirectoryToArchiveCopy()
         throws Exception
@@ -229,7 +265,8 @@ public class TrueZipTest
         fileSet.setDirectory( file.getPath() );
 
         TFile outputDirectory = new TFile( basedir, "target/test/test-move.zip" );
-        if ( outputDirectory.exists() ) {
+        if ( outputDirectory.exists() )
+        {
             outputDirectory.rm_r();
         }
 
@@ -240,7 +277,8 @@ public class TrueZipTest
         fileSet.setDirectory( outputDirectory.getPath() );
 
         outputDirectory = new TFile( basedir, "target/test/test-move" );
-        if ( outputDirectory.exists() ) {
+        if ( outputDirectory.exists() )
+        {
             outputDirectory.rm_r();
         }
 
@@ -263,15 +301,68 @@ public class TrueZipTest
     {
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
         assertTrue( file.exists() );
-        
+
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
-        
+
         List<TFile> files = truezip.list( fileSet );
-        
+
         assertEquals( 2, files.size() );
 
-        
     }
-    
+
+    /////////////////////////////////////////////////////////////////////////////////
+    public static String hash( File file, String type )
+        throws IOException, NoSuchAlgorithmException
+    {
+        MessageDigest sum = MessageDigest.getInstance( type );
+        InputStream is = null;
+
+        try
+        {
+            is = new FileInputStream( file );
+            byte[] buf = new byte[8192];
+            int i;
+            while ( ( i = is.read( buf ) ) > 0 )
+            {
+                sum.update( buf, 0, i );
+            }
+        }
+        finally
+        {
+            if ( is != null )
+            {
+                is.close();
+            }
+        }
+
+        return encode( sum.digest() );
+    }
+
+    private static String encode( byte[] binaryData )
+    {
+        if ( binaryData.length != 16 && binaryData.length != 20 )
+        {
+            int bitLength = binaryData.length * 8;
+            throw new IllegalArgumentException( "Unrecognized length for binary data: " + bitLength + " bits" );
+        }
+
+        String retValue = "";
+
+        for ( int i = 0; i < binaryData.length; i++ )
+        {
+            String t = Integer.toHexString( binaryData[i] & 0xff );
+            if ( t.length() == 1 )
+            {
+                retValue += ( "0" + t );
+            }
+            else
+            {
+                retValue += t;
+            }
+        }
+
+        return retValue.trim();
+    }
+
 }
