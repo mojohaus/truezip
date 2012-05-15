@@ -15,6 +15,15 @@
   <packaging>maven-plugin</packaging>
   
   <description>Use this plugin create new or manipulate existing archives</description>
+  
+  <distributionManagement>
+    <site>
+      <id>codehaus.org</id>
+      <name>Mojo Website</name>
+      <url>dav:https://dav.codehaus.org/mojo/truezip-maven-plugin</url>
+    </site>
+  </distributionManagement>
+  
 
   <dependencies>
   

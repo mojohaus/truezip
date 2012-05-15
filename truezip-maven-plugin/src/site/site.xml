@@ -28,13 +28,14 @@
    <body>
       <links>
          <item name="TrueZIP" href="https://truezip.dev.java.net"/>
-         <item name="TrueZIP Maven" href="../truezip-maven"/>
+         <item name="TrueZIP Maven" href="../truezip/truezip-maven"/>
       </links>
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
          <item name="Usage" href="usage.html"/>
          <item name="Goals" href="plugin-info.html"/>
          <item name="Changes" href="changes-report.html" />
+         <item name="TrueZIP Maven" href="../truezip/truezip-maven"/>
       </menu>
       <menu name="Examples">
          <item name="Copy" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it/copy-it"/>

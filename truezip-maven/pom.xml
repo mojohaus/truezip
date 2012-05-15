@@ -12,7 +12,7 @@
   <artifactId>truezip-maven</artifactId>
   <name>TrueZip Maven Shared Component</name>
   
-  <description>Shared component usable outside of Maven to manipulate archives. See javadoc for details.</description>
+  <description>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</description>
 
   <dependencies>
     
