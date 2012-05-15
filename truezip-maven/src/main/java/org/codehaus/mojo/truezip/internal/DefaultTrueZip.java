@@ -18,7 +18,7 @@ import de.schlichtherle.truezip.fs.FsSyncException;
 public class DefaultTrueZip
     implements TrueZip
 {
-
+    
     public void sync() 
         throws FsSyncException
     {

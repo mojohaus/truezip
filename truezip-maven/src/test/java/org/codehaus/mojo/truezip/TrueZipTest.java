@@ -13,6 +13,7 @@ import junit.framework.TestCase;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
+import org.codehaus.mojo.truezip.internal.DefaultTrueZipArchiveDetector;
 import org.codehaus.plexus.util.FileUtils;
 
 import de.schlichtherle.truezip.file.TFile;
@@ -21,7 +22,7 @@ public class TrueZipTest
     extends TestCase
 {
     private Log log = new SystemStreamLog();
-
+    
     private TrueZip truezip = new DefaultTrueZip();
 
     private TFile basedir = new TFile( System.getProperty( "basedir", "." ) );
@@ -296,9 +297,12 @@ public class TrueZipTest
         assertEquals( "Invalid file list in " + outputDirectory, 5, fileList.size() );
     }
 
-    public void notestOvaIsTarArchive()
+    public void testOvaIsTarArchive()
         throws Exception
     {
+        DefaultTrueZipArchiveDetector trueZipArchiveDetector = new DefaultTrueZipArchiveDetector();
+        trueZipArchiveDetector.init();
+        
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
         assertTrue( file.exists() );
 
