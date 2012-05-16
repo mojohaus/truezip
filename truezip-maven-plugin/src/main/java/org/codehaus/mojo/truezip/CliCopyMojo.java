@@ -60,6 +60,9 @@ public class CliCopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        
+        intitializeArchiveDectector();
+        
         try
         {
             truezip.copyFile( new TFile( from ), new TFile( to ) );

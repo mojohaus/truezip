@@ -41,6 +41,8 @@ public class CopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        intitializeArchiveDectector();
+                
         this.processFileItems();
 
         this.processFileSets();

@@ -49,6 +49,9 @@ public class ListMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        
+        intitializeArchiveDectector();
+                
         PrintStream ps = System.out;
 
         OutputStream os = null;

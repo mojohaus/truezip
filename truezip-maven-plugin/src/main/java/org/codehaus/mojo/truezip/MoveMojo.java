@@ -49,6 +49,9 @@ public class MoveMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        
+        intitializeArchiveDectector();
+                
         if ( !StringUtils.isBlank( from ) )
         {
             TFile file = new TFile( this.resolveRelativePath( from ) );

@@ -60,6 +60,9 @@ public class CliListMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        
+        intitializeArchiveDectector();
+                
         Fileset fileset = new Fileset();
         fileset.setDirectory( from.getAbsolutePath() );
         fileset.setFollowArchive( followSubArchive );
