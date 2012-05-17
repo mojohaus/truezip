@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>truezip</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>TrueZip</name>
   
@@ -61,7 +61,7 @@
   
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-maven</artifactId>
+      <artifactId>truezip-core</artifactId>
       <version>${project.version}</version>
     </dependency>
   

@@ -12,7 +12,7 @@
         Honor FileItem.destName
       </action>
       <action dev="dtran" type="fix" issue="MOJO-1846">
-        Componentized the plugin by introducing re-usable truezip-maven
+        Componentized the plugin by introducing re-usable truezip-core
       </action>
       <action dev="dtran" type="fix" issue="MOJO-1838">
         Upgrade TrueZIP to 7.5.4

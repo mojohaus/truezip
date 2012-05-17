@@ -14,7 +14,6 @@ package org.codehaus.mojo.truezip;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.model.fileset.FileSet;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;

@@ -9,7 +9,8 @@
 
 TrueZIP Maven Plugin
 
-  Use this plugin to manipulate archive files of type zip, tar, tgz, tbz2, etc. 
+  Use this plugin to manipulate archive files of type zip, tar, tgz, tbz2, etc. You can also use its {{{../truezip-maven/index.html} truezip-maven}} 
+  component to perform same operations within your java application.
   
 
 * Goals Overview
@@ -30,10 +31,10 @@ TrueZIP Maven Plugin
   
 * Usage
 
-  Instructions on how to use the TrueZip Maven Plugin can be found on the {{{usage.html}usage page}}.
+  Instructions on how to use the TrueZIP Maven Plugin can be found on the {{{./usage.html}usage page}}.
 
 
 * Examples
 
-    Live {{{http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it 
+    Live {{{http://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it}examples }} are at http://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it 
 
