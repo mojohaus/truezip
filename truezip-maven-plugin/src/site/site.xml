@@ -19,29 +19,22 @@
 -->
 
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
-  <custom>
-    <fluidoSkin>
-      <profile>release</profile>
-    </fluidoSkin>
-  </custom>
 
    <body>
       <links>
          <item name="TrueZIP" href="https://truezip.dev.java.net"/>
-         <item name="TrueZIP Maven" href="../truezip/truezip-maven"/>
       </links>
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
          <item name="Usage" href="usage.html"/>
          <item name="Goals" href="plugin-info.html"/>
          <item name="Changes" href="changes-report.html" />
-         <item name="TrueZIP Maven" href="../truezip/truezip-maven"/>
       </menu>
       <menu name="Examples">
-         <item name="Copy" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it/copy-it"/>
-         <item name="Remove" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it/remove-it"/>
-         <item name="Move" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it/move-it"/>
-         <item name="Sub Archive" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip-maven-plugin/src/it/tar-it"/>
+         <item name="Copy" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it/copy-it"/>
+         <item name="Remove" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it/remove-it"/>
+         <item name="Move" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it/move-it"/>
+         <item name="Sub Archive" href="https://svn.codehaus.org/mojo/trunk/mojo/truezip/truezip-maven-plugin/src/it/tar-it"/>
       </menu>
    </body>
 </project>

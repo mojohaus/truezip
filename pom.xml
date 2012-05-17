@@ -12,6 +12,10 @@
   <packaging>pom</packaging>
   <name>TrueZip</name>
   
+  <description>
+    Project to create new or manipulate existing compressed archives using TrueZIP
+  </description>
+  
   <scm>
     <connection>scm:svn:http://svn.codehaus.org/mojo/tags/truezip-1.0</connection>
     <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/truezip-1.0</developerConnection>
@@ -61,7 +65,7 @@
   
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-maven</artifactId>
+      <artifactId>truezip-core</artifactId>
       <version>${project.version}</version>
     </dependency>
   
@@ -119,7 +123,7 @@
   
   
   <modules>
-    <module>truezip-maven</module>
+    <module>truezip-core</module>
     <module>truezip-maven-plugin</module>
   </modules>
   
