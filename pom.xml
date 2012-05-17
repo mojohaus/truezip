@@ -12,6 +12,10 @@
   <packaging>pom</packaging>
   <name>TrueZip</name>
   
+  <description>
+    Project to create new or manipulate existing compressed archives using TrueZIP
+  </description>
+  
   <scm>
     <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip</connection>
     <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip</developerConnection>
@@ -119,7 +123,7 @@
   
   
   <modules>
-    <module>truezip-maven</module>
+    <module>truezip-core</module>
     <module>truezip-maven-plugin</module>
   </modules>
   

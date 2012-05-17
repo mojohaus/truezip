@@ -5,12 +5,12 @@
 
   <parent>
     <groupId>org.codehaus.mojo</groupId>
-    <artifactId>truezip-core</artifactId>
+    <artifactId>truezip</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   
-  <artifactId>truezip-maven</artifactId>
-  <name>TrueZip Maven Shared Component</name>
+  <artifactId>truezip-core</artifactId>
+  <name>TrueZIP Shared Component</name>
   
   <description>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</description>
 
