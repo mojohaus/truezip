@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.maven.plugin.logging.Log;
+import org.apache.commons.lang.StringUtils;
 import org.codehaus.mojo.truezip.TrueZip;
 import org.codehaus.mojo.truezip.TrueZipFileSet;
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.truezip.file.TArchiveDetector;
 import de.schlichtherle.truezip.file.TFile;
@@ -31,11 +29,6 @@ public class DefaultTrueZip
         TVFS.umount( file );
     }
     
-    public List<TFile> list( TrueZipFileSet fileSet, boolean verbose, Log logger )
-    {
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
-        return list( fileSet, fileSetManager );
-    }
 
     public List<TFile> list( TrueZipFileSet fileSet )
     {
@@ -64,13 +57,6 @@ public class DefaultTrueZip
 
     }
 
-    public void move( TrueZipFileSet fileSet, boolean verbose, Log logger )
-        throws IOException
-    {
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
-        move( fileSet, fileSetManager );
-    }
-
     public void move( TrueZipFileSet fileSet )
         throws IOException
     {
@@ -80,13 +66,6 @@ public class DefaultTrueZip
 
     // ////////////////////////////////////////////////////////////////////////////
     // ////////////////////////////////////////////////////////////////////////////
-
-    public void copy( TrueZipFileSet fileSet, boolean verbose, Log logger )
-        throws IOException
-    {
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
-        copy( fileSet, fileSetManager );
-    }
 
     public void copy( TrueZipFileSet fileSet )
         throws IOException
@@ -139,7 +118,7 @@ public class DefaultTrueZip
 
         if ( source.isArchive() )
         {
-            if ( dest.isArchive() && FileUtils.getExtension( dest.getPath() ).equals( FileUtils.getExtension( source.getPath() ) ) )
+            if ( dest.isArchive() && getFileExtension( dest.getPath() ).equals( getFileExtension( source.getPath() ) ) )
             {
                 //we want fast verbatim copy and keep hash value intact.
                 // convert source and dest to have NO associate archive type so that verbatim copy can happen
@@ -176,12 +155,6 @@ public class DefaultTrueZip
 
     // ///////////////////////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////////////////////
-    public void remove( TrueZipFileSet fileSet, boolean verbose, Log logger )
-        throws IOException
-    {
-        TrueZipFileSetManager fileSetManager = new TrueZipFileSetManager( logger, verbose );
-        remove( fileSet, fileSetManager );
-    }
 
     public void remove( TrueZipFileSet fileSet )
         throws IOException
@@ -214,5 +187,15 @@ public class DefaultTrueZip
     {
         this.copy( fileSet, fileSetManager );
         this.remove( fileSet, fileSetManager );
+    }
+    
+    private String getFileExtension( String filePath ) {
+        
+        String [] tokens = filePath.split( "\\." );
+        if ( tokens.length >= 1 ) {
+            return tokens[tokens.length - 1];
+        }
+        
+        return null;
     }
 }

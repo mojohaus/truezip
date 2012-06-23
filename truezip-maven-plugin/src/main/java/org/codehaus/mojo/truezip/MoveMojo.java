@@ -86,7 +86,7 @@ public class MoveMojo
             try
             {
                 this.resolveRelativePath( oneFileSet );
-                this.truezip.move( oneFileSet, verbose, this.getLog() );
+                this.truezip.move( oneFileSet );
             }
             catch ( Exception e )
             {

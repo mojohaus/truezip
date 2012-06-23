@@ -3,8 +3,6 @@ package org.codehaus.mojo.truezip;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.maven.plugin.logging.Log;
-
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
@@ -35,16 +33,6 @@ public interface TrueZip
     List<TFile> list( TrueZipFileSet fileSet );
 
     /**
-     * List the file from FileSet's configuration for MOJO
-     * 
-     * @param fileSet
-     * @param verbose
-     * @param logger
-     * @return
-     */
-    List<TFile> list( TrueZipFileSet fileSet, boolean verbose, Log logger );
-
-    /**
      * Copy a set of file to another archive using FileSet configuration
      * @param oneFileSet
      * @throws IOException
@@ -52,16 +40,6 @@ public interface TrueZip
     void copy( TrueZipFileSet oneFileSet )
         throws IOException;
 
-    /**
-     * Copy a set of file to another archive using FileSet configuration for MOJO
-     * 
-     * @param oneFileSet
-     * @param verbose
-     * @param logger
-     * @throws IOException
-     */
-    void copy( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
-        throws IOException;
 
     /**
      * Copy a file or archive to another destination.  
@@ -92,27 +70,11 @@ public interface TrueZip
         throws IOException;
 
     /**
-     * Move a set of files from one archive to another 
-     * @param oneFileSet - The archive setup
-     * @throws IOException
-     */
-    void move( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
-        throws IOException;
-
-    /**
      * Remove a set of files from the archive setup 
      * @param oneFileSet - the archive setup
      * @throws IOException
      */
     void remove( TrueZipFileSet oneFileSet )
-        throws IOException;
-
-    /**
-     * Remove a set of files from the archive setup for MOJO
-     * @param oneFileSet - the archive setup
-     * @throws IOException
-     */
-    void remove( TrueZipFileSet oneFileSet, boolean verbose, Log logger )
         throws IOException;
 
     /**

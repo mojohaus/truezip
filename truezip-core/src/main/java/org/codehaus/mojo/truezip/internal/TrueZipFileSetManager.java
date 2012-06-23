@@ -32,19 +32,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.shared.io.logging.DefaultMessageHolder;
-import org.apache.maven.shared.io.logging.MessageHolder;
-import org.apache.maven.shared.io.logging.MessageLevels;
-import org.apache.maven.shared.io.logging.MojoLogSink;
-import org.apache.maven.shared.io.logging.PlexusLoggerSink;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.shared.model.fileset.FileSet;
 import org.apache.maven.shared.model.fileset.mappers.FileNameMapper;
 import org.apache.maven.shared.model.fileset.mappers.MapperException;
 import org.apache.maven.shared.model.fileset.mappers.MapperUtil;
 import org.codehaus.mojo.truezip.TrueZipFileSet;
-import org.codehaus.plexus.logging.Logger;
-import org.codehaus.plexus.util.FileUtils;
 
 import de.schlichtherle.truezip.file.TFile;
 
@@ -64,11 +57,7 @@ import de.schlichtherle.truezip.file.TFile;
 public class TrueZipFileSetManager
 {
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
-
-    private final boolean verbose;
-
-    private MessageHolder messages;
-
+    
     // ----------------------------------------------------------------------
     // Constructors
     // ----------------------------------------------------------------------
@@ -79,74 +68,8 @@ public class TrueZipFileSetManager
      * @param log The mojo log instance
      * @param verbose Whether to output verbose messages
      */
-    public TrueZipFileSetManager( Log log, boolean verbose )
-    {
-        if ( verbose )
-        {
-            this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_DEBUG, MessageLevels.LEVEL_INFO,
-                                                      new MojoLogSink( log ) );
-        }
-        else
-        {
-            this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_INFO, MessageLevels.LEVEL_INFO,
-                                                      new MojoLogSink( log ) );
-        }
-
-        this.verbose = verbose;
-    }
-
-    /**
-     * Create a new manager instance with the supplied log instance. Verbose flag is set to false.
-     *
-     * @param log The mojo log instance
-     */
-    public TrueZipFileSetManager( Log log )
-    {
-        this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_INFO, MessageLevels.LEVEL_INFO,
-                                                  new MojoLogSink( log ) );
-        this.verbose = false;
-    }
-
-    /**
-     * Create a new manager instance with the supplied log instance and flag for whether to output verbose messages.
-     *
-     * @param log The mojo log instance
-     * @param verbose Whether to output verbose messages
-     */
-    public TrueZipFileSetManager( Logger log, boolean verbose )
-    {
-        if ( verbose )
-        {
-            this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_DEBUG, MessageLevels.LEVEL_INFO,
-                                                      new PlexusLoggerSink( log ) );
-        }
-        else
-        {
-            this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_INFO, MessageLevels.LEVEL_INFO,
-                                                      new PlexusLoggerSink( log ) );
-        }
-
-        this.verbose = verbose;
-    }
-
-    /**
-     * Create a new manager instance with the supplied log instance. Verbose flag is set to false.
-     *
-     * @param log The mojo log instance
-     */
-    public TrueZipFileSetManager( Logger log )
-    {
-        this.messages = new DefaultMessageHolder( MessageLevels.LEVEL_INFO, MessageLevels.LEVEL_INFO,
-                                                  new PlexusLoggerSink( log ) );
-        this.verbose = false;
-    }
-
-    /**
-     * Create a new manager instance with an empty messages. Verbose flag is set to false.
-     */
     public TrueZipFileSetManager()
     {
-        this.verbose = false;
     }
 
     // ----------------------------------------------------------------------
@@ -289,12 +212,6 @@ public class TrueZipFileSetManager
     {
         Set deletablePaths = findDeletablePaths( fileSet );
 
-        if ( messages != null && messages.isDebugEnabled() )
-        {
-            messages
-                .addDebugMessage( "Found deletable paths: " + String.valueOf( deletablePaths ).replace( ',', '\n' ) ).flush();
-        }
-
         List warnMessages = new LinkedList();
 
         for ( Iterator it = deletablePaths.iterator(); it.hasNext(); )
@@ -309,19 +226,10 @@ public class TrueZipFileSetManager
                 {
                     if ( fileSet.isFollowSymlinks() || !isSymlink( file ) )
                     {
-                        if ( verbose && messages != null )
-                        {
-                            messages.addInfoMessage( "Deleting directory: " + file ).flush();
-                        }
-    
                         removeDir( file, fileSet.isFollowSymlinks(), throwsError, warnMessages );
                     }
                     else
-                    { // delete a symlink to a directory without follow
-                        if ( verbose && messages != null )
-                        {
-                            messages.addInfoMessage( "Deleting symlink to directory: " + file ).flush();
-                        }
+                    { 
     
                         if ( !file.delete() )
                         {
@@ -330,21 +238,11 @@ public class TrueZipFileSetManager
                             {
                                 throw new IOException( message );
                             }
-
-                            if ( !warnMessages.contains( message ) )
-                            {
-                                warnMessages.add( message );
-                            }
                         }
                     }
                 }
                 else
                 {
-                    if ( verbose && messages != null )
-                    {
-                        messages.addInfoMessage( "Deleting file: " + file ).flush();
-                    }
-
                     if ( !delete( file ) )
                     {
                         String message = "Failed to delete file " + file.getAbsolutePath() + ". Reason is unknown.";
@@ -352,22 +250,11 @@ public class TrueZipFileSetManager
                         {
                             throw new IOException( message );
                         }
-
-                        warnMessages.add( message );
                     }
                 }
             }
         }
 
-        if ( messages != null && messages.isWarningEnabled() && !throwsError && ( warnMessages.size() > 0 ) )
-        {
-            for ( Iterator it = warnMessages.iterator(); it.hasNext(); )
-            {
-                String msg = (String) it.next();
-
-                messages.addWarningMessage( msg ).flush();
-            }
-        }
     }
 
     // ----------------------------------------------------------------------
@@ -387,14 +274,6 @@ public class TrueZipFileSetManager
         {
             fileInCanonicalParent = new TFile( parentDir.getCanonicalPath(), file.getName() );
         }
-        if ( messages != null && messages.isDebugEnabled() )
-        {
-            messages.addDebugMessage(
-                                      "Checking for symlink:\nFile's canonical path: "
-                                          + fileInCanonicalParent.getCanonicalPath()
-                                          + "\nFile's absolute path with canonical parent: "
-                                          + fileInCanonicalParent.getPath() ).flush();
-        }
         return !fileInCanonicalParent.getCanonicalFile().equals( fileInCanonicalParent.getAbsoluteFile() );
         
     }
@@ -409,11 +288,6 @@ public class TrueZipFileSetManager
 
     private Set findDeletableDirectories( TrueZipFileSet fileSet )
     {
-        if ( verbose && messages != null )
-        {
-            messages.addInfoMessage( "Scanning for deletable directories." ).flush();
-        }
-
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
         if ( scanner == null )
@@ -427,31 +301,15 @@ public class TrueZipFileSetManager
 
         if ( !fileSet.isFollowSymlinks() )
         {
-            if ( verbose && messages != null )
-            {
-                messages
-                    .addInfoMessage( "Adding symbolic link dirs which were previously excluded to the list being deleted." ).flush();
-            }
 
             // we need to see which entries were only excluded because they're symlinks...
             scanner.setFollowSymlinks( true );
             scanner.scan();
 
-            if ( messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Originally marked for delete: " + includes ).flush();
-                messages.addDebugMessage( "Marked for preserve (with followSymlinks == false): " + excludes ).flush();
-            }
-
             List includedDirsAndSymlinks = Arrays.asList( scanner.getIncludedDirectories() );
 
             linksForDeletion.addAll( excludes );
             linksForDeletion.retainAll( includedDirsAndSymlinks );
-
-            if ( messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Symlinks marked for deletion (originally mismarked): " + linksForDeletion ).flush();
-            }
 
             excludes.removeAll( includedDirsAndSymlinks );
         }
@@ -465,11 +323,6 @@ public class TrueZipFileSetManager
 
     private Set findDeletableFiles( TrueZipFileSet fileSet, Set deletableDirectories )
     {
-        if ( verbose && messages != null )
-        {
-            messages.addInfoMessage( "Re-scanning for deletable files." ).flush();
-        }
-
         TrueZipDirectoryScanner scanner = scan( fileSet );
 
         if ( scanner == null )
@@ -484,31 +337,14 @@ public class TrueZipFileSetManager
 
         if ( !fileSet.isFollowSymlinks() )
         {
-            if ( verbose && messages != null )
-            {
-                messages
-                    .addInfoMessage( "Adding symbolic link files which were previously excluded to the list being deleted." ).flush();
-            }
-
             // we need to see which entries were only excluded because they're symlinks...
             scanner.setFollowSymlinks( true );
             scanner.scan();
-
-            if ( messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Originally marked for delete: " + includes ).flush();
-                messages.addDebugMessage( "Marked for preserve (with followSymlinks == false): " + excludes ).flush();
-            }
 
             List includedFilesAndSymlinks = Arrays.asList( scanner.getIncludedFiles() );
 
             linksForDeletion.addAll( excludes );
             linksForDeletion.retainAll( includedFilesAndSymlinks );
-
-            if ( messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Symlinks marked for deletion (originally mismarked): " + linksForDeletion ).flush();
-            }
 
             excludes.removeAll( includedFilesAndSymlinks );
         }
@@ -539,18 +375,7 @@ public class TrueZipFileSetManager
 
             while ( parentPath != null )
             {
-                if ( messages != null && messages.isDebugEnabled() )
-                {
-                    messages.addDebugMessage( "Verifying path " + parentPath
-                        + " is not present; contains file which is excluded." ).flush();
-                }
-
                 boolean removed = deletablePaths.remove( parentPath );
-
-                if ( removed && messages != null && messages.isDebugEnabled() )
-                {
-                    messages.addDebugMessage( "Path " + parentPath + " was removed from delete list." ).flush();
-                }
 
                 parentPath = new TFile( parentPath ).getParent();
             }
@@ -558,18 +383,7 @@ public class TrueZipFileSetManager
 
         if ( !excludedPaths.isEmpty() )
         {
-            if ( messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Verifying path " + "."
-                    + " is not present; contains file which is excluded." ).flush();
-            }
-
             boolean removed = deletablePaths.remove( "" );
-
-            if ( removed && messages != null && messages.isDebugEnabled() )
-            {
-                messages.addDebugMessage( "Path " + "." + " was removed from delete list." ).flush();
-            }
         }
     }
 
@@ -625,10 +439,6 @@ public class TrueZipFileSetManager
                 throw new IOException( message );
             }
 
-            if ( !warnMessages.contains( message ) )
-            {
-                warnMessages.add( message );
-            }
         }
     }
 

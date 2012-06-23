@@ -57,8 +57,6 @@ package org.codehaus.mojo.truezip.internal;
 import java.io.IOException;
 import java.util.Vector;
 
-import org.codehaus.plexus.util.SelectorUtils;
-
 import de.schlichtherle.truezip.file.TFile;
 
 /**

@@ -48,7 +48,7 @@ public class RemoveMojo
             try
             {
                 this.resolveRelativePath( oneFileSet );
-                this.truezip.remove( oneFileSet, verbose, this.getLog() );
+                this.truezip.remove( oneFileSet );
             }
             catch ( Exception e )
             {

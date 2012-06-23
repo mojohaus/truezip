@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -8,29 +9,29 @@
     <artifactId>truezip</artifactId>
     <version>1.1-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>truezip-core</artifactId>
   <name>TrueZIP Shared Component</name>
-  
+
   <description>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</description>
 
   <dependencies>
-    
+
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-file</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-zip</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>de.schlichtherle.truezip</groupId>
       <artifactId>truezip-driver-tar</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>file-management</artifactId>
@@ -38,22 +39,39 @@
         <exclusion>
           <groupId>org.apache.maven</groupId>
           <artifactId>maven-plugin-api</artifactId>
-       </exclusion>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.maven.shared</groupId>
+          <artifactId>maven-shared-io</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-utils</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>org.apache.maven.wagon</groupId>
           <artifactId>wagon-provider-api</artifactId>
-       </exclusion>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
+
       </exclusions>
     </dependency>
 
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+    </dependency>
 
-   <!-- for MOJO logger only -->
-   <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <optional>true</optional>
-    </dependency>    
-    
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.1</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -61,13 +79,13 @@
     </dependency>
 
   </dependencies>
-  
 
-<build>
+
+  <build>
     <defaultGoal>install</defaultGoal>
-    
+
     <plugins>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -93,10 +111,10 @@
           </execution>
         </executions>
       </plugin>
-      
-      
+
+
     </plugins>
-    
+
   </build>
-  
+
 </project>

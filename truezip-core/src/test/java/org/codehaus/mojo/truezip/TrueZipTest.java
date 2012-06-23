@@ -10,19 +10,15 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugin.logging.SystemStreamLog;
+import org.apache.commons.io.FileUtils;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZipArchiveDetector;
-import org.codehaus.plexus.util.FileUtils;
 
 import de.schlichtherle.truezip.file.TFile;
 
 public class TrueZipTest
     extends TestCase
 {
-    private Log log = new SystemStreamLog();
-    
     private TrueZip truezip = new DefaultTrueZip();
 
     private TFile basedir = new TFile( System.getProperty( "basedir", "." ) );
@@ -46,7 +42,7 @@ public class TrueZipTest
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( emptyFile.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "File list is not empty", 0, fileList.size() );
     }
 
@@ -59,7 +55,7 @@ public class TrueZipTest
         fileSet.setDirectory( file.getPath() );
         fileSet.setFollowArchive( true );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 26, fileList.size() );
 
     }
@@ -73,7 +69,7 @@ public class TrueZipTest
         fileSet.setFollowArchive( false );
         fileSet.setDirectory( file.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
 
     }
@@ -85,7 +81,7 @@ public class TrueZipTest
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 9, fileList.size() );
     }
 
@@ -96,7 +92,7 @@ public class TrueZipTest
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 6, fileList.size() );
     }
 
@@ -112,7 +108,7 @@ public class TrueZipTest
 
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
-        truezip.copy( fileSet, false, log );
+        truezip.copy( fileSet );
         truezip.sync( outputDirectory );
 
         new TFile( basedir, "target/dependency/calculator.ear" );
@@ -121,11 +117,11 @@ public class TrueZipTest
         fileSet.setFollowArchive( true );
         fileSet.setDirectory( outputDirectory.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 26, fileList.size() );
 
         fileSet.setFollowArchive( false );
-        fileList = truezip.list( fileSet, false, log );
+        fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
 
         //test verbatime copy, ie inner archive size unchanged after unpack
@@ -149,18 +145,18 @@ public class TrueZipTest
 
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
 
-        truezip.copy( fileSet, false, log );
+        truezip.copy( fileSet );
         truezip.sync( outputDirectory );
 
         fileSet = new TrueZipFileSet();
         fileSet.setFollowArchive( true );
         fileSet.setDirectory( outputDirectory.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 26, fileList.size() );
 
         fileSet.setFollowArchive( false );
-        fileList = truezip.list( fileSet, false, log );
+        fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
 
     }
@@ -177,11 +173,11 @@ public class TrueZipTest
         fileSet.setFollowArchive( true );
         fileSet.setDirectory( dest.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet  );
         assertEquals( "Invalid file list in " + dest, 26, fileList.size() );
 
         fileSet.setFollowArchive( false );
-        fileList = truezip.list( fileSet, false, log );
+        fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
     }
@@ -199,11 +195,11 @@ public class TrueZipTest
         fileSet.setFollowArchive( true );
         fileSet.setDirectory( dest.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet, false, log );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + dest, 26, fileList.size() );
 
         fileSet.setFollowArchive( false );
-        fileList = truezip.list( fileSet, false, log );
+        fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
         //subarchive checksum changes when use TrueZip's copyFile
@@ -272,7 +268,7 @@ public class TrueZipTest
         }
 
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
-        truezip.copy( fileSet, false, log );
+        truezip.copy( fileSet );
 
         //do the move
         fileSet.setDirectory( outputDirectory.getPath() );
@@ -287,7 +283,7 @@ public class TrueZipTest
         fileSet.addExclude( "**/*.jar" );
         fileSet.addExclude( "**/*.war" );
 
-        truezip.move( fileSet, false, log );
+        truezip.move( fileSet );
 
         //test what left in there
         fileSet = new TrueZipFileSet();

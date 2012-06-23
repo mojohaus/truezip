@@ -99,7 +99,7 @@ public class ListMojo
 
             this.resolveRelativePath( fileSet );
             
-            List<TFile> fileList = this.truezip.list( this.filesets.get( i ), this.verbose, getLog() );
+            List<TFile> fileList = this.truezip.list( this.filesets.get( i ) );
             
             for ( int j = 0 ; j < fileList.size(); ++j )
             {
