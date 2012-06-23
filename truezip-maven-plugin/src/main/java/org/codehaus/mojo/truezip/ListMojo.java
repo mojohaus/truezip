@@ -50,6 +50,8 @@ public class ListMojo
         throws MojoExecutionException, MojoFailureException
     {
         
+        super.execute();
+        
         intitializeArchiveDectector();
                 
         PrintStream ps = System.out;

@@ -60,6 +60,7 @@ public class CliCopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        super.execute();
         
         intitializeArchiveDectector();
         

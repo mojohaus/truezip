@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -8,38 +9,50 @@
     <artifactId>truezip</artifactId>
     <version>1.1-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>truezip-maven-plugin</artifactId>
   <name>Maven Plugin for TrueZIP</name>
-  
+
   <packaging>maven-plugin</packaging>
-  
+
   <description>Use this plugin create new or manipulate existing archives using TrueZIP</description>
-  
+
   <dependencies>
-  
+
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>truezip-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-  
+
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
     </dependency>
-    
-   <dependency>
+
+    <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-    </dependency>    
-    
+    </dependency>
+
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.jcabi</groupId>
+      <artifactId>jcabi-maven-slf4j</artifactId>
+      <version>0.1.9</version>
+    </dependency>
+
   </dependencies>
-  
+
   <reporting>
     <plugins>
       <plugin>
@@ -58,9 +71,9 @@
         </reportSets>
       </plugin>
     </plugins>
-  </reporting>  
-  
-    
+  </reporting>
+
+
   <profiles>
     <profile>
       <id>run-its</id>
@@ -75,7 +88,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
-            <configuration> 
+            <configuration>
               <postBuildHookScript>validate</postBuildHookScript>
               <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
               <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
@@ -93,6 +106,6 @@
         </plugins>
       </build>
     </profile>
-    
-  </profiles>  
+
+  </profiles>
 </project>

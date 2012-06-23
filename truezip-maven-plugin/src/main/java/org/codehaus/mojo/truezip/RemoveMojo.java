@@ -33,6 +33,8 @@ public class RemoveMojo
         throws MojoExecutionException, MojoFailureException
     {
         
+        super.execute();
+        
         intitializeArchiveDectector();
                 
         if ( this.fileset != null )

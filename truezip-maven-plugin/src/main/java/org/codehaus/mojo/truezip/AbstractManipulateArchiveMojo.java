@@ -16,6 +16,9 @@ package org.codehaus.mojo.truezip;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+
 public abstract class AbstractManipulateArchiveMojo
     extends AbstractArchiveMojo
 {
@@ -44,4 +47,10 @@ public abstract class AbstractManipulateArchiveMojo
      */
     protected boolean verbose;
     
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
+    {
+        super.execute();
+
+    }    
 }

@@ -61,6 +61,8 @@ public class CliListMojo
         throws MojoExecutionException, MojoFailureException
     {
         
+        super.execute();
+        
         intitializeArchiveDectector();
                 
         Fileset fileset = new Fileset();

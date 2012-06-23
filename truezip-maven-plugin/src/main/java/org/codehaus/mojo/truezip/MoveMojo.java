@@ -50,6 +50,8 @@ public class MoveMojo
         throws MojoExecutionException, MojoFailureException
     {
         
+        super.execute();        
+        
         intitializeArchiveDectector();
                 
         if ( !StringUtils.isBlank( from ) )

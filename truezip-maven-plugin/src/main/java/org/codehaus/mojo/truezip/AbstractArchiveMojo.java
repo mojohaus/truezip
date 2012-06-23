@@ -14,10 +14,12 @@ package org.codehaus.mojo.truezip;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.model.fileset.FileSet;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZipArchiveDetector;
+import org.slf4j.impl.StaticLoggerBinder;
 
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.fs.FsSyncException;
@@ -93,5 +95,12 @@ public abstract class AbstractArchiveMojo
     {
         DefaultTrueZipArchiveDetector archiveDetector = new DefaultTrueZipArchiveDetector();
         archiveDetector.init();
+    }
+
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
+    {
+        StaticLoggerBinder.getSingleton().setMavenLog( this.getLog() );
+
     }
 }
