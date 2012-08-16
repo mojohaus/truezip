@@ -19,7 +19,7 @@ import de.schlichtherle.truezip.file.TFile;
  */
 
 /**
- * Copy a set of files in and out of an existing archive
+ * Copy a set of files in and out of an existing archive.
  * 
  * @goal copy
  * @phase process-resources
@@ -30,8 +30,8 @@ public class CopyMojo
 {
 
     /**
-     * The list of FileItem to to manipulate the archive. Use this configuration when you have a
-     * need to do copying with option to change file name.
+     * The list of FileItem to manipulate the archive with. Use this configuration when you have a
+     * need to do copying with the option to change the file name.
      * 
      * @parameter
      * @since beta-1

@@ -22,7 +22,7 @@ import de.schlichtherle.truezip.file.TFile;
  */
 
 /**
- * Use this goal to move single file or multiple files(via FileSet) between archives or directories
+ * Move a single file or multiple files (via FileSet) between archives or directories.
  * 
  * @goal move
  * @phase process-resources
@@ -32,17 +32,18 @@ public class MoveMojo
     extends AbstractManipulateArchiveMojo
 {
     /**
-     * Path of original file
+     * Path to original file.
+     * 
      * @parameter
      * @since beta-1
      */
     private String from;
 
     /**
-     * Path of destination file
+     * Path to destination file.
+     * 
      * @parameter
      * @since beta-1
-     * 
      */
     private String to;
 

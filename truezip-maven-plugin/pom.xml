@@ -15,7 +15,7 @@
 
   <packaging>maven-plugin</packaging>
 
-  <description>Use this plugin create new or manipulate existing archives using TrueZIP</description>
+  <description>Use this plugin to create new or manipulate existing archives using TrueZIP</description>
 
   <dependencies>
 

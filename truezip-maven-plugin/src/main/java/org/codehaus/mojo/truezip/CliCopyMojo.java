@@ -40,7 +40,7 @@ public class CliCopyMojo
     extends AbstractArchiveMojo
 {
     /**
-     * Path to an archive to be unpacked
+     * Path to an archive to be unpacked.
      * 
      * @parameter expression="${from}"
      * @required
@@ -49,7 +49,7 @@ public class CliCopyMojo
     private File from;
 
     /**
-     * Path to an archive or directory unpack to
+     * Path to an archive or directory to unpack to.
      * 
      * @parameter expression="${to}"
      * @required

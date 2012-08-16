@@ -24,7 +24,7 @@ import de.schlichtherle.truezip.file.TFile;
  */
 
 /**
- * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip java doc for details.
+ * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip javadoc for details.
  * 
  * <p>Example: 
  *   <ul>
@@ -40,7 +40,7 @@ public class CliListMojo
     extends AbstractArchiveMojo
 {
     /**
-     * Path to an archive file to display
+     * Path to an archive file to display.
      * 
      * @parameter expression="${from}"
      * @required
@@ -49,7 +49,7 @@ public class CliListMojo
     private File from;
 
     /**
-     * Drill beyond sub archive
+     * Drill beyond sub archive.
      * 
      * @parameter expression="${followSubArchive}" default-value="false"
      * @required

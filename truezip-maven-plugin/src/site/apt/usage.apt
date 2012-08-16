@@ -17,12 +17,12 @@ TrueZIP Maven Plugin
   {{{http://maven.apache.org/shared/file-management/apidocs/index.html} FileSet}} is used extensively
   to manipulate file system type actions.
 
-  The following contains brief examples on how to use the truezip goals.   
+  The following contains some brief examples on how to use the truezip goals.   
   
 * Remove
 
   The <<remove>> goal can remove files from an existing archive. The below example show
-  how to remove any file with pom.properies under <<maven>> directory of the ${archive}
+  how to remove any pom.properies file under the <<maven>> directory of the ${archive}.
 
 --------------------------
   <build>
@@ -42,7 +42,7 @@ TrueZIP Maven Plugin
             <phase>package</phase>
             <configuration>
               <fileset>
-                <!-- note how the archive is treated a normal file directory -->
+                <!-- note how the archive is treated as a normal file directory -->
                 <directory>${archive}/META-INF/maven</directory>
                 <includes>
                   <include>**/pom.properties</include>
@@ -58,16 +58,16 @@ TrueZIP Maven Plugin
   </build>
   
   <properties>
-    <archive>path.to.a.archive</archive>
+    <archive>path.to.an.archive</archive>
   </properties>
 --------------------------
 
 * Copy
 
-  The <<copy>> goal can copy files in and out of the archive. The bellow example shows multiple executions:
+  The <<copy>> goal can copy files in and out of the archive. The below example shows multiple executions:
   
   * Copy files from the archive to a real file system with option to rename the file on the fly.
-    This is similar maven-assembly-plugin's <files> configuration. 
+    This is similar to the maven-assembly-plugin's <files> configuration. 
   
   * Copy files from the archive to a real file system using FileSet interface.
   
@@ -146,7 +146,7 @@ TrueZIP Maven Plugin
   </build>
   
   <properties>
-    <archive>path.to.a.archive</archive>
+    <archive>path.to.an.archive</archive>
   </properties>
 --------------------------
 
@@ -178,9 +178,9 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
   
 * Move
 
-  The <<move>> goal can move a file in, out, or with in the archive. The below examples 
-  who to move an archive's file to another location in the archive. Note that the locacation
-  can be outside for archive as well.
+  The <<move>> goal can move a file in, out, or within the archive. The below examples 
+  show how to move an archive's file to another location in the archive. Note that the location
+  can be outside of the archive as well.
   
 -------------------------------
   <build>
@@ -215,7 +215,7 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
   </build>
   
   <properties>
-    <archive>path.to.a.archive</archive>
+    <archive>path.to.an.archive</archive>
   </properties>
 --------------------------
   

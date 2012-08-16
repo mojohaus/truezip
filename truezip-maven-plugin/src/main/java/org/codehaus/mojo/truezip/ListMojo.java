@@ -39,7 +39,7 @@ public class ListMojo
 {
 
     /**
-     * Write list output to a file if needed
+     * Write list output to a file if needed.
      * 
      * @parameter
      * @since beta-1
