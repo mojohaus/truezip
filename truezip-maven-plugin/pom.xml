@@ -21,7 +21,7 @@
 
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-core</artifactId>
+      <artifactId>truezip-utils</artifactId>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>

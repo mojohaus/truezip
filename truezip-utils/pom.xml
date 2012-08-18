@@ -10,7 +10,7 @@
     <version>1.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>truezip-core</artifactId>
+  <artifactId>truezip-utils</artifactId>
   <name>TrueZIP Shared Component</name>
 
   <description>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</description>

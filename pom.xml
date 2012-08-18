@@ -70,7 +70,7 @@
   
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-core</artifactId>
+      <artifactId>truezip-utils</artifactId>
       <version>${project.version}</version>
     </dependency>
   
@@ -128,7 +128,7 @@
   
   
   <modules>
-    <module>truezip-core</module>
+    <module>truezip-utils</module>
     <module>truezip-maven-plugin</module>
   </modules>
   
