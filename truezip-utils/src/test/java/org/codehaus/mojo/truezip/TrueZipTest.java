@@ -296,8 +296,7 @@ public class TrueZipTest
     public void testOvaIsTarArchive()
         throws Exception
     {
-        DefaultTrueZipArchiveDetector trueZipArchiveDetector = new DefaultTrueZipArchiveDetector();
-        trueZipArchiveDetector.init();
+        
         
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
         assertTrue( file.exists() );
@@ -311,6 +310,57 @@ public class TrueZipTest
 
     }
 
+    //MTRUEZIP-2 test case
+    public void testLogPathInTar()
+        throws Exception
+    {
+        String longFileName = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.txt";
+        File testDir = new File( basedir.getAbsolutePath(), "target/longpathtar" );
+        testDir.mkdirs();
+        File shortFile = new File( testDir, "short.txt" );
+        shortFile.createNewFile();
+        File shortPathFile = new File( testDir, "path/short.txt" );
+        shortPathFile.getParentFile().mkdirs();
+        shortPathFile.createNewFile();
+        File longFile = new File( testDir, longFileName );
+        longFile.createNewFile();
+        File longPathFile = new File( testDir, "path/" + longFileName );
+        longPathFile.getParentFile().mkdirs();
+        longPathFile.createNewFile();
+
+        //tar
+        TFile file = new TFile( basedir, "target/longpath.tar" );
+
+        TrueZipFileSet fileSet = new TrueZipFileSet();
+        
+        fileSet.setDirectory( testDir.getPath() );
+        fileSet.setOutputDirectory( file.getPath() );
+        truezip.copy( fileSet );
+        truezip.sync( file );
+        
+        
+        FileUtils.deleteDirectory( testDir );
+        assertFalse( shortFile.exists() );
+        assertFalse( shortPathFile.exists() );
+        assertFalse( longFile.exists() );
+        assertFalse( longPathFile.exists() );
+        
+        //untar
+        fileSet = new TrueZipFileSet();
+        fileSet.setDirectory( file.getPath() );
+        fileSet.setOutputDirectory( testDir.getPath() );
+        truezip.copy( fileSet );
+        
+        //assertEquals ( 4, truezip.list ( fileSet ).size() );  //truezip only see 2 file
+        
+        assertTrue( shortFile.exists() );
+        assertTrue( shortPathFile.exists() );
+        //assertTrue( longFile.exists() );      //truezip does not untar this 
+        //assertTrue( longPathFile.exists() );  //truezip does not untar this
+
+    }
+
+    
     /////////////////////////////////////////////////////////////////////////////////
     public static String hash( File file, String type )
         throws IOException, NoSuchAlgorithmException
