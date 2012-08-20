@@ -297,6 +297,8 @@ public class TrueZipTest
         throws Exception
     {
         
+        DefaultTrueZipArchiveDetector trueZipArchiveDetector = new DefaultTrueZipArchiveDetector();
+        trueZipArchiveDetector.init();
         
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
         assertTrue( file.exists() );
