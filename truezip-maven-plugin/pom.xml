@@ -22,12 +22,6 @@
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>truezip-utils</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -45,11 +39,6 @@
       <artifactId>plexus-utils</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.jcabi</groupId>
-      <artifactId>jcabi-maven-slf4j</artifactId>
-      <version>0.1.9</version>
-    </dependency>
 
   </dependencies>
 
