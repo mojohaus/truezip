@@ -26,7 +26,7 @@ public class DefaultTrueZipArchiveDetector
                                      { "tar|ova", new TarDriver( IOPoolLocator.SINGLETON ) },
                                      { "tgz|tar.gz", new TarGZipDriver( IOPoolLocator.SINGLETON ) },
                                      { "tbz2|tar.bz2", new TarBZip2Driver( IOPoolLocator.SINGLETON ) },
-                                     { "zip", new ZipDriver( IOPoolLocator.SINGLETON ) },
+                                     { "zip|kar", new ZipDriver( IOPoolLocator.SINGLETON ) },
                                      { "jar|war|ear|sar|swc|nar|esb|par", new JarDriver( IOPoolLocator.SINGLETON ) }, } ) );
     }
 }
