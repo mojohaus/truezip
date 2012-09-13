@@ -46,6 +46,15 @@ public class ListMojo
      */
     private File outputFile;
 
+    
+    /**
+     * Use full path to display the list. Useful to get a relative content per fileset.
+     * 
+     * @parameter default-value="true"
+     * @since 1.1
+     */
+    private boolean printFullPath = true;
+    
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -106,7 +115,13 @@ public class ListMojo
             for ( int j = 0 ; j < fileList.size(); ++j )
             {
                 TFile file = fileList.get( j );
-                ps.println( ( file.getPath() ) );
+                if ( printFullPath ) {
+                    ps.println( ( file.getPath() ) );
+                }
+                else {
+                    int startPos = fileSet.getDirectory().length() + 1;
+                    ps.println( ( file.getPath().substring( startPos ) ) );
+                }
 
             }
         }
