@@ -71,6 +71,7 @@ public class ListMojo
         {
             try
             {
+                outputFile.getParentFile().mkdirs();
                 os = new FileOutputStream( outputFile );
                 ps = new PrintStream( os );
             }
