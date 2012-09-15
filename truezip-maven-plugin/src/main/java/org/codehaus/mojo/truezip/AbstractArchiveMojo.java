@@ -30,12 +30,12 @@ public abstract class AbstractArchiveMojo
      * 
      * @parameter expression="${project}"
      * @readonly
-     * @since beta-1
+     * @since 1.0 beta-1
      */
     protected MavenProject project;
 
     /**
-     * @since beta-1
+     * @since 1.0 beta-1
      */
     protected TrueZip truezip = new DefaultTrueZip();
 
@@ -45,7 +45,7 @@ public abstract class AbstractArchiveMojo
      * forced file update can be triggered by using <code>update</code> goal in an separate execution.
      * 
      * @parameter default-value="true"
-     * @since beta-2
+     * @since 1.0 beta-2
      */
     protected boolean immediateUpdate;
 

@@ -44,7 +44,7 @@ public class CliCopyMojo
      * 
      * @parameter expression="${from}"
      * @required
-     * @since beta-4
+     * @since 1.0 beta-4
      */
     private File from;
 
@@ -53,7 +53,7 @@ public class CliCopyMojo
      * 
      * @parameter expression="${to}"
      * @required
-     * @since beta-4
+     * @since 1.0 beta-4
      */
     private File to;
 

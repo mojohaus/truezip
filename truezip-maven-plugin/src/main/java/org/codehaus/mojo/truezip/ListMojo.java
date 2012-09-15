@@ -42,7 +42,7 @@ public class ListMojo
      * Write list output to a file if needed.
      * 
      * @parameter
-     * @since beta-1
+     * @since 1.0 beta-1
      */
     private File outputFile;
 

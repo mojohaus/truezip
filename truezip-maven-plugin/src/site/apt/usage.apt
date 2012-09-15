@@ -32,7 +32,7 @@ TrueZIP Maven Plugin
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <executions>
           <execution>
             <id>remove-a-file</id>
@@ -83,7 +83,7 @@ TrueZIP Maven Plugin
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <executions>
           <execution>
             <id>copy-out-files</id>
@@ -190,7 +190,7 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <executions>
           <execution>
             <id>move-a-file</id>
