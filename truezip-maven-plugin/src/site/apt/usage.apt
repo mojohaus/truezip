@@ -21,8 +21,8 @@ TrueZIP Maven Plugin
   
 * Remove
 
-  The <<remove>> goal can remove files from an existing archive. The below example show
-  how to remove any pom.properies file under the <<maven>> directory of the ${archive}.
+  The <<remove>> goal can remove files from an existing archive. The below example shows
+  how to remove any pom.properties file under the <<META-INF/maven>> directory of the archive.
 
 --------------------------
   <build>
