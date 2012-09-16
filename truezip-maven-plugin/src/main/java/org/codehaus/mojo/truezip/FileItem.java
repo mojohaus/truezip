@@ -1,7 +1,7 @@
 package org.codehaus.mojo.truezip;
 
-
 import org.codehaus.plexus.util.StringUtils;
+
 import de.schlichtherle.truezip.file.TFile;
 
 /*
@@ -145,7 +145,7 @@ public class FileItem
         {
             return this.destName;
         }
-        
+
         return this.outputDirectory + "/" + this.destName;
     }
 

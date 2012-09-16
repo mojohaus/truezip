@@ -11,7 +11,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import de.schlichtherle.truezip.file.TFile;
 
 /*
- *  
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  * 
@@ -60,11 +60,11 @@ public class CliListMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        
+
         super.execute();
-        
+
         intitializeArchiveDectector();
-                
+
         Fileset fileset = new Fileset();
         fileset.setDirectory( from.getAbsolutePath() );
         fileset.setFollowArchive( followSubArchive );

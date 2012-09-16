@@ -50,18 +50,19 @@ public class MoveMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        
-        super.execute();        
-        
+
+        super.execute();
+
         intitializeArchiveDectector();
-                
+
         if ( !StringUtils.isBlank( from ) )
         {
             TFile file = new TFile( this.resolveRelativePath( from ) );
 
             if ( StringUtils.isBlank( from ) )
             {
-                throw new MojoExecutionException( "You have specified 'from' configuration to perform the move, but 'to' configuration is not available. " );
+                throw new MojoExecutionException(
+                                                  "You have specified 'from' configuration to perform the move, but 'to' configuration is not available. " );
             }
 
             TFile tofile = new TFile( this.resolveRelativePath( to ) );
@@ -97,7 +98,7 @@ public class MoveMojo
             }
 
         }
-        
+
         this.tryImmediateUpdate();
 
     }

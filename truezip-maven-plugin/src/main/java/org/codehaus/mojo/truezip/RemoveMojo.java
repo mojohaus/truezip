@@ -32,11 +32,11 @@ public class RemoveMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        
+
         super.execute();
-        
+
         intitializeArchiveDectector();
-                
+
         if ( this.fileset != null )
         {
             this.filesets.add( this.fileset );
@@ -58,7 +58,7 @@ public class RemoveMojo
             }
 
         }
-        
+
         this.tryImmediateUpdate();
     }
 

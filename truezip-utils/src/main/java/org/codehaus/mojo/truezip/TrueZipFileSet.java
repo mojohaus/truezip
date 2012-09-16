@@ -30,6 +30,5 @@ public class TrueZipFileSet
     {
         this.followArchive = followArchive;
     }
-    
-    
+
 }

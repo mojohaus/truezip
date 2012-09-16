@@ -12,7 +12,6 @@ package org.codehaus.mojo.truezip;
  * the License.
  */
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import org.apache.maven.plugin.MojoFailureException;
 public abstract class AbstractManipulateArchiveMojo
     extends AbstractArchiveMojo
 {
-    
+
     /**
      * The list of FileSet to manipulate the archive with.
      *
@@ -39,7 +38,6 @@ public abstract class AbstractManipulateArchiveMojo
      */
     protected Fileset fileset;
 
-    
     /**
      * Enable verbose mode.
      * 
@@ -47,11 +45,11 @@ public abstract class AbstractManipulateArchiveMojo
      * @since 1.0 beta-1
      */
     protected boolean verbose;
-    
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
         super.execute();
 
-    }    
+    }
 }

@@ -16,19 +16,18 @@ import de.schlichtherle.truezip.fs.FsSyncException;
 public class DefaultTrueZip
     implements TrueZip
 {
-    
-    public void sync() 
+
+    public void sync()
         throws FsSyncException
     {
         TVFS.umount();
     }
-    
-    public void sync( TFile file ) 
+
+    public void sync( TFile file )
         throws FsSyncException
     {
         TVFS.umount( file );
     }
-    
 
     public List<TFile> list( TrueZipFileSet fileSet )
     {
@@ -130,7 +129,7 @@ public class DefaultTrueZip
             else
             {
                 source.cp_rp( dest );
-                
+
             }
         }
         else if ( source.isDirectory() )
@@ -144,7 +143,8 @@ public class DefaultTrueZip
     }
 
     public void moveFile( TFile source, TFile dest )
-        throws IOException {
+        throws IOException
+    {
 
         TFile file = new TFile( source );
 
@@ -188,14 +188,16 @@ public class DefaultTrueZip
         this.copy( fileSet, fileSetManager );
         this.remove( fileSet, fileSetManager );
     }
-    
-    private String getFileExtension( String filePath ) {
-        
-        String [] tokens = filePath.split( "\\." );
-        if ( tokens.length >= 1 ) {
+
+    private String getFileExtension( String filePath )
+    {
+
+        String[] tokens = filePath.split( "\\." );
+        if ( tokens.length >= 1 )
+        {
             return tokens[tokens.length - 1];
         }
-        
+
         return null;
     }
 }

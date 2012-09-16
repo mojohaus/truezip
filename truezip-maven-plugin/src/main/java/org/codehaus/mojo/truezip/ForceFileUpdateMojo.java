@@ -32,7 +32,7 @@ public class ForceFileUpdateMojo
         throws MojoExecutionException, MojoFailureException
     {
         super.execute();
-        
+
         try
         {
             truezip.sync();

@@ -46,7 +46,6 @@ public class ListMojo
      */
     private File outputFile;
 
-    
     /**
      * Use full path to display the list. Useful to get a relative content per fileset.
      * 
@@ -54,15 +53,15 @@ public class ListMojo
      * @since 1.1
      */
     private boolean printFullPath = true;
-    
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        
+
         super.execute();
-        
+
         intitializeArchiveDectector();
-                
+
         PrintStream ps = System.out;
 
         OutputStream os = null;
@@ -110,16 +109,18 @@ public class ListMojo
             }
 
             this.resolveRelativePath( fileSet );
-            
+
             List<TFile> fileList = this.truezip.list( this.filesets.get( i ) );
-            
-            for ( int j = 0 ; j < fileList.size(); ++j )
+
+            for ( int j = 0; j < fileList.size(); ++j )
             {
                 TFile file = fileList.get( j );
-                if ( printFullPath ) {
+                if ( printFullPath )
+                {
                     ps.println( ( file.getPath() ) );
                 }
-                else {
+                else
+                {
                     int startPos = fileSet.getDirectory().length() + 1;
                     ps.println( ( file.getPath().substring( startPos ) ) );
                 }

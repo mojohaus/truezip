@@ -41,15 +41,15 @@ public class CopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        
+
         super.execute();
-        
+
         intitializeArchiveDectector();
-                
+
         this.processFileItems();
 
         this.processFileSets();
-        
+
         this.tryImmediateUpdate();
     }
 
@@ -78,12 +78,10 @@ public class CopyMojo
             }
             catch ( Exception e )
             {
-                throw new MojoExecutionException( "Copy fileset fails",  e );
+                throw new MojoExecutionException( "Copy fileset fails", e );
             }
         }
     }
-
-
 
     private void processFileItems()
         throws MojoExecutionException, MojoFailureException
@@ -93,7 +91,7 @@ public class CopyMojo
             FileItem copyInfo = files[i];
 
             this.resolveRelativePath( copyInfo );
-            
+
             TFile source = new TFile( copyInfo.getSource() );
 
             TFile dest = new TFile( copyInfo.getDestinationPath() );
@@ -104,7 +102,7 @@ public class CopyMojo
             }
             catch ( Exception e )
             {
-                throw new MojoExecutionException( "Copy fileset fails",  e );
+                throw new MojoExecutionException( "Copy fileset fails", e );
             }
         }
 

@@ -40,7 +40,6 @@ public interface TrueZip
     void copy( TrueZipFileSet oneFileSet )
         throws IOException;
 
-
     /**
      * Copy a file or archive to another destination.  
      * Hash values of source's sub-archive(s) are not kept intact during copy.

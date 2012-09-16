@@ -61,16 +61,16 @@ public class CliCopyMojo
         throws MojoExecutionException, MojoFailureException
     {
         super.execute();
-        
+
         intitializeArchiveDectector();
-        
+
         try
         {
             truezip.copyFile( new TFile( from ), new TFile( to ) );
         }
         catch ( IOException e )
         {
-            throw new MojoExecutionException( "Unable to copy: " + from + " to " + to,  e );
+            throw new MojoExecutionException( "Unable to copy: " + from + " to " + to, e );
         }
     }
 

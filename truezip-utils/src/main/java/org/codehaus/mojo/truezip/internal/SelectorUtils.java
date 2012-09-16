@@ -2,55 +2,43 @@ package org.codehaus.mojo.truezip.internal;
 
 /*
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2002-2003 The Apache Software Foundation.  All rights
- * reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
- * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.codehaus.org/)."
- *    Alternately, this acknowlegement may appear in the software itself,
- *    if and wherever such third-party acknowlegements normally appear.
- *
- * 4. The names "Ant" and "Apache Software
- *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written
- *    permission, please contact codehaus@codehaus.org.
- *
- * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
- *
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
- * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
- * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
+ * 
+ * Copyright (c) 2002-2003 The Apache Software Foundation. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list of conditions
+ * and the following disclaimer.
+ * 
+ * 2. Redistributions in binary form must reproduce the above copyright notice, this list of
+ * conditions and the following disclaimer in the documentation and/or other materials provided with
+ * the distribution.
+ * 
+ * 3. The end-user documentation included with the redistribution, if any, must include the
+ * following acknowlegement: "This product includes software developed by the Apache Software
+ * Foundation (http://www.codehaus.org/)." Alternately, this acknowlegement may appear in the
+ * software itself, if and wherever such third-party acknowlegements normally appear.
+ * 
+ * 4. The names "Ant" and "Apache Software Foundation" must not be used to endorse or promote
+ * products derived from this software without prior written permission. For written permission,
+ * please contact codehaus@codehaus.org.
+ * 
+ * 5. Products derived from this software may not be called "Apache" nor may "Apache" appear in
+ * their names without prior written permission of the Apache Group.
+ * 
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR ITS CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ====================================================================
- *
- * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
- * information on the Apache Software Foundation, please see
+ * 
+ * This software consists of voluntary contributions made by many individuals on behalf of the
+ * Apache Software Foundation. For more information on the Apache Software Foundation, please see
  * <http://www.codehaus.org/>.
  */
 
@@ -132,15 +120,13 @@ public final class SelectorUtils
      * @return whether or not a given path matches the start of a given
      * pattern up to the first "**".
      */
-    public static boolean matchPatternStart( String pattern, String str,
-                                             boolean isCaseSensitive )
+    public static boolean matchPatternStart( String pattern, String str, boolean isCaseSensitive )
     {
         // When str starts with a File.separator, pattern has to start with a
         // File.separator.
         // When pattern starts with a File.separator, str has to start with a
         // File.separator.
-        if ( str.startsWith( File.separator ) !=
-            pattern.startsWith( File.separator ) )
+        if ( str.startsWith( File.separator ) != pattern.startsWith( File.separator ) )
         {
             return false;
         }
@@ -161,8 +147,7 @@ public final class SelectorUtils
             {
                 break;
             }
-            if ( !match( patDir, (String) strDirs.elementAt( strIdxStart ),
-                         isCaseSensitive ) )
+            if ( !match( patDir, (String) strDirs.elementAt( strIdxStart ), isCaseSensitive ) )
             {
                 return false;
             }
@@ -217,15 +202,13 @@ public final class SelectorUtils
      * @return <code>true</code> if the pattern matches against the string,
      *         or <code>false</code> otherwise.
      */
-    public static boolean matchPath( String pattern, String str,
-                                     boolean isCaseSensitive )
+    public static boolean matchPath( String pattern, String str, boolean isCaseSensitive )
     {
         // When str starts with a File.separator, pattern has to start with a
         // File.separator.
         // When pattern starts with a File.separator, str has to start with a
         // File.separator.
-        if ( str.startsWith( File.separator ) !=
-            pattern.startsWith( File.separator ) )
+        if ( str.startsWith( File.separator ) != pattern.startsWith( File.separator ) )
         {
             return false;
         }
@@ -246,8 +229,7 @@ public final class SelectorUtils
             {
                 break;
             }
-            if ( !match( patDir, (String) strDirs.elementAt( strIdxStart ),
-                         isCaseSensitive ) )
+            if ( !match( patDir, (String) strDirs.elementAt( strIdxStart ), isCaseSensitive ) )
             {
                 patDirs = null;
                 strDirs = null;
@@ -289,8 +271,7 @@ public final class SelectorUtils
             {
                 break;
             }
-            if ( !match( patDir, (String) strDirs.elementAt( strIdxEnd ),
-                         isCaseSensitive ) )
+            if ( !match( patDir, (String) strDirs.elementAt( strIdxEnd ), isCaseSensitive ) )
             {
                 patDirs = null;
                 strDirs = null;
@@ -336,22 +317,21 @@ public final class SelectorUtils
             int patLength = ( patIdxTmp - patIdxStart - 1 );
             int strLength = ( strIdxEnd - strIdxStart + 1 );
             int foundIdx = -1;
-            strLoop:
-                        for ( int i = 0; i <= strLength - patLength; i++ )
-                        {
-                            for ( int j = 0; j < patLength; j++ )
-                            {
-                                String subPat = (String) patDirs.elementAt( patIdxStart + j + 1 );
-                                String subStr = (String) strDirs.elementAt( strIdxStart + i + j );
-                                if ( !match( subPat, subStr, isCaseSensitive ) )
-                                {
-                                    continue strLoop;
-                                }
-                            }
+            strLoop: for ( int i = 0; i <= strLength - patLength; i++ )
+            {
+                for ( int j = 0; j < patLength; j++ )
+                {
+                    String subPat = (String) patDirs.elementAt( patIdxStart + j + 1 );
+                    String subStr = (String) strDirs.elementAt( strIdxStart + i + j );
+                    if ( !match( subPat, subStr, isCaseSensitive ) )
+                    {
+                        continue strLoop;
+                    }
+                }
 
-                            foundIdx = strIdxStart + i;
-                            break;
-                        }
+                foundIdx = strIdxStart + i;
+                break;
+            }
 
             if ( foundIdx == -1 )
             {
@@ -413,8 +393,7 @@ public final class SelectorUtils
      * @return <code>true</code> if the string matches against the pattern,
      *         or <code>false</code> otherwise.
      */
-    public static boolean match( String pattern, String str,
-                                 boolean isCaseSensitive )
+    public static boolean match( String pattern, String str, boolean isCaseSensitive )
     {
         char[] patArr = pattern.toCharArray();
         char[] strArr = str.toCharArray();
@@ -529,8 +508,7 @@ public final class SelectorUtils
             int patLength = ( patIdxTmp - patIdxStart - 1 );
             int strLength = ( strIdxEnd - strIdxStart + 1 );
             int foundIdx = -1;
-            strLoop:
-            for ( int i = 0; i <= strLength - patLength; i++ )
+            strLoop: for ( int i = 0; i <= strLength - patLength; i++ )
             {
                 for ( int j = 0; j < patLength; j++ )
                 {
@@ -578,8 +556,8 @@ public final class SelectorUtils
         if ( !isCaseSensitive )
         {
             // NOTE: Try both upper case and lower case as done by String.equalsIgnoreCase()
-            if ( Character.toUpperCase( c1 ) == Character.toUpperCase( c2 ) ||
-                Character.toLowerCase( c1 ) == Character.toLowerCase( c2 ) )
+            if ( Character.toUpperCase( c1 ) == Character.toUpperCase( c2 )
+                || Character.toLowerCase( c1 ) == Character.toLowerCase( c2 ) )
             {
                 return true;
             }
@@ -605,7 +583,6 @@ public final class SelectorUtils
         }
         return ret;
     }
-
 
     /**
      * Returns dependency information on these two files. If src has been

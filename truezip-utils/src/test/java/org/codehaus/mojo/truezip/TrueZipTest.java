@@ -173,7 +173,7 @@ public class TrueZipTest
         fileSet.setFollowArchive( true );
         fileSet.setDirectory( dest.getPath() );
 
-        List<TFile> fileList = truezip.list( fileSet  );
+        List<TFile> fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + dest, 26, fileList.size() );
 
         fileSet.setFollowArchive( false );
@@ -210,7 +210,7 @@ public class TrueZipTest
             .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
 
     }
-    
+
     public void testArchiveToDirectoryCopyUsingFileSetConfiguration()
         throws Exception
     {
@@ -218,7 +218,7 @@ public class TrueZipTest
         TFile source = new TFile( basedir, "target/dependency/calculator.ear" );
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( source.getPath() );
-        
+
         TFile dest = new TFile( basedir, "target/dependency/calculator" );
         fileSet.setOutputDirectory( dest.getAbsolutePath() );
         truezip.copy( fileSet );
@@ -232,7 +232,6 @@ public class TrueZipTest
             .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
 
     }
-    
 
     public void testDirectoryToArchiveCopy()
         throws Exception
@@ -296,10 +295,10 @@ public class TrueZipTest
     public void testOvaIsTarArchive()
         throws Exception
     {
-        
+
         DefaultTrueZipArchiveDetector trueZipArchiveDetector = new DefaultTrueZipArchiveDetector();
         trueZipArchiveDetector.init();
-        
+
         TFile file = new TFile( basedir, "src/test/data/test.ova" );
         assertTrue( file.exists() );
 
@@ -334,27 +333,26 @@ public class TrueZipTest
         TFile file = new TFile( basedir, "target/longpath.tar" );
 
         TrueZipFileSet fileSet = new TrueZipFileSet();
-        
+
         fileSet.setDirectory( testDir.getPath() );
         fileSet.setOutputDirectory( file.getPath() );
         truezip.copy( fileSet );
         truezip.sync( file );
-        
-        
+
         FileUtils.deleteDirectory( testDir );
         assertFalse( shortFile.exists() );
         assertFalse( shortPathFile.exists() );
         assertFalse( longFile.exists() );
         assertFalse( longPathFile.exists() );
-        
+
         //untar
         fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
         fileSet.setOutputDirectory( testDir.getPath() );
         truezip.copy( fileSet );
-        
+
         //assertEquals ( 4, truezip.list ( fileSet ).size() );  //truezip only see 2 file
-        
+
         assertTrue( shortFile.exists() );
         assertTrue( shortPathFile.exists() );
         //assertTrue( longFile.exists() );      //truezip does not untar this 
@@ -362,7 +360,6 @@ public class TrueZipTest
 
     }
 
-    
     /////////////////////////////////////////////////////////////////////////////////
     public static String hash( File file, String type )
         throws IOException, NoSuchAlgorithmException
