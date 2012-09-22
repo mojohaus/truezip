@@ -1,32 +1,51 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
     <version>30</version>
   </parent>
-  
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>truezip</artifactId>
   <version>1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>TrueZip</name>
-  
+
   <description>
     Project to create new or manipulate existing compressed archives using TrueZIP
   </description>
-  
+
   <scm>
     <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip</connection>
     <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip</developerConnection>
     <url>http://svn.codehaus.org/mojo/trunk/mojo/truezip</url>
   </scm>
-  
+
   <issueManagement>
     <system>jira</system>
     <url>http://jira.codehaus.org/browse/MTRUEZIP</url>
   </issueManagement>
-  
+
   <developers>
     <developer>
       <name>Dan Tran</name>
@@ -35,14 +54,14 @@
         <role>Developer</role>
       </roles>
     </developer>
-    
+
     <developer>
       <name>Rasto Cesnek</name>
       <roles>
         <role>Contributer</role>
       </roles>
     </developer>
-    
+
   </developers>
 
   <licenses>
@@ -52,85 +71,85 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
-  
+
+
   <prerequisites>
     <maven>2.2.1</maven>
   </prerequisites>
-  
+
   <properties>
     <truezip.version>7.6.4</truezip.version>
     <maven.version>2.2.1</maven.version>
     <mojo.java.target>1.6</mojo.java.target>
   </properties>
-  
+
   <dependencyManagement>
-  
-  <dependencies>
-  
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>truezip-utils</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-  
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-      <version>${maven.version}</version>
-    </dependency>
-    
-   <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>${maven.version}</version>
-    </dependency>    
-    
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-      <version>1.5.6</version>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-file</artifactId>
-      <version>${truezip.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-driver-zip</artifactId>
-      <version>${truezip.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-driver-tar</artifactId>
-      <version>${truezip.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.maven.shared</groupId>
-      <artifactId>file-management</artifactId>
-      <version>1.2.1</version>
-    </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.2</version>
-      <scope>test</scope>
-    </dependency>
+    <dependencies>
+
+      <dependency>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-utils</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-project</artifactId>
+        <version>${maven.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-plugin-api</artifactId>
+        <version>${maven.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-utils</artifactId>
+        <version>1.5.6</version>
+      </dependency>
+      <dependency>
+        <groupId>de.schlichtherle.truezip</groupId>
+        <artifactId>truezip-file</artifactId>
+        <version>${truezip.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.schlichtherle.truezip</groupId>
+        <artifactId>truezip-driver-zip</artifactId>
+        <version>${truezip.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.schlichtherle.truezip</groupId>
+        <artifactId>truezip-driver-tar</artifactId>
+        <version>${truezip.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.maven.shared</groupId>
+        <artifactId>file-management</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.2</version>
+        <scope>test</scope>
+      </dependency>
 
 
-  </dependencies>
+    </dependencies>
 
-       
+
   </dependencyManagement>
-  
-  
+
+
   <modules>
     <module>truezip-utils</module>
     <module>truezip-maven-plugin</module>
   </modules>
-  
-  
+
+
 </project>
