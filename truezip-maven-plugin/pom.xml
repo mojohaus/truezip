@@ -36,6 +36,10 @@
 
   <description>Use this plugin to create new or manipulate existing archives using TrueZIP</description>
 
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
+
   <dependencies>
 
     <dependency>
