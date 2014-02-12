@@ -43,14 +43,10 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Provides operations for use with FileSet instances, such as retrieving the included/excluded files, deleting all
- * matching entries, etc.
- *
- * This is a fork of maven's shared FileSetManager with the following changes
- *    - Use TrueZipDirectoryScanner instead DirectoryScanner
- *    - use java.io.File in isSymLink();
- *
- * Note: symbolic support is unsupported
- *
+ * matching entries, etc. This is a fork of maven's shared FileSetManager with the following changes - Use
+ * TrueZipDirectoryScanner instead DirectoryScanner - use java.io.File in isSymLink(); Note: symbolic support is
+ * unsupported
+ * 
  * @author jdcasey
  * @version $Id$
  */
@@ -64,7 +60,7 @@ public class TrueZipFileSetManager
 
     /**
      * Create a new manager instance with the supplied log instance and flag for whether to output verbose messages.
-     *
+     * 
      * @param log The mojo log instance
      * @param verbose Whether to output verbose messages
      */
@@ -77,7 +73,6 @@ public class TrueZipFileSetManager
     // ----------------------------------------------------------------------
 
     /**
-     *
      * @param fileSet
      * @return the included files as map
      * @throws MapperException if any
@@ -113,9 +108,8 @@ public class TrueZipFileSetManager
 
     /**
      * Get all the filenames which have been included by the rules in this fileset.
-     *
-     * @param fileSet
-     *            The fileset defining rules for inclusion/exclusion, and base directory.
+     * 
+     * @param fileSet The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of matching filenames, relative to the basedir of the file-set.
      */
     public String[] getIncludedFiles( TrueZipFileSet fileSet )
@@ -132,9 +126,8 @@ public class TrueZipFileSetManager
 
     /**
      * Get all the directory names which have been included by the rules in this fileset.
-     *
-     * @param fileSet
-     *            The fileset defining rules for inclusion/exclusion, and base directory.
+     * 
+     * @param fileSet The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of matching dirnames, relative to the basedir of the file-set.
      */
     public String[] getIncludedDirectories( TrueZipFileSet fileSet )
@@ -151,9 +144,8 @@ public class TrueZipFileSetManager
 
     /**
      * Get all the filenames which have been excluded by the rules in this fileset.
-     *
-     * @param fileSet
-     *            The fileset defining rules for inclusion/exclusion, and base directory.
+     * 
+     * @param fileSet The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of non-matching filenames, relative to the basedir of the file-set.
      */
     public String[] getExcludedFiles( TrueZipFileSet fileSet )
@@ -170,9 +162,8 @@ public class TrueZipFileSetManager
 
     /**
      * Get all the directory names which have been excluded by the rules in this fileset.
-     *
-     * @param fileSet
-     *            The fileset defining rules for inclusion/exclusion, and base directory.
+     * 
+     * @param fileSet The fileset defining rules for inclusion/exclusion, and base directory.
      * @return the array of non-matching dirnames, relative to the basedir of the file-set.
      */
     public String[] getExcludedDirectories( TrueZipFileSet fileSet )
@@ -189,7 +180,7 @@ public class TrueZipFileSetManager
 
     /**
      * Delete the matching files and directories for the given file-set definition.
-     *
+     * 
      * @param fileSet The file-set matching rules, along with search base directory
      * @throws IOException If a matching file cannot be deleted
      */
@@ -201,11 +192,11 @@ public class TrueZipFileSetManager
 
     /**
      * Delete the matching files and directories for the given file-set definition.
-     *
+     * 
      * @param fileSet The file-set matching rules, along with search base directory.
      * @param throwsError Throw IOException when errors have occurred by deleting files or directories.
-     * @throws IOException If a matching file cannot be deleted and <code>throwsError=true</code>, otherwise
-     * print warning messages.
+     * @throws IOException If a matching file cannot be deleted and <code>throwsError=true</code>, otherwise print
+     *             warning messages.
      */
     public void delete( TrueZipFileSet fileSet, boolean throwsError )
         throws IOException
@@ -265,7 +256,7 @@ public class TrueZipFileSetManager
         throws IOException
     {
         TFile fileInCanonicalParent = null;
-        java.io.File parentDir = file.getParentFile();//truezip-plugin specific change
+        java.io.File parentDir = file.getParentFile();// truezip-plugin specific change
         if ( parentDir == null )
         {
             fileInCanonicalParent = file;
@@ -359,7 +350,7 @@ public class TrueZipFileSetManager
     /**
      * Removes all parent directories of the already excluded files/directories from the given set of deletable
      * directories. I.e. if "subdir/excluded.txt" should not be deleted, "subdir" should be excluded from deletion, too.
-     *
+     * 
      * @param excludedPaths The relative paths of the files/directories which are excluded from deletion, must not be
      *            <code>null</code>.
      * @param deletablePaths The relative paths to files/directories which are scheduled for deletion, must not be
@@ -389,7 +380,7 @@ public class TrueZipFileSetManager
 
     /**
      * Delete a directory
-     *
+     * 
      * @param dir the directory to delete
      * @param followSymlinks whether to follow symbolic links, or simply delete the link
      * @param throwsError Throw IOException when errors have occurred by deleting files or directories.
@@ -444,7 +435,7 @@ public class TrueZipFileSetManager
 
     /**
      * Delete a file
-     *
+     * 
      * @param f a file
      */
     private boolean delete( TFile f )

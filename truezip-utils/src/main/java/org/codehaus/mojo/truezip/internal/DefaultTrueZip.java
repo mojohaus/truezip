@@ -138,11 +138,11 @@ public class DefaultTrueZip
         {
             if ( dest.isArchive() && getFileExtension( dest.getPath() ).equals( getFileExtension( source.getPath() ) ) )
             {
-                //we want fast verbatim copy and keep hash value intact.
+                // we want fast verbatim copy and keep hash value intact.
                 // convert source and dest to have NO associate archive type so that verbatim copy can happen
                 source = new TFile( source.getParentFile(), source.getName(), TArchiveDetector.NULL );
                 dest = new TFile( dest.getParentFile(), dest.getName(), TArchiveDetector.NULL );
-                TVFS.umount();//this looks expensive, but selective umounts for both source and dest are not working
+                TVFS.umount();// this looks expensive, but selective umounts for both source and dest are not working
                 source.cp_rp( dest );
             }
             else

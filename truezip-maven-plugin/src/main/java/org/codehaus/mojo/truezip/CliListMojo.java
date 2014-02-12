@@ -30,14 +30,15 @@ import org.apache.maven.plugin.MojoFailureException;
 import de.schlichtherle.truezip.file.TFile;
 
 /**
- * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip javadoc for details.
- *
- * <p>Example:
- *   <ul>
- *     <li>mvn truezip:ls -Dfrom=a.zip </li>
- *   </ul>
+ * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip javadoc
+ * for details.
+ * <p>
+ * Example:
+ * <ul>
+ * <li>mvn truezip:ls -Dfrom=a.zip</li>
+ * </ul>
  * </p>
- *
+ * 
  * @goal ls
  * @requiresProject false
  * @version $Id: $
@@ -47,7 +48,7 @@ public class CliListMojo
 {
     /**
      * Path to an archive file to display.
-     *
+     * 
      * @parameter property="from"
      * @required
      * @since 1.0 beta-4
@@ -56,7 +57,7 @@ public class CliListMojo
 
     /**
      * Drill beyond sub archive.
-     *
+     * 
      * @parameter property="followSubArchive" default-value="false"
      * @required
      * @since 1.0 beta-4
@@ -67,7 +68,8 @@ public class CliListMojo
         throws MojoExecutionException, MojoFailureException
     {
 
-        if ( skip ) {
+        if ( skip )
+        {
             this.getLog().info( "Skip this execution" );
             return;
         }

@@ -26,14 +26,13 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
 /**
- *
  * Generic interface to manipulate recognizable archives
- *
  */
 public interface TrueZip
 {
     /**
      * List the file from FileSet's configuration
+     * 
      * @param fileSet
      * @return
      */
@@ -41,6 +40,7 @@ public interface TrueZip
 
     /**
      * Copy a set of file to another archive using FileSet configuration
+     * 
      * @param oneFileSet
      * @throws IOException
      */
@@ -48,9 +48,9 @@ public interface TrueZip
         throws IOException;
 
     /**
-     * Copy a file or archive to another destination.  
-     * Hash values of source's sub-archive(s) are not kept intact during copy.
-     * Use copy() interface instead of if needed
+     * Copy a file or archive to another destination. Hash values of source's sub-archive(s) are not kept intact during
+     * copy. Use copy() interface instead of if needed
+     * 
      * @param source
      * @param dest
      * @throws IOException
@@ -60,6 +60,7 @@ public interface TrueZip
 
     /**
      * Copy a file for MOJO
+     * 
      * @param source
      * @param dest
      * @throws IOException
@@ -68,7 +69,8 @@ public interface TrueZip
         throws IOException;
 
     /**
-     * Move a set of files from one archive to another 
+     * Move a set of files from one archive to another
+     * 
      * @param oneFileSet - The archive setup
      * @throws IOException
      */
@@ -76,7 +78,8 @@ public interface TrueZip
         throws IOException;
 
     /**
-     * Remove a set of files from the archive setup 
+     * Remove a set of files from the archive setup
+     * 
      * @param oneFileSet - the archive setup
      * @throws IOException
      */
@@ -85,6 +88,7 @@ public interface TrueZip
 
     /**
      * Global sync
+     * 
      * @throws FsSyncException
      */
     void sync()
@@ -92,6 +96,7 @@ public interface TrueZip
 
     /**
      * Selectively sync
+     * 
      * @param file
      * @throws FsSyncException
      */

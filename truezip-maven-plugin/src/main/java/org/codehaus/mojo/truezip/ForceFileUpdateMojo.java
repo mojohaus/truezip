@@ -26,7 +26,7 @@ import de.schlichtherle.truezip.fs.FsSyncException;
 
 /**
  * Update open archives immediately, flush cached data to disk.
- *
+ * 
  * @deprecated use immediateUpdate option instead
  * @goal update
  * @phase process-resources
@@ -39,7 +39,8 @@ public class ForceFileUpdateMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        if ( skip ) {
+        if ( skip )
+        {
             this.getLog().info( "Skip this execution" );
             return;
         }

@@ -143,7 +143,7 @@ public class TrueZipTest
         fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + file, 7, fileList.size() );
 
-        //test verbatime copy, ie inner archive size unchanged after unpack
+        // test verbatime copy, ie inner archive size unchanged after unpack
         assertEquals( 16158, new java.io.File( outputDirectory, "calculator-war-2.1.2.war" ).length() );
         assertEquals( 8762, new java.io.File( outputDirectory, "calculator-ejb-2.1.2.jar" ).length() );
 
@@ -221,12 +221,14 @@ public class TrueZipTest
         fileList = truezip.list( fileSet );
         assertEquals( "Invalid file list in " + dest, 7, fileList.size() );
 
-        //subarchive checksum changes when use TrueZip's copyFile
-        assertFalse( "9ea19802ed109db944a2fb02fff8c035"
-            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-war-2.1.2.war" ), "md5" ) ) );
+        // subarchive checksum changes when use TrueZip's copyFile
+        assertFalse( "9ea19802ed109db944a2fb02fff8c035".equals( hash( new File( basedir,
+                                                                                "target/dependency/calculator/calculator-war-2.1.2.war" ),
+                                                                      "md5" ) ) );
 
-        assertFalse( "1fa71ddc35645e41e88a251fafb239cb"
-            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
+        assertFalse( "1fa71ddc35645e41e88a251fafb239cb".equals( hash( new File( basedir,
+                                                                                "target/dependency/calculator/calculator-ejb-2.1.2.jar" ),
+                                                                      "md5" ) ) );
 
     }
 
@@ -243,12 +245,14 @@ public class TrueZipTest
         truezip.copy( fileSet );
         truezip.sync( dest );
 
-        //subarchive checksum keep the same when use TrueZip's copy
-        assertTrue( "9ea19802ed109db944a2fb02fff8c035"
-            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-war-2.1.2.war" ), "md5" ) ) );
+        // subarchive checksum keep the same when use TrueZip's copy
+        assertTrue( "9ea19802ed109db944a2fb02fff8c035".equals( hash( new File( basedir,
+                                                                               "target/dependency/calculator/calculator-war-2.1.2.war" ),
+                                                                     "md5" ) ) );
 
-        assertTrue( "1fa71ddc35645e41e88a251fafb239cb"
-            .equals( hash( new File( basedir, "target/dependency/calculator/calculator-ejb-2.1.2.jar" ), "md5" ) ) );
+        assertTrue( "1fa71ddc35645e41e88a251fafb239cb".equals( hash( new File( basedir,
+                                                                               "target/dependency/calculator/calculator-ejb-2.1.2.jar" ),
+                                                                     "md5" ) ) );
 
     }
 
@@ -274,7 +278,7 @@ public class TrueZipTest
     public void testMove()
         throws Exception
     {
-        //make a copy of the original test archive
+        // make a copy of the original test archive
         TFile file = new TFile( basedir, "target/dependency/calculator.ear" );
         TrueZipFileSet fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
@@ -288,7 +292,7 @@ public class TrueZipTest
         fileSet.setOutputDirectory( outputDirectory.getAbsolutePath() );
         truezip.copy( fileSet );
 
-        //do the move
+        // do the move
         fileSet.setDirectory( outputDirectory.getPath() );
 
         outputDirectory = new TFile( basedir, "target/test/test-move" );
@@ -303,7 +307,7 @@ public class TrueZipTest
 
         truezip.move( fileSet );
 
-        //test what left in there
+        // test what left in there
         fileSet = new TrueZipFileSet();
         fileSet.setDirectory( outputDirectory.getPath() );
         List<TFile> fileList = truezip.list( fileSet );
@@ -330,11 +334,12 @@ public class TrueZipTest
 
     }
 
-    //MTRUEZIP-2 test case
+    // MTRUEZIP-2 test case
     public void testLogPathInTar()
         throws Exception
     {
-        String longFileName = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.txt";
+        String longFileName =
+            "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.txt";
         File testDir = new File( basedir.getAbsolutePath(), "target/longpathtar" );
         testDir.mkdirs();
         File shortFile = new File( testDir, "short.txt" );
@@ -348,7 +353,7 @@ public class TrueZipTest
         longPathFile.getParentFile().mkdirs();
         longPathFile.createNewFile();
 
-        //tar
+        // tar
         TFile file = new TFile( basedir, "target/longpath.tar" );
 
         TrueZipFileSet fileSet = new TrueZipFileSet();
@@ -364,22 +369,22 @@ public class TrueZipTest
         assertFalse( longFile.exists() );
         assertFalse( longPathFile.exists() );
 
-        //untar
+        // untar
         fileSet = new TrueZipFileSet();
         fileSet.setDirectory( file.getPath() );
         fileSet.setOutputDirectory( testDir.getPath() );
         truezip.copy( fileSet );
 
-        //assertEquals ( 4, truezip.list ( fileSet ).size() );  //truezip only see 2 file
+        // assertEquals ( 4, truezip.list ( fileSet ).size() ); //truezip only see 2 file
 
         assertTrue( shortFile.exists() );
         assertTrue( shortPathFile.exists() );
-        //assertTrue( longFile.exists() );      //truezip does not untar this 
-        //assertTrue( longPathFile.exists() );  //truezip does not untar this
+        // assertTrue( longFile.exists() ); //truezip does not untar this
+        // assertTrue( longPathFile.exists() ); //truezip does not untar this
 
     }
 
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
     public static String hash( File file, String type )
         throws IOException, NoSuchAlgorithmException
     {

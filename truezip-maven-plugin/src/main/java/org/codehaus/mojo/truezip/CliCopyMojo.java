@@ -27,18 +27,17 @@ import org.apache.maven.plugin.MojoFailureException;
 
 import de.schlichtherle.truezip.file.TFile;
 
-
 /**
- * Copy an archive/directory to another archive/directory. Mainly used from command line
- * to unpack/pack any known archive type.
- *
- * <p>Example:
- *   <ul>
- *     <li>mvn truezip:cp -Dfrom=a.zip -Dto=b</li>
- *     <li>mvn truezip:cp -Dfrom=b -Dto=b.zip</li>
- *   </ul>
+ * Copy an archive/directory to another archive/directory. Mainly used from command line to unpack/pack any known
+ * archive type.
+ * <p>
+ * Example:
+ * <ul>
+ * <li>mvn truezip:cp -Dfrom=a.zip -Dto=b</li>
+ * <li>mvn truezip:cp -Dfrom=b -Dto=b.zip</li>
+ * </ul>
  * </p>
- *
+ * 
  * @goal cp
  * @requiresProject false
  * @version $Id: $
@@ -48,7 +47,7 @@ public class CliCopyMojo
 {
     /**
      * Path to an archive to be unpacked.
-     *
+     * 
      * @parameter property="from"
      * @required
      * @since 1.0 beta-4
@@ -57,7 +56,7 @@ public class CliCopyMojo
 
     /**
      * Path to an archive or directory to unpack to.
-     *
+     * 
      * @parameter property="to"
      * @required
      * @since 1.0 beta-4
@@ -67,7 +66,8 @@ public class CliCopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        if ( skip ) {
+        if ( skip )
+        {
             this.getLog().info( "Skip this execution" );
             return;
         }

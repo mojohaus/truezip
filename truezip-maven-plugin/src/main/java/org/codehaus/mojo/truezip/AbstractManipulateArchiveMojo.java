@@ -31,7 +31,7 @@ public abstract class AbstractManipulateArchiveMojo
 
     /**
      * The list of FileSet to manipulate the archive with.
-     *
+     * 
      * @parameter
      * @since 1.0 beta-1
      */
@@ -39,7 +39,7 @@ public abstract class AbstractManipulateArchiveMojo
 
     /**
      * A single FileSet to manipulate the archive with.
-     *
+     * 
      * @parameter
      * @since 1.0 beta-1
      */

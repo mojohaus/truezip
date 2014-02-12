@@ -29,17 +29,17 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Move a single file or multiple files (via FileSet) between archives or directories.
- *
+ * 
  * @goal move
  * @phase process-resources
- * @version $Id:  $
+ * @version $Id: $
  */
 public class MoveMojo
     extends AbstractManipulateArchiveMojo
 {
     /**
      * Path to original file.
-     *
+     * 
      * @parameter
      * @since 1.0 beta-1
      */
@@ -47,7 +47,7 @@ public class MoveMojo
 
     /**
      * Path to destination file.
-     *
+     * 
      * @parameter
      * @since 1.0 beta-1
      */
@@ -57,7 +57,8 @@ public class MoveMojo
         throws MojoExecutionException, MojoFailureException
     {
 
-        if ( skip ) {
+        if ( skip )
+        {
             this.getLog().info( "Skip this execution" );
             return;
         }

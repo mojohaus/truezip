@@ -24,10 +24,9 @@ import java.util.Iterator;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-
 /**
  * Remove a set of files from an existing archive.
- *
+ * 
  * @goal remove
  * @phase process-resources
  * @version $Id: $
@@ -39,11 +38,11 @@ public class RemoveMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        if ( skip ) {
+        if ( skip )
+        {
             this.getLog().info( "Skip this execution" );
             return;
         }
-
 
         super.execute();
 

@@ -25,50 +25,44 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Taken from assembly maven plugin
- *
  */
 public class FileItem
 {
     /**
-     *   The absolute path of source
+     * The absolute path of source
      */
     private String source;
 
     /**
-     *  Sets the output directory relative to the root
-     *  of the root directory of the assembly. For example,
-     *  "log" will put the specified files in the log directory.
+     * Sets the output directory relative to the root of the root directory of the assembly. For example, "log" will put
+     * the specified files in the log directory.
      */
     private String outputDirectory = "";
 
     /**
-     *  Sets the destination filename in the outputDirectory.
-     *  Default is the same name as the source's file.
+     * Sets the destination filename in the outputDirectory. Default is the same name as the source's file.
      */
     private String destName;
 
     /**
-    * Similar to a UNIX permission, sets the file mode of the files included.
-    * Format: (User)(Group)(Other) where each component is a sum of Read = 4,
-    * Write = 2, and Execute = 1.  For example, the value 0644
-    * translates to User read-write, Group and Other read-only.
-    * <a href="http://www.onlamp.com/pub/a/bsd/2000/09/06/FreeBSD_Basics.html">(more on unix-style permissions)</a>
-    */
+     * Similar to a UNIX permission, sets the file mode of the files included. Format: (User)(Group)(Other) where each
+     * component is a sum of Read = 4, Write = 2, and Execute = 1. For example, the value 0644 translates to User
+     * read-write, Group and Other read-only. <a
+     * href="http://www.onlamp.com/pub/a/bsd/2000/09/06/FreeBSD_Basics.html">(more on unix-style permissions)</a>
+     */
 
     private String fileMode;
 
-    /**       
-     * 
-     *  Sets the line-endings of the files in this file.
-     *   Valid values are:
-     *   <ul>
-     *     <li><b>"keep"</b> - Preserve all line endings</li>
-     *     <li><b>"unix"</b> - Use Unix-style line endings</li>
-     *     <li><b>"lf"</b> - Use a single line-feed line endings</li>
-     *     <li><b>"dos"</b> - Use DOS-style line endings</li>
-     *     <li><b>"crlf"</b> - Use Carraige-return, line-feed line endings</li>
-     *   </ul>
-    */
+    /**
+     * Sets the line-endings of the files in this file. Valid values are:
+     * <ul>
+     * <li><b>"keep"</b> - Preserve all line endings</li>
+     * <li><b>"unix"</b> - Use Unix-style line endings</li>
+     * <li><b>"lf"</b> - Use a single line-feed line endings</li>
+     * <li><b>"dos"</b> - Use DOS-style line endings</li>
+     * <li><b>"crlf"</b> - Use Carraige-return, line-feed line endings</li>
+     * </ul>
+     */
 
     private String lineEnding;
 
@@ -138,7 +132,8 @@ public class FileItem
     }
 
     /**
-     * return destination path  
+     * return destination path
+     * 
      * @return
      */
     public String getDestinationPath()
