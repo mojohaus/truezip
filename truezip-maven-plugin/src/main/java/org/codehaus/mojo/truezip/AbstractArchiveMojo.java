@@ -37,7 +37,7 @@ public abstract class AbstractArchiveMojo
     /**
      * Internal Maven's project
      *
-     * @parameter expression="${project}"
+     * @parameter default-value="${project}"
      * @readonly
      * @since 1.0 beta-1
      */
@@ -60,7 +60,7 @@ public abstract class AbstractArchiveMojo
 
     /**
      * Skip
-     * @parameter  expression="${truezip.skip}" default-value="false"
+     * @parameter  property="truezip.skip" default-value="false"
      * @since 1.2
      */
     protected boolean skip;

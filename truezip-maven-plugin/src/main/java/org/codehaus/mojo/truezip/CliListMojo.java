@@ -48,7 +48,7 @@ public class CliListMojo
     /**
      * Path to an archive file to display.
      *
-     * @parameter expression="${from}"
+     * @parameter property="from"
      * @required
      * @since 1.0 beta-4
      */
@@ -57,7 +57,7 @@ public class CliListMojo
     /**
      * Drill beyond sub archive.
      *
-     * @parameter expression="${followSubArchive}" default-value="false"
+     * @parameter property="followSubArchive" default-value="false"
      * @required
      * @since 1.0 beta-4
      */

@@ -49,7 +49,7 @@ public class CliCopyMojo
     /**
      * Path to an archive to be unpacked.
      *
-     * @parameter expression="${from}"
+     * @parameter property="from"
      * @required
      * @since 1.0 beta-4
      */
@@ -58,7 +58,7 @@ public class CliCopyMojo
     /**
      * Path to an archive or directory to unpack to.
      *
-     * @parameter expression="${to}"
+     * @parameter property="to"
      * @required
      * @since 1.0 beta-4
      */
