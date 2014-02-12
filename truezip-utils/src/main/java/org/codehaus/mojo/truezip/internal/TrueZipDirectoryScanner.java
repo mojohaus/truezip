@@ -1,18 +1,22 @@
 package org.codehaus.mojo.truezip.internal;
 
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance with the License. You may obtain a
- * copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 import java.io.IOException;
@@ -628,7 +632,7 @@ public class TrueZipDirectoryScanner
      *              prevent problems with an absolute path when using
      *              dir). Must not be <code>null</code>.
      * @param fast  Whether or not this call is part of a fast scan.
-     * @throws IOException 
+     * @throws IOException
      *
      * @see #filesIncluded
      * @see #filesNotIncluded
@@ -653,11 +657,11 @@ public class TrueZipDirectoryScanner
              */
 
             /*
-             * [jdcasey] (2) is apparently happening to me, as this is killing one of my tests... 
-             * this is affecting the assembly plugin, fwiw. I will initialize the newfiles array as 
+             * [jdcasey] (2) is apparently happening to me, as this is killing one of my tests...
+             * this is affecting the assembly plugin, fwiw. I will initialize the newfiles array as
              * zero-length for now.
-             * 
-             * NOTE: I can't find the problematic code, as it appears to come from a native method 
+             *
+             * NOTE: I can't find the problematic code, as it appears to come from a native method
              * in UnixFileSystem...
              */
             /*
