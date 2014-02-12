@@ -142,7 +142,8 @@ public class DefaultTrueZip
                 // convert source and dest to have NO associate archive type so that verbatim copy can happen
                 source = new TFile( source.getParentFile(), source.getName(), TArchiveDetector.NULL );
                 dest = new TFile( dest.getParentFile(), dest.getName(), TArchiveDetector.NULL );
-                TVFS.umount();// this looks expensive, but selective umounts for both source and dest are not working
+                // this looks expensive, but selective umounts for both source and dest are not working
+                TVFS.umount();
                 source.cp_rp( dest );
             }
             else
