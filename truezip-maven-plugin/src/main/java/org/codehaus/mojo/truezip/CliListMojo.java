@@ -31,13 +31,13 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Display an archive's list to console. Note: inner archive file length always show 0 byte long. See TrueZip javadoc for details.
- * 
- * <p>Example: 
+ *
+ * <p>Example:
  *   <ul>
  *     <li>mvn truezip:ls -Dfrom=a.zip </li>
  *   </ul>
  * </p>
- * 
+ *
  * @goal ls
  * @requiresProject false
  * @version $Id: $
@@ -47,7 +47,7 @@ public class CliListMojo
 {
     /**
      * Path to an archive file to display.
-     * 
+     *
      * @parameter expression="${from}"
      * @required
      * @since 1.0 beta-4
@@ -56,7 +56,7 @@ public class CliListMojo
 
     /**
      * Drill beyond sub archive.
-     * 
+     *
      * @parameter expression="${followSubArchive}" default-value="false"
      * @required
      * @since 1.0 beta-4
@@ -66,6 +66,11 @@ public class CliListMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+
+        if ( skip ) {
+            this.getLog().info( "Skip this execution" );
+            return;
+        }
 
         super.execute();
 

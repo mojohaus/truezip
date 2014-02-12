@@ -27,7 +27,7 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * Copy a set of files in and out of an existing archive.
- * 
+ *
  * @goal copy
  * @phase process-resources
  * @version $Id: $
@@ -39,7 +39,7 @@ public class CopyMojo
     /**
      * The list of FileItem to manipulate the archive with. Use this configuration when you have a
      * need to do copying with the option to change the file name.
-     * 
+     *
      * @parameter
      * @since 1.0 beta-1
      */
@@ -48,6 +48,11 @@ public class CopyMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+
+        if ( skip ) {
+            this.getLog().info( "Skip this execution" );
+            return;
+        }
 
         super.execute();
 

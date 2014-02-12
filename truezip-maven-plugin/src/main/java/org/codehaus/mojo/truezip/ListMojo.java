@@ -35,7 +35,7 @@ import de.schlichtherle.truezip.file.TFile;
 
 /**
  * List all files in the archive.
- * 
+ *
  * @goal list
  * @phase process-resources
  * @version $Id: $
@@ -46,7 +46,7 @@ public class ListMojo
 
     /**
      * Write list output to a file if needed.
-     * 
+     *
      * @parameter
      * @since 1.0 beta-1
      */
@@ -54,7 +54,7 @@ public class ListMojo
 
     /**
      * Use full path to display the list. Useful to get a relative content per fileset.
-     * 
+     *
      * @parameter default-value="true"
      * @since 1.1
      */
@@ -63,6 +63,11 @@ public class ListMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+
+        if ( skip ) {
+            this.getLog().info( "Skip this execution" );
+            return;
+        }
 
         super.execute();
 

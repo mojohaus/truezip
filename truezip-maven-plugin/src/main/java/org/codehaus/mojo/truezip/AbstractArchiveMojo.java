@@ -36,7 +36,7 @@ public abstract class AbstractArchiveMojo
 
     /**
      * Internal Maven's project
-     * 
+     *
      * @parameter expression="${project}"
      * @readonly
      * @since 1.0 beta-1
@@ -52,11 +52,18 @@ public abstract class AbstractArchiveMojo
      * Enable automatic file update after each MOJO execution. If set to <code>false</code>, immediate update is not
      * performed. Then, the updated files are flushed at undefined time (when the VM finalizes objects). Otherwise, a
      * forced file update can be triggered by using <code>update</code> goal in an separate execution.
-     * 
+     *
      * @parameter default-value="true"
      * @since 1.0 beta-2
      */
     protected boolean immediateUpdate;
+
+    /**
+     * Skip
+     * @parameter  expression="${truezip.skip}" default-value="false"
+     * @since 1.2
+     */
+    protected boolean skip;
 
     protected String resolveRelativePath( String path )
     {
