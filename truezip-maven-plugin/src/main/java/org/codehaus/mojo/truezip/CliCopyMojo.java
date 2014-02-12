@@ -84,6 +84,9 @@ public class CliCopyMojo
         {
             throw new MojoExecutionException( "Unable to copy: " + from + " to " + to, e );
         }
+
+        this.tryImmediateUpdate();
+
     }
 
 }

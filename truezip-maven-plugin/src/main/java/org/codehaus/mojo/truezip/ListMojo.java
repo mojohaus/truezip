@@ -99,6 +99,9 @@ public class ListMojo
         {
             IOUtil.close( os );
         }
+
+        this.tryImmediateUpdate();
+
     }
 
     private void processFileSets( PrintStream ps )

@@ -98,6 +98,9 @@ public class CliListMojo
 
             System.out.println( fileLen + "\t" + new Date( archiveFile.lastModified() ) + "\t" + relativePath );
         }
+
+        this.tryImmediateUpdate();
+
     }
 
 }

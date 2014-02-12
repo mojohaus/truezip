@@ -27,6 +27,7 @@ import de.schlichtherle.truezip.fs.FsSyncException;
 /**
  * Update open archives immediately, flush cached data to disk.
  *
+ * @deprecated use immediateUpdate option instead
  * @goal update
  * @phase process-resources
  * @version $Id: $
