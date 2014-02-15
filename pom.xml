@@ -26,7 +26,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>truezip</artifactId>
-  <version>1.2</version>
+  <version>1.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>TrueZip</name>
 
@@ -35,9 +35,9 @@
   </description>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/truezip-1.2</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/truezip-1.2</developerConnection>
-    <url>http://svn.codehaus.org/mojo/tags/truezip-1.2</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip</developerConnection>
+    <url>http://svn.codehaus.org/mojo/trunk/mojo/truezip</url>
   </scm>
 
   <issueManagement>
