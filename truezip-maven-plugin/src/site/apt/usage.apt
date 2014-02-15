@@ -9,16 +9,16 @@
 
 TrueZIP Maven Plugin
 
-  This plugin uses {{{https://truezip.dev.java.net/}TrueZIP}} which treats archives as a virtual file systems.  
-  Each archive file is considered as a directory of a file system. 
-  
-  Similar to {{{http://maven.apache.org/plugins/maven-assembly-plugin} assembly}} and  
-  {{{http://maven.apache.org/plugins/maven-clean-plugin}clean}} plugins, 
+  This plugin uses {{{https://truezip.dev.java.net/}TrueZIP}} which treats archives as a virtual file systems.
+  Each archive file is considered as a directory of a file system.
+
+  Similar to {{{http://maven.apache.org/plugins/maven-assembly-plugin} assembly}} and
+  {{{http://maven.apache.org/plugins/maven-clean-plugin}clean}} plugins,
   {{{http://maven.apache.org/shared/file-management/apidocs/index.html} FileSet}} is used extensively
   to manipulate file system type actions.
 
-  The following contains some brief examples on how to use the truezip goals.   
-  
+  The following contains some brief examples on how to use the truezip goals.
+
 * Remove
 
   The <<remove>> goal can remove files from an existing archive. The below example shows
@@ -32,7 +32,7 @@ TrueZIP Maven Plugin
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
         <executions>
           <execution>
             <id>remove-a-file</id>
@@ -56,7 +56,7 @@ TrueZIP Maven Plugin
       [...]
     </plugins>
   </build>
-  
+
   <properties>
     <archive>path.to.an.archive</archive>
   </properties>
@@ -65,15 +65,15 @@ TrueZIP Maven Plugin
 * Copy
 
   The <<copy>> goal can copy files in and out of the archive. The below example shows multiple executions:
-  
+
   * Copy files from the archive to a real file system with option to rename the file on the fly.
-    This is similar to the maven-assembly-plugin's <files> configuration. 
-  
+    This is similar to the maven-assembly-plugin's <files> configuration.
+
   * Copy files from the archive to a real file system using FileSet interface.
-  
+
   * Copy files from the real file system to the archive.
 
-  []  
+  []
 
 --------------------------
   <build>
@@ -83,7 +83,7 @@ TrueZIP Maven Plugin
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
         <executions>
           <execution>
             <id>copy-out-files</id>
@@ -139,12 +139,12 @@ TrueZIP Maven Plugin
               </fileset>
             </configuration>
           </execution>
-          
+
       </plugin>
       [...]
     </plugins>
   </build>
-  
+
   <properties>
     <archive>path.to.an.archive</archive>
   </properties>
@@ -154,34 +154,34 @@ TrueZIP Maven Plugin
 * Pack/unpack from command line
 
   Use <<cp>> goal to copy an archive/directory to another archive/directory.
-  
+
   * The following example shows how to unpack an archive to a directory
-  
+
 -------------------------------
 mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=.
 -------------------------------
 
   * The following example shows how to pack a directory to an archive
-  
+
 -------------------------------
 mvn truezip:cp -Dfrom=apache-maven-2.2.1 -Dto=apache-maven-2.2.1.zip
 -------------------------------
 
   * The following example shows how to transfer an archive to another archive
-  
+
 -------------------------------
 mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.zip
 -------------------------------
-  
+
   []
-  
-  
+
+
 * Move
 
-  The <<move>> goal can move a file in, out, or within the archive. The below examples 
+  The <<move>> goal can move a file in, out, or within the archive. The below examples
   show how to move an archive's file to another location in the archive. Note that the location
   can be outside of the archive as well.
-  
+
 -------------------------------
   <build>
     [...]
@@ -190,7 +190,7 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
         <executions>
           <execution>
             <id>move-a-file</id>
@@ -202,7 +202,7 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
               <!-- move a archive file to another directory in the same archive -->
               <from>${archive}/META-INF/MANIFEST.MF</from>
               <to>${archive}/META-INF2/MANIFEST.MF</to>
-              
+
               <!-- use this if you want to move it out of the archive -->
               <!--to>${project.build.directory}/MANIFEST.MF</to-->
             </configuration>
@@ -213,9 +213,8 @@ mvn truezip:cp -Dfrom=apache-maven-2.2.1-bin.tar.gz -Dto=apache-maven-2.2.1-bin.
       [...]
     </plugins>
   </build>
-  
+
   <properties>
     <archive>path.to.an.archive</archive>
   </properties>
 --------------------------
-  
