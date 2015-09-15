@@ -21,7 +21,7 @@
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>33</version>
+    <version>38</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -34,16 +34,21 @@
     Project to create new or manipulate existing compressed archives using TrueZIP
   </description>
 
-  <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/truezip</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/truezip</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/truezip</url>
-  </scm>
-
   <issueManagement>
-    <system>jira</system>
-    <url>http://jira.codehaus.org/browse/MTRUEZIP</url>
+    <system>GitHub</system>
+    <url>https://github.com/mojohaus/truezip/issues/</url>
   </issueManagement>
+  <ciManagement>
+    <system>Travis-CI</system>
+    <url>https://travis-ci.org/mojohaus/truezip</url>
+  </ciManagement>
+
+  <scm>
+    <connection>scm:git:https://github.com/mojohaus/truezip.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/mojohaus/truezip.git</developerConnection>
+    <url>https://github.com/mojohaus/truezip-maven-plugin</url>
+    <tag>master</tag>
+  </scm>
 
   <developers>
     <developer>
@@ -71,15 +76,15 @@
     </license>
   </licenses>
 
-
   <prerequisites>
     <maven>2.2.1</maven>
   </prerequisites>
 
   <properties>
-    <truezip.version>7.7.5</truezip.version>
+    <truezip.version>7.7.9</truezip.version>
     <maven.version>2.2.1</maven.version>
     <mojo.java.target>1.6</mojo.java.target>
+    <scmpublish.content>${project.build.directory}/staging/truezip</scmpublish.content>
   </properties>
 
   <dependencyManagement>
@@ -107,7 +112,7 @@
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-utils</artifactId>
-        <version>1.5.6</version>
+        <version>3.0.22</version>
       </dependency>
       <dependency>
         <groupId>de.schlichtherle.truezip</groupId>
@@ -130,14 +135,6 @@
         <artifactId>file-management</artifactId>
         <version>1.2.1</version>
       </dependency>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>3.8.2</version>
-        <scope>test</scope>
-      </dependency>
-
 
     </dependencies>
 
