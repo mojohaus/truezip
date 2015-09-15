@@ -1,6 +1,6 @@
 # MojoHaus Truezip Maven Plugin
 
-This is the [rpm-maven-plugin](http://www.mojohaus.org/truezip/).
+This is the [true-maven-plugin](http://www.mojohaus.org/truezip/).
 
 [![Build Status](https://travis-ci.org/mojohaus/truezip.svg?branch=master)](https://travis-ci.org/mojohaus/truezip)
 
