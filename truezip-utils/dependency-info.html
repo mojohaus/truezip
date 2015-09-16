@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20150915" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>TrueZip &#x2013; About</title>
+    <title>TrueZIP Shared Component &#x2013; Dependency Information</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.4.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -38,8 +38,8 @@
         <div class="container-fluid">
           <div id="banner">
         <div class="pull-left">
-                                                  <a href="../../" id="bannerLeft">
-                                                                                                <img src="../../images/mojo_logo.png"  alt="MojoHaus"/>
+                                                  <a href="../../../" id="bannerLeft">
+                                                                                                <img src="../../../images/mojo_logo.png"  alt="MojoHaus"/>
                 </a>
                       </div>
         <div class="pull-right">  </div>
@@ -51,21 +51,26 @@
                 
                     
                               <li class="">
-                    <a href="../../" title="MojoHaus">
+                    <a href="../../../" title="MojoHaus">
         MojoHaus</a>
                     <span class="divider">/</span>
       </li>
             <li class="">
-                    <a href="../../mojo-parent" title="MojoHaus Parent">
+                    <a href="../../../mojo-parent" title="MojoHaus Parent">
         MojoHaus Parent</a>
                     <span class="divider">/</span>
       </li>
-                <li class="">
-                    <a href="./" title="TrueZip">
+            <li class="">
+                    <a href="../" title="TrueZip">
         TrueZip</a>
                     <span class="divider">/</span>
       </li>
-        <li class="active ">About</li>
+                <li class="">
+                    <a href="./" title="TrueZIP Shared Component">
+        TrueZIP Shared Component</a>
+                    <span class="divider">/</span>
+      </li>
+        <li class="active ">Dependency Information</li>
         
                 
                     
@@ -98,23 +103,8 @@
                 
                     
                 <ul class="nav nav-list">
-                    <li class="nav-header">Modules</li>
-                              
-      <li>
-  
-                          <a href="truezip-utils/index.html" title="TrueZIP Shared Component">
-          <span class="none"></span>
-        TrueZIP Shared Component</a>
-            </li>
-                
-      <li>
-  
-                          <a href="truezip-maven-plugin/index.html" title="TrueZIP Maven Plugin">
-          <span class="none"></span>
-        TrueZIP Maven Plugin</a>
-            </li>
-                                        <li class="nav-header">Project Documentation</li>
-                                                                                                                                                                                                                                                                                                
+                    <li class="nav-header">Project Documentation</li>
+                                                                                                                                                                                                                                                                                                                  
       <li>
   
                           <a href="project-info.html" title="Project Information">
@@ -129,17 +119,17 @@
         Continuous Integration</a>
             </li>
                     
-      <li>
-  
-                          <a href="dependency-info.html" title="Dependency Information">
-          <span class="none"></span>
-        Dependency Information</a>
-            </li>
-                    
       <li class="active">
   
-            <a href="#"><span class="none"></span>About</a>
+            <a href="#"><span class="none"></span>Dependency Information</a>
           </li>
+                    
+      <li>
+  
+                          <a href="index.html" title="About">
+          <span class="none"></span>
+        About</a>
+            </li>
                     
       <li>
   
@@ -178,6 +168,13 @@
                     
       <li>
   
+                          <a href="dependencies.html" title="Dependencies">
+          <span class="none"></span>
+        Dependencies</a>
+            </li>
+                    
+      <li>
+  
                           <a href="dependency-convergence.html" title="Dependency Convergence">
           <span class="none"></span>
         Dependency Convergence</a>
@@ -205,7 +202,7 @@
             </li>
               </ul>
         </li>
-                                                                                                                        
+                                                                                                                                                                                                                                    
       <li>
   
                           <a href="project-reports.html" title="Project Reports">
@@ -240,21 +237,36 @@
         <div id="bodyColumn"  class="span10" >
                                   
             <div class="section">
-<h2><a name="About_TrueZip"></a>About TrueZip</h2><a name="About_TrueZip"></a>
-<p>Project to create new or manipulate existing compressed archives using TrueZIP</p>
+<h2><a name="Dependency_Information"></a>Dependency Information</h2><a name="Dependency_Information"></a>
 <div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
-<tr class="b">
-<td><a href="truezip-utils/index.html">TrueZIP Shared Component</a></td>
-<td>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</td></tr>
-<tr class="a">
-<td><a href="truezip-maven-plugin/index.html">TrueZIP Maven Plugin</a></td>
-<td>Use this plugin to create new or manipulate existing archives using TrueZIP</td></tr></table></div></div>
+<h3><a name="Apache_Maven"></a>Apache Maven</h3><a name="Apache_Maven"></a>
+<div class="source"><pre class="prettyprint">&lt;dependency&gt;
+  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+  &lt;artifactId&gt;truezip-utils&lt;/artifactId&gt;
+  &lt;version&gt;1.3-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</pre></div></div>
+<div class="section">
+<h3><a name="Apache_Buildr"></a>Apache Buildr</h3><a name="Apache_Buildr"></a>
+<div class="source"><pre class="prettyprint">'org.codehaus.mojo:truezip-utils:jar:1.3-SNAPSHOT'</pre></div></div>
+<div class="section">
+<h3><a name="Apache_Ivy"></a>Apache Ivy</h3><a name="Apache_Ivy"></a>
+<div class="source"><pre class="prettyprint">&lt;dependency org=&quot;org.codehaus.mojo&quot; name=&quot;truezip-utils&quot; rev=&quot;1.3-SNAPSHOT&quot;&gt;
+  &lt;artifact name=&quot;truezip-utils&quot; type=&quot;jar&quot; /&gt;
+&lt;/dependency&gt;</pre></div></div>
+<div class="section">
+<h3><a name="Groovy_Grape"></a>Groovy Grape</h3><a name="Groovy_Grape"></a>
+<div class="source"><pre class="prettyprint">@Grapes(
+@Grab(group='org.codehaus.mojo', module='truezip-utils', version='1.3-SNAPSHOT')
+)</pre></div></div>
+<div class="section">
+<h3><a name="Grails"></a>Grails</h3><a name="Grails"></a>
+<div class="source"><pre class="prettyprint">compile 'org.codehaus.mojo:truezip-utils:1.3-SNAPSHOT'</pre></div></div>
+<div class="section">
+<h3><a name="Leiningen"></a>Leiningen</h3><a name="Leiningen"></a>
+<div class="source"><pre class="prettyprint">[org.codehaus.mojo/truezip-utils &quot;1.3-SNAPSHOT&quot;]</pre></div></div>
+<div class="section">
+<h3><a name="SBT"></a>SBT</h3><a name="SBT"></a>
+<div class="source"><pre class="prettyprint">libraryDependencies += &quot;org.codehaus.mojo&quot; % &quot;truezip-utils&quot; % &quot;1.3-SNAPSHOT&quot;</pre></div></div></div>
                   </div>
             </div>
           </div>

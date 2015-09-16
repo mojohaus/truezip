@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20150915" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>TrueZip &#x2013; About</title>
+    <title>TrueZip &#x2013; Project Plugin Management</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.4.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -65,7 +65,7 @@
         TrueZip</a>
                     <span class="divider">/</span>
       </li>
-        <li class="active ">About</li>
+        <li class="active ">Project Plugin Management</li>
         
                 
                     
@@ -136,10 +136,12 @@
         Dependency Information</a>
             </li>
                     
-      <li class="active">
+      <li>
   
-            <a href="#"><span class="none"></span>About</a>
-          </li>
+                          <a href="index.html" title="About">
+          <span class="none"></span>
+        About</a>
+            </li>
                     
       <li>
   
@@ -197,12 +199,10 @@
         Project License</a>
             </li>
                     
-      <li>
+      <li class="active">
   
-                          <a href="plugin-management.html" title="Plugin Management">
-          <span class="none"></span>
-        Plugin Management</a>
-            </li>
+            <a href="#"><span class="none"></span>Plugin Management</a>
+          </li>
               </ul>
         </li>
                                                                                                                         
@@ -240,21 +240,156 @@
         <div id="bodyColumn"  class="span10" >
                                   
             <div class="section">
-<h2><a name="About_TrueZip"></a>About TrueZip</h2><a name="About_TrueZip"></a>
-<p>Project to create new or manipulate existing compressed archives using TrueZIP</p>
-<div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
+<h2><a name="Project_Plugin_Management"></a>Project Plugin Management</h2><a name="Project_Plugin_Management"></a>
 <table border="0" class="table table-striped">
 <tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th></tr>
 <tr class="b">
-<td><a href="truezip-utils/index.html">TrueZIP Shared Component</a></td>
-<td>Shared component usable outside of Maven to manipulate archives. See javadoc and unit test for detailed usage.</td></tr>
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-antrun-plugin/">maven-antrun-plugin</a></td>
+<td>1.8</td></tr>
 <tr class="a">
-<td><a href="truezip-maven-plugin/index.html">TrueZIP Maven Plugin</a></td>
-<td>Use this plugin to create new or manipulate existing archives using TrueZIP</td></tr></table></div></div>
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-assembly-plugin/">maven-assembly-plugin</a></td>
+<td>2.5.5</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-changes-plugin/">maven-changes-plugin</a></td>
+<td>2.11</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-checkstyle-plugin/">maven-checkstyle-plugin</a></td>
+<td>2.16</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-clean-plugin/">maven-clean-plugin</a></td>
+<td>2.6.1</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-compiler-plugin/">maven-compiler-plugin</a></td>
+<td>3.3</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-dependency-plugin/">maven-dependency-plugin</a></td>
+<td>2.10</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-deploy-plugin/">maven-deploy-plugin</a></td>
+<td>2.8.2</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-ear-plugin/">maven-ear-plugin</a></td>
+<td>2.10.1</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/enforcer/maven-enforcer-plugin">maven-enforcer-plugin</a></td>
+<td>1.4</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-gpg-plugin/">maven-gpg-plugin</a></td>
+<td>1.6</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-help-plugin/">maven-help-plugin</a></td>
+<td>2.2</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-install-plugin/">maven-install-plugin</a></td>
+<td>2.5.2</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-invoker-plugin/">maven-invoker-plugin</a></td>
+<td>2.0.0</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-jar-plugin/">maven-jar-plugin</a></td>
+<td>2.6</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</a></td>
+<td>2.10.3</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/jxr/maven-jxr-plugin/">maven-jxr-plugin</a></td>
+<td>2.5</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugin-tools/maven-plugin-plugin">maven-plugin-plugin</a></td>
+<td>3.4</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-project-info-reports-plugin/">maven-project-info-reports-plugin</a></td>
+<td>2.8</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/maven-release/maven-release-plugin/">maven-release-plugin</a></td>
+<td>2.5.2</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-resources-plugin/">maven-resources-plugin</a></td>
+<td>2.7</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-scm-publish-plugin">maven-scm-publish-plugin</a></td>
+<td>1.1</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/">maven-site-plugin</a></td>
+<td>3.4</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-source-plugin/">maven-source-plugin</a></td>
+<td>2.4</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/surefire/maven-surefire-plugin">maven-surefire-plugin</a></td>
+<td>2.18.1</td></tr>
+<tr class="a">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/surefire/maven-surefire-report-plugin">maven-surefire-report-plugin</a></td>
+<td>2.18.1</td></tr>
+<tr class="b">
+<td>org.apache.maven.plugins</td>
+<td><a class="externalLink" href="http://maven.apache.org/plugins/maven-war-plugin/">maven-war-plugin</a></td>
+<td>2.6</td></tr>
+<tr class="a">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/animal-sniffer-parent/animal-sniffer-maven-plugin">animal-sniffer-maven-plugin</a></td>
+<td>1.14</td></tr>
+<tr class="b">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/cobertura-maven-plugin/">cobertura-maven-plugin</a></td>
+<td>2.7</td></tr>
+<tr class="a">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/flatten-maven-plugin">flatten-maven-plugin</a></td>
+<td>1.0.0-beta-5</td></tr>
+<tr class="b">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/l10n-maven-plugin">l10n-maven-plugin</a></td>
+<td>1.0-alpha-2</td></tr>
+<tr class="a">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/license-maven-plugin">license-maven-plugin</a></td>
+<td>1.8</td></tr>
+<tr class="b">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/taglist-maven-plugin">taglist-maven-plugin</a></td>
+<td>2.4</td></tr>
+<tr class="a">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/versions-maven-plugin">versions-maven-plugin</a></td>
+<td>2.2</td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td>plexus-maven-plugin</td>
+<td>1.3.8</td></tr>
+<tr class="a">
+<td>org.eclipse.m2e</td>
+<td>lifecycle-mapping</td>
+<td>1.0.0</td></tr></table></div>
                   </div>
             </div>
           </div>
