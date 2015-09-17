@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.codehaus.mojo.truezip.TrueZip;
 import org.codehaus.mojo.truezip.TrueZipFileSet;
+import org.codehaus.plexus.util.StringUtils;
 
 import de.schlichtherle.truezip.file.TArchiveDetector;
 import de.schlichtherle.truezip.file.TFile;

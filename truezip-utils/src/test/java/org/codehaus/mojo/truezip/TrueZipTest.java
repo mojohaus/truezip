@@ -27,13 +27,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import junit.framework.TestCase;
-
-import org.apache.commons.io.FileUtils;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZip;
 import org.codehaus.mojo.truezip.internal.DefaultTrueZipArchiveDetector;
+import org.codehaus.plexus.util.FileUtils;
 
 import de.schlichtherle.truezip.file.TFile;
+import junit.framework.TestCase;
 
 public class TrueZipTest
     extends TestCase
