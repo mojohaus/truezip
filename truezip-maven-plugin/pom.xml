@@ -29,6 +29,7 @@
   </parent>
 
   <artifactId>truezip-maven-plugin</artifactId>
+  <version>1.2-uem</version>
   <name>TrueZIP Maven Plugin</name>
 
   <packaging>maven-plugin</packaging>
@@ -44,6 +45,7 @@
     <dependency>
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>truezip-utils</artifactId>
+      <version>1.1</version>
     </dependency>
 
     <dependency>
