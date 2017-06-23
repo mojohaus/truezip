@@ -59,6 +59,15 @@ public abstract class AbstractArchiveMojo
     protected boolean immediateUpdate;
 
     /**
+    * If any file is not present during the execution of this plugin, the build will fail if this parameter is true (default)
+    * or will not fail ih this parameter is false
+    * 
+    * @parameter default-value="true"
+    * @since 1.2 beta-1
+    */
+    protected boolean failIfFileNoPresent;
+    
+    /**
      * Skip
      * 
      * @parameter property="truezip.skip" default-value="false"
