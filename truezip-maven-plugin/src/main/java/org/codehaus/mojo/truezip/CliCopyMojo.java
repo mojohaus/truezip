@@ -82,7 +82,10 @@ public class CliCopyMojo
         }
         catch ( IOException e )
         {
-            throw new MojoExecutionException( "Unable to copy: " + from + " to " + to, e );
+          if (failIfFileNoPresent){
+            throw new MojoExecutionException( "Unable to copy: " + from + " to " + to,  e );
+          }
+          getLog().debug(new MojoExecutionException( "Unable to copy: " + from + " to " + to,  e ));
         }
 
         this.tryImmediateUpdate();
